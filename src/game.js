@@ -11,22 +11,21 @@ export default class Game {
     this.playId;
     this.timeStart = 0;
 
-    this.inputHandler = new InputHandler(this.playId);
+    this.inputHandler = new InputHandler();
+    this.run = this.run.bind(this);
+    this.handlePause();
     this.run();
   }
 
-  handlePause() {
+  handlePause = () => {
     document.addEventListener("keydown", (e) => {
       if (e.keyCode === 27) {
-        (playId) ? this.pause() : this.run()
+        (this.playId) ? this.pause() : this.run()
       }
     })
   }
 
-  hi = "hi";
-  
-  frame(timeStamp) {
-    console.log(this.hi)
+  frame = (timeStamp) => {
     this.playId = undefined;
 
     let timeDelta = timeStamp - this.timeStart;
@@ -37,14 +36,13 @@ export default class Game {
     this.run();
   }
 
-  run() {
+  run = () => {
     if (!this.playId) {
       this.playId = window.requestAnimationFrame(this.frame);
-      console.log("game is running")
     }
   }
 
-  pause() {
+  pause = () => {
     if (this.playId) {
       window.cancelAnimationFrame(this.playId);
       this.playId = undefined;

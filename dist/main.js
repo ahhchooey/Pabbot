@@ -91,9 +91,65 @@
   !*** ./src/game.js ***!
   \*********************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (26:5)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n|   }\\n| \\n>   hi = \\\"hi\\\";\\n|   \\n|   frame(timeStamp) {\");\n\n//# sourceURL=webpack:///./src/game.js?");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
+/* harmony import */ var _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inputHandler.js */ "./src/inputHandler.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+var GAME_HEIGHT = 600;
+var GAME_WIDTH = 800;
+
+var Game = function Game(context) {
+  var _this = this;
+
+  _classCallCheck(this, Game);
+
+  this.handlePause = function () {
+    document.addEventListener("keydown", function (e) {
+      if (e.keyCode === 27) {
+        _this.playId ? _this.pause() : _this.run();
+      }
+    });
+  };
+
+  this.frame = function (timeStamp) {
+    _this.playId = undefined;
+    var timeDelta = timeStamp - _this.timeStart;
+    _this.timeStart = timeStamp;
+
+    _this.context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+    _this.run();
+  };
+
+  this.run = function () {
+    if (!_this.playId) {
+      _this.playId = window.requestAnimationFrame(_this.frame);
+    }
+  };
+
+  this.pause = function () {
+    if (_this.playId) {
+      window.cancelAnimationFrame(_this.playId);
+      _this.playId = undefined;
+      console.log("game is paused");
+    }
+  };
+
+  this.context = context;
+  this.playId;
+  this.timeStart = 0;
+  this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  this.run = this.run.bind(this);
+  this.handlePause();
+  this.run();
+};
+
+
 
 /***/ }),
 
@@ -105,8 +161,92 @@ eval("throw new Error(\"Module parse failed: Unexpected token (26:5)\\nYou may n
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game.js */ \"./src/game.js\");\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  let canvas = document.getElementById(\"game\");\n  let context = canvas.getContext(\"2d\");\n\n  let game = new _game_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](context);\n})\n\n\n//# sourceURL=webpack:///./src/index.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game.js */ "./src/game.js");
+
+document.addEventListener("DOMContentLoaded", function () {
+  var canvas = document.getElementById("game");
+  var context = canvas.getContext("2d");
+  var game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](context);
+});
+
+/***/ }),
+
+/***/ "./src/inputHandler.js":
+/*!*****************************!*\
+  !*** ./src/inputHandler.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return InputHandler; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var InputHandler = function InputHandler() {
+  _classCallCheck(this, InputHandler);
+
+  document.addEventListener("keydown", function (e) {
+    //w87, a65, s83, d68, j74, k75, esc27
+    switch (e.keyCode) {
+      case 87:
+        console.log("up");
+        break;
+
+      case 65:
+        console.log("left");
+        break;
+
+      case 83:
+        console.log("down");
+        break;
+
+      case 68:
+        console.log("right");
+        break;
+
+      case 74:
+        console.log("jump");
+        break;
+
+      case 75:
+        console.log("dash");
+        break;
+    }
+  });
+  document.addEventListener("keyup", function (e) {
+    switch (e.keyCode) {
+      case 87:
+        console.log("up");
+        break;
+
+      case 65:
+        console.log("left");
+        break;
+
+      case 83:
+        console.log("down");
+        break;
+
+      case 68:
+        console.log("right");
+        break;
+
+      case 74:
+        console.log("jump");
+        break;
+
+      case 75:
+        console.log("dash");
+        break;
+    }
+  });
+};
+
+
 
 /***/ })
 
 /******/ });
+//# sourceMappingURL=main.js.map
