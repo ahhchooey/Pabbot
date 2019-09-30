@@ -86,14 +86,14 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/index.css":
-/*!***********************!*\
-  !*** ./src/index.css ***!
-  \***********************/
-/*! no static exports found */
+/***/ "./src/game.js":
+/*!*********************!*\
+  !*** ./src/game.js ***!
+  \*********************/
+/*! exports provided: default */
 /***/ (function(module, exports) {
 
-eval("throw new Error(\"Module parse failed: Unexpected character '@' (1:0)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n> @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');\\n| \\n| * {\");\n\n//# sourceURL=webpack:///./src/index.css?");
+eval("throw new Error(\"Module parse failed: Unexpected token (26:5)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n|   }\\n| \\n>   hi = \\\"hi\\\";\\n|   \\n|   frame(timeStamp) {\");\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -105,7 +105,7 @@ eval("throw new Error(\"Module parse failed: Unexpected character '@' (1:0)\\nYo
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n\n})\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game.js */ \"./src/game.js\");\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  let canvas = document.getElementById(\"game\");\n  let context = canvas.getContext(\"2d\");\n\n  let game = new _game_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](context);\n})\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
