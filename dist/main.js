@@ -237,6 +237,7 @@ var Game = function Game(context) {
     if (obj.position.y > GAME_HEIGHT - obj.height) {
       obj.position.y = GAME_HEIGHT - obj.height;
       obj.isJumping = false;
+      obj.isDashing = false;
     }
   };
 
@@ -305,22 +306,25 @@ var InputHandler = function InputHandler(pabbot) {
   _classCallCheck(this, InputHandler);
 
   this.jumped = false;
+  this.dashed = false;
   document.addEventListener("keydown", function (e) {
     //w87, a65, s83, d68, j74, k75, esc27
     switch (e.keyCode) {
       case 87:
-        console.log("up");
+        pabbot.upActive = true;
         break;
 
       case 65:
+        pabbot.leftActive = true;
         pabbot.moveLeft();
         break;
 
       case 83:
-        console.log("down");
+        pabbot.downActive = true;
         break;
 
       case 68:
+        pabbot.rightActive = true;
         pabbot.moveRight();
         break;
 
@@ -333,25 +337,31 @@ var InputHandler = function InputHandler(pabbot) {
         break;
 
       case 75:
-        console.log("dash");
+        if (!_this.dashed) {
+          _this.dashed = true;
+          pabbot.dash();
+        }
+
         break;
     }
   });
   document.addEventListener("keyup", function (e) {
     switch (e.keyCode) {
       case 87:
-        console.log("up");
+        pabbot.upActive = false;
         break;
 
       case 65:
+        pabbot.leftActive = false;
         if (pabbot.speed.x < 0) pabbot.stop();
         break;
 
       case 83:
-        console.log("down");
+        pabbot.downActive = false;
         break;
 
       case 68:
+        pabbot.rightActive = false;
         if (pabbot.speed.x > 0) pabbot.stop();
         break;
 
@@ -364,7 +374,10 @@ var InputHandler = function InputHandler(pabbot) {
         break;
 
       case 75:
-        console.log("dash");
+        if (_this.dashed) {
+          _this.dashed = false;
+        }
+
         break;
     }
   });
@@ -441,10 +454,16 @@ var Pabbot = function Pabbot() {
   this.width = 32;
   this.height = 32;
   this.maxSpeed = 100;
+  this.dashSpeed = 300;
   this.jumpHeight = 500;
   this.gravity = 500;
   this.terminalVelocity = 1000;
   this.isJumping = false;
+  this.isDashing = false;
+  this.upActive = false;
+  this.leftActive = false;
+  this.downActive = false;
+  this.rightActive = false;
 
   this.render = function (context) {
     context.fillStyle = "#1a1";
@@ -484,6 +503,18 @@ var Pabbot = function Pabbot() {
       if (_this.speed.y < 0) {
         _this.speed.y = 0;
       }
+    }
+  };
+
+  this.dash = function () {
+    if (_this.isJumping && !_this.isDashing) {
+      _this.isDashing = true;
+      _this.speed.x = 0;
+      _this.speed.y = 0;
+      if (_this.upActive) _this.speed.y -= _this.dashSpeed;
+      if (_this.leftActive) _this.speed.x -= _this.dashSpeed;
+      if (_this.downActive) _this.speed.y += _this.dashSpeed;
+      if (_this.rightActive) _this.speed.x += _this.dashSpeed;
     }
   };
 };

@@ -13,10 +13,17 @@ export default class Pabbot {
   width = 32;
   height = 32;
   maxSpeed = 100;
+  dashSpeed = 300;
   jumpHeight = 500;
   gravity = 500;
   terminalVelocity = 1000;
+
   isJumping = false;
+  isDashing = false;
+  upActive = false;
+  leftActive = false;
+  downActive = false;
+  rightActive = false;
 
   render = (context) => {
     context.fillStyle = "#1a1"  
@@ -55,6 +62,18 @@ export default class Pabbot {
       if (this.speed.y < 0) {
         this.speed.y = 0;
       }
+    }
+  }
+
+  dash = () => {
+    if (this.isJumping && !this.isDashing) {
+      this.isDashing = true;
+      this.speed.x = 0;
+      this.speed.y = 0;
+      if (this.upActive) this.speed.y -= this.dashSpeed;
+      if (this.leftActive) this.speed.x -= this.dashSpeed;
+      if (this.downActive) this.speed.y += this.dashSpeed;
+      if (this.rightActive) this.speed.x += this.dashSpeed;
     }
   }
 

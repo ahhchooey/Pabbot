@@ -74,6 +74,7 @@ export default class Game {
     if (obj.position.y > GAME_HEIGHT - obj.height) {
       obj.position.y = GAME_HEIGHT - obj.height;
       obj.isJumping = false;
+      obj.isDashing = false;
     }
   }
 
