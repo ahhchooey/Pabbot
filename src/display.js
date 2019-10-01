@@ -1,18 +1,25 @@
 
 
 export default class Display {
-  constructor(context, width, height) {
+  constructor(context, width, height, pabbot) {
     this.context = context;
     this.width = width;
     this.height = height;
-  }
+    this.pabbot = pabbot;
 
-  buffer = document.createElement("canvas").getContext("2d");
+    this.buffer = document.createElement("canvas").getContext("2d");
+    this.buffer.canvas.width = width;
+    this.buffer.canvas.height = height;
+  }
 
   drawRectangle = (x, y, width, height, color) => {
     this.buffer.fillStyle = color;
     this.buffer.fillRect(Math.floor(x), Math.floor(y), width, height);
   };
+
+  drawPabbot = () => {
+    this.pabbot.render(this.buffer);
+  }
 
   fill = (color) => {
     this.buffer.fillStyle = color;
@@ -35,11 +42,11 @@ export default class Display {
 
   resize = (width, height, ratio) => {
     if (height / width > ratio) {
-      this.context.width = width;
-      this.context.height = width * ratio;
+      this.context.canvas.width = width;
+      this.context.canvas.height = width * ratio;
     } else {
-      this.context.width = height / ratio;
-      this.context.height = height;
+      this.context.canvas.width = height / ratio;
+      this.context.canvas.height = height;
     }
     this.context.imageSmoothingEnabled = false;
   }

@@ -86,6 +86,68 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/display.js":
+/*!************************!*\
+  !*** ./src/display.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Display; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Display = function Display(context, _width, _height, pabbot) {
+  var _this = this;
+
+  _classCallCheck(this, Display);
+
+  this.drawRectangle = function (x, y, width, height, color) {
+    _this.buffer.fillStyle = color;
+
+    _this.buffer.fillRect(Math.floor(x), Math.floor(y), width, height);
+  };
+
+  this.drawPabbot = function () {
+    _this.pabbot.render(_this.buffer);
+  };
+
+  this.fill = function (color) {
+    _this.buffer.fillStyle = color;
+
+    _this.buffer.fillRect(0, 0, _this.width, _this.height);
+  };
+
+  this.render = function () {
+    _this.context.drawImage(_this.buffer.canvas, 0, 0, _this.buffer.canvas.width, _this.buffer.canvas.height, 0, 0, _this.context.canvas.width, _this.context.canvas.height);
+  };
+
+  this.resize = function (width, height, ratio) {
+    if (height / width > ratio) {
+      _this.context.canvas.width = width;
+      _this.context.canvas.height = width * ratio;
+    } else {
+      _this.context.canvas.width = height / ratio;
+      _this.context.canvas.height = height;
+    }
+
+    _this.context.imageSmoothingEnabled = false;
+  };
+
+  this.context = context;
+  this.width = _width;
+  this.height = _height;
+  this.pabbot = pabbot;
+  this.buffer = document.createElement("canvas").getContext("2d");
+  this.buffer.canvas.width = _width;
+  this.buffer.canvas.height = _height;
+};
+
+
+
+/***/ }),
+
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
@@ -98,7 +160,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
 /* harmony import */ var _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inputHandler.js */ "./src/inputHandler.js");
 /* harmony import */ var _pabbot_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pabbot.js */ "./src/pabbot.js");
+/* harmony import */ var _display_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./display.js */ "./src/display.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 
 
@@ -109,6 +173,14 @@ var Game = function Game(context) {
   var _this = this;
 
   _classCallCheck(this, Game);
+
+  this.render = function () {
+    _this.display.fill("#333");
+
+    _this.display.drawPabbot();
+
+    _this.display.render();
+  };
 
   this.frame = function (timeStamp) {
     _this.playId = undefined;
@@ -121,7 +193,7 @@ var Game = function Game(context) {
 
     _this.isCollide(_this.pabbot);
 
-    _this.pabbot.render(_this.context);
+    _this.render();
 
     _this.run();
   };
@@ -158,15 +230,21 @@ var Game = function Game(context) {
     }
   };
 
+  this.resize = function (e) {
+    _this.display.resize(document.documentElement.clientWidth - 100, document.documentElement.clientHeight - 100, GAME_HEIGHT / GAME_WIDTH);
+  };
+
   this.context = context;
+  this.context.canvas.height = GAME_HEIGHT;
+  this.context.canvas.width = GAME_WIDTH;
   this.playId;
   this.timeStart = 0;
   this.run = this.run.bind(this);
   this.handlePause();
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
-} // Basic game loop and pausing are handled with the following methods
-;
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot);
+};
 
 
 
@@ -187,6 +265,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var canvas = document.getElementById("game");
   var context = canvas.getContext("2d");
   var game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](context);
+  window.addEventListener("resize", game.resize);
+  game.resize();
   game.run();
 });
 

@@ -1,5 +1,6 @@
 import InputHandler from "./inputHandler.js";
 import Pabbot from "./pabbot.js";
+import Display from "./display.js";
 
 
 const GAME_HEIGHT = 600;
@@ -8,6 +9,8 @@ const GAME_WIDTH = 800;
 export default class Game {
   constructor(context) {
     this.context = context;
+    this.context.canvas.height = GAME_HEIGHT;
+    this.context.canvas.width = GAME_WIDTH;
 
     this.playId;
     this.timeStart = 0;
@@ -16,9 +19,15 @@ export default class Game {
 
     this.pabbot = new Pabbot();
     this.inputHandler = new InputHandler(this.pabbot);
+    this.display = new Display(this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot);
   }
 
-  // Basic game loop and pausing are handled with the following methods
+  render = () => {
+    this.display.fill("#333");
+    this.display.drawPabbot();
+    this.display.render();
+  }
+
   frame = (timeStamp) => {
     this.playId = undefined;
 
@@ -29,7 +38,7 @@ export default class Game {
 
     this.pabbot.move(timeDelta);
     this.isCollide(this.pabbot);
-    this.pabbot.render(this.context);
+    this.render();
 
     this.run();
   };
@@ -63,6 +72,14 @@ export default class Game {
       obj.position.y = GAME_HEIGHT - obj.height;
       obj.isJumping = false;
     }
+  }
+
+  resize = (e) => {
+    this.display.resize(
+      document.documentElement.clientWidth - 100,
+      document.documentElement.clientHeight - 100,
+      GAME_HEIGHT/GAME_WIDTH 
+    )
   }
 
 }
