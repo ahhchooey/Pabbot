@@ -10,26 +10,21 @@ export default class Pabbot {
     x: 400,
     y: 300
   }
+  width = 32;
+  height = 32;
   maxSpeed = 100;
-  jumpHeight = 150;
+  jumpHeight = 500;
   isJumping = false;
 
   render = (context) => {
     context.fillStyle = "#1a1"  
-    context.fillRect(this.position.x, this.position.y, 32, 32);
+    context.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 
   move = (timeDelta) => {
     this.position.x += this.speed.x / timeDelta;
     this.position.y += this.speed.y /timeDelta;
-    this.speed.y += 150 / timeDelta
-
-    if (this.position.x < 0) this.position.x = 0;
-    if (this.position.x > 800 - 32) this.position.x = 800 - 32;
-    if (this.position.y > 600 - 32) {
-      this.position.y = 600 - 32;
-      this.isJumping = false;
-    }
+    this.speed.y += 500 / timeDelta
   }
 
   stop = () => {

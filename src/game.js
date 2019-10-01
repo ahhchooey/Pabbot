@@ -28,6 +28,7 @@ export default class Game {
     this.context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
     this.pabbot.move(timeDelta);
+    this.isCollide(this.pabbot);
     this.pabbot.render(this.context);
 
     this.run();
@@ -56,7 +57,12 @@ export default class Game {
   };
 
   isCollide = (obj) => {
-    
+    if (obj.position.x < 0) obj.position.x = 0;
+    if (obj.position.x > GAME_WIDTH - obj.width) obj.position.x = GAME_WIDTH - obj.width;
+    if (obj.position.y > GAME_HEIGHT - obj.height) {
+      obj.position.y = GAME_HEIGHT - obj.height;
+      obj.isJumping = false;
+    }
   }
 
 }

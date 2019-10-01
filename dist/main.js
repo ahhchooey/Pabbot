@@ -119,6 +119,8 @@ var Game = function Game(context) {
 
     _this.pabbot.move(timeDelta);
 
+    _this.isCollide(_this.pabbot);
+
     _this.pabbot.render(_this.context);
 
     _this.run();
@@ -146,7 +148,15 @@ var Game = function Game(context) {
     });
   };
 
-  this.isCollide = function (obj) {};
+  this.isCollide = function (obj) {
+    if (obj.position.x < 0) obj.position.x = 0;
+    if (obj.position.x > GAME_WIDTH - obj.width) obj.position.x = GAME_WIDTH - obj.width;
+
+    if (obj.position.y > GAME_HEIGHT - obj.height) {
+      obj.position.y = GAME_HEIGHT - obj.height;
+      obj.isJumping = false;
+    }
+  };
 
   this.context = context;
   this.playId;
@@ -195,8 +205,11 @@ __webpack_require__.r(__webpack_exports__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var InputHandler = function InputHandler(pabbot) {
+  var _this = this;
+
   _classCallCheck(this, InputHandler);
 
+  this.jumped = false;
   document.addEventListener("keydown", function (e) {
     //w87, a65, s83, d68, j74, k75, esc27
     switch (e.keyCode) {
@@ -217,7 +230,11 @@ var InputHandler = function InputHandler(pabbot) {
         break;
 
       case 74:
-        pabbot.jump();
+        if (!_this.jumped) {
+          _this.jumped = true;
+          pabbot.jump();
+        }
+
         break;
 
       case 75:
@@ -244,7 +261,10 @@ var InputHandler = function InputHandler(pabbot) {
         break;
 
       case 74:
-        console.log("jump");
+        if (_this.jumped) {
+          _this.jumped = false;
+        }
+
         break;
 
       case 75:
@@ -283,26 +303,21 @@ var Pabbot = function Pabbot() {
     x: 400,
     y: 300
   };
+  this.width = 32;
+  this.height = 32;
   this.maxSpeed = 100;
-  this.jumpHeight = 150;
+  this.jumpHeight = 500;
   this.isJumping = false;
 
   this.render = function (context) {
     context.fillStyle = "#1a1";
-    context.fillRect(_this.position.x, _this.position.y, 32, 32);
+    context.fillRect(_this.position.x, _this.position.y, _this.width, _this.height);
   };
 
   this.move = function (timeDelta) {
     _this.position.x += _this.speed.x / timeDelta;
     _this.position.y += _this.speed.y / timeDelta;
-    _this.speed.y += 150 / timeDelta;
-    if (_this.position.x < 0) _this.position.x = 0;
-    if (_this.position.x > 800 - 32) _this.position.x = 800 - 32;
-
-    if (_this.position.y > 600 - 32) {
-      _this.position.y = 600 - 32;
-      _this.isJumping = false;
-    }
+    _this.speed.y += 500 / timeDelta;
   };
 
   this.stop = function () {
