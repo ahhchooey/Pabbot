@@ -6,6 +6,10 @@ export default class Entity {
       x: x,
       y: y
     };
+    this.pastPos = {
+      x: x,
+      y: y
+    }
     this.width = width;
     this.height = height;
   }
@@ -16,8 +20,17 @@ export default class Entity {
   getRight = () => this.position.x + this.width;
 
   setTop = (y) => {this.position.y = y};
-  setLeft = (x) => {this.postion.x = x};
+  setLeft = (x) => {this.position.x = x};
   setBottom = (y) => {this.position.y = y - this.height};
   setRight = (x) => {this.position.x = x - this.width};
 
+  getPastTop = () => this.pastPos.y;
+  getPastLeft = () => this.pastPos.x;
+  getPastBottom = () => this.pastPos.y + 32;
+  getPastRight = () => this.pastPos.x + 32;
+
+  setPastTop = (y) => {this.pastPos.y = y};
+  setPastLeft = (x) => {this.pastPos.x = x};
+  setPastBottom = (y) => {this.pastPos.y = y + 32};
+  setPastRight = (x) => {this.pastPos.x = x + 32};
 }

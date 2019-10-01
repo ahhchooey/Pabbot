@@ -86,6 +86,144 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/collision.js":
+/*!**************************!*\
+  !*** ./src/collision.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Collision; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Collision = function Collision(width, height, collisionMap) {
+  var _this = this;
+
+  _classCallCheck(this, Collision);
+
+  this.isCollide = function (ent) {
+    if (ent.getTop() < 0) ent.setTop(0);
+    if (ent.getLeft() < 0) ent.setLeft(0);
+
+    if (ent.getBottom() > _this.gameHeight) {
+      ent.setBottom(_this.gameHeight);
+      ent.isJumping = false;
+      ent.isDashing = false;
+    }
+
+    ;
+    if (ent.getRight() > _this.gameWidth) ent.setRight(_this.gameWidth);
+    var top, left, bottom, right, value;
+    top = Math.floor(ent.getTop() / 32);
+    left = Math.floor(ent.getLeft() / 32);
+    value = _this.collisionMap[top * 20 + left];
+
+    _this.collide(value, ent, left * 32, top * 32);
+
+    top = Math.floor(ent.getTop() / 32);
+    right = Math.floor(ent.getRight() / 32);
+    value = _this.collisionMap[top * 20 + right];
+
+    _this.collide(value, ent, right * 32, top * 32);
+
+    left = Math.floor(ent.getLeft() / 32);
+    bottom = Math.floor(ent.getBottom() / 32);
+    value = _this.collisionMap[bottom * 20 + left];
+
+    _this.collide(value, ent, left * 32, bottom * 32);
+
+    bottom = Math.floor(ent.getBottom() / 32);
+    right = Math.floor(ent.getRight() / 32);
+    value = _this.collisionMap[bottom * 20 + right];
+
+    _this.collide(value, ent, right * 32, bottom * 32);
+  };
+
+  this.collide = function (value, ent, tileX, tileY) {
+    switch (value) {
+      case 1:
+        _this.collidePlatformTop(ent, tileY);
+
+        break;
+
+      case 2:
+        if (_this.collidePlatformTop(ent, tileY)) return;
+
+        _this.collidePlatformLeft(ent, tileX);
+
+        break;
+
+      case 3:
+        if (_this.collidePlatformTop(ent)) return;
+
+        _this.collidePlatformRight(ent, tileX + 32);
+
+        break;
+
+      case 4:
+        _this.collidePlatformTop(ent, tileY);
+
+        _this.collidePlatformBottom(ent, tileY + 32);
+
+        break;
+    }
+  };
+
+  this.collidePlatformTop = function (ent, tileTop) {
+    console.log("tileTop", tileTop);
+    console.log("bottom", ent.getBottom());
+
+    if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
+      ent.setBottom(tileTop - 0.01);
+      ent.isJumping = false;
+      ent.isDashing = false;
+      return true;
+    }
+
+    return false;
+  };
+
+  this.collidePlatformLeft = function (ent, tileLeft) {
+    if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) {
+      console.log("left");
+      ent.setRight(tileLeft - 0.01);
+      ent.speed.x = 0;
+      return true;
+    }
+
+    return false;
+  };
+
+  this.collidePlatformRight = function (ent, tileRight) {
+    if (ent.getLeft() < tileRight && ent.getPastLeft() <= tileRight) {
+      ent.setLeft(tileRight + 0.01);
+      return true;
+    }
+
+    return false;
+  };
+
+  this.collidePlatformBottom = function (ent, tileBottom) {
+    if (ent.getTop() < tileBottom && ent.getPastTop() <= tileBottom) {
+      ent.setTop(tileBottom + 0.01);
+      ent.speed.y = 500;
+      return true;
+    }
+
+    return false;
+  };
+
+  this.gameWidth = width;
+  this.gameHeight = height;
+  this.collisionMap = collisionMap;
+};
+
+
+
+/***/ }),
+
 /***/ "./src/display.js":
 /*!************************!*\
   !*** ./src/display.js ***!
@@ -113,8 +251,8 @@ var Display = function Display(context, _width, _height, pabbot, map) {
     _this.pabbot.render(_this.buffer);
   };
 
-  this.drawMap = function () {
-    _this.map.render(tempData, 20, _this.buffer);
+  this.drawMap = function (data) {
+    _this.map.render(data, 20, _this.buffer);
   };
 
   this.fill = function (color) {
@@ -150,8 +288,6 @@ var Display = function Display(context, _width, _height, pabbot, map) {
 };
 
 
-var tempData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-var tempCollision = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 /***/ }),
 
@@ -193,7 +329,7 @@ var Entity = function Entity(_x, _y, width, height) {
   };
 
   this.setLeft = function (x) {
-    _this.postion.x = x;
+    _this.position.x = x;
   };
 
   this.setBottom = function (y) {
@@ -204,7 +340,43 @@ var Entity = function Entity(_x, _y, width, height) {
     _this.position.x = x - _this.width;
   };
 
+  this.getPastTop = function () {
+    return _this.pastPos.y;
+  };
+
+  this.getPastLeft = function () {
+    return _this.pastPos.x;
+  };
+
+  this.getPastBottom = function () {
+    return _this.pastPos.y + 32;
+  };
+
+  this.getPastRight = function () {
+    return _this.pastPos.x + 32;
+  };
+
+  this.setPastTop = function (y) {
+    _this.pastPos.y = y;
+  };
+
+  this.setPastLeft = function (x) {
+    _this.pastPos.x = x;
+  };
+
+  this.setPastBottom = function (y) {
+    _this.pastPos.y = y + 32;
+  };
+
+  this.setPastRight = function (x) {
+    _this.pastPos.x = x + 32;
+  };
+
   this.position = {
+    x: _x,
+    y: _y
+  };
+  this.pastPos = {
     x: _x,
     y: _y
   };
@@ -230,7 +402,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pabbot_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pabbot.js */ "./src/pabbot.js");
 /* harmony import */ var _display_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./display.js */ "./src/display.js");
 /* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./map.js */ "./src/map.js");
+/* harmony import */ var _collision_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./collision.js */ "./src/collision.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 
 
@@ -247,7 +421,7 @@ var Game = function Game(context) {
   this.render = function () {
     _this.display.fill("#333");
 
-    _this.display.drawMap();
+    _this.display.drawMap(tempMap);
 
     _this.display.drawPabbot();
 
@@ -263,7 +437,7 @@ var Game = function Game(context) {
 
     _this.pabbot.move(timeDelta);
 
-    _this.isCollide(_this.pabbot);
+    _this.collision.isCollide(_this.pabbot);
 
     _this.render();
 
@@ -318,9 +492,12 @@ var Game = function Game(context) {
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_3__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
   this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map);
+  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_4__["default"](GAME_WIDTH, GAME_HEIGHT, tempCollision);
 };
 
 
+var tempMap = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+var tempCollision = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 /***/ }),
 
@@ -532,8 +709,8 @@ function (_Entity) {
     };
     _this.maxSpeed = 100;
     _this.dashSpeed = 300;
-    _this.jumpHeight = 500;
-    _this.gravity = 500;
+    _this.jumpHeight = 400;
+    _this.gravity = 400;
     _this.terminalVelocity = 1000;
     _this.isJumping = false;
     _this.isDashing = false;
@@ -551,7 +728,7 @@ function (_Entity) {
       _this.position.x += _this.speed.x / timeDelta;
       _this.position.y += _this.speed.y / timeDelta;
 
-      if (_this.speed.y <= _this.terminalVelocity) {
+      if (_this.speed.y <= _this.terminalVelocity && _this.isJumping) {
         _this.speed.y += _this.gravity / timeDelta;
       }
     };

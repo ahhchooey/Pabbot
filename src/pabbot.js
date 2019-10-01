@@ -12,8 +12,8 @@ export default class Pabbot extends Entity {
   };
   maxSpeed = 100;
   dashSpeed = 300;
-  jumpHeight = 500;
-  gravity = 500;
+  jumpHeight = 400;
+  gravity = 400;
   terminalVelocity = 1000;
 
   isJumping = false;
@@ -31,7 +31,7 @@ export default class Pabbot extends Entity {
   move = (timeDelta) => {
     this.position.x += this.speed.x / timeDelta;
     this.position.y += this.speed.y /timeDelta;
-    if (this.speed.y <= this.terminalVelocity) {
+    if (this.speed.y <= this.terminalVelocity && this.isJumping) {
       this.speed.y += this.gravity / timeDelta;
     }
   }
