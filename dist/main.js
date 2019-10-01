@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Display; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Display = function Display(context, _width, _height, pabbot) {
+var Display = function Display(context, _width, _height, pabbot, map) {
   var _this = this;
 
   _classCallCheck(this, Display);
@@ -111,6 +111,10 @@ var Display = function Display(context, _width, _height, pabbot) {
 
   this.drawPabbot = function () {
     _this.pabbot.render(_this.buffer);
+  };
+
+  this.drawMap = function () {
+    _this.map.render(tempData, 20, _this.buffer);
   };
 
   this.fill = function (color) {
@@ -139,12 +143,14 @@ var Display = function Display(context, _width, _height, pabbot) {
   this.width = _width;
   this.height = _height;
   this.pabbot = pabbot;
+  this.map = map;
   this.buffer = document.createElement("canvas").getContext("2d");
   this.buffer.canvas.width = _width;
   this.buffer.canvas.height = _height;
 };
 
 
+var tempData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 /***/ }),
 
@@ -161,13 +167,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inputHandler.js */ "./src/inputHandler.js");
 /* harmony import */ var _pabbot_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pabbot.js */ "./src/pabbot.js");
 /* harmony import */ var _display_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./display.js */ "./src/display.js");
+/* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./map.js */ "./src/map.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
 
-var GAME_HEIGHT = 600;
-var GAME_WIDTH = 800;
+
+var GAME_HEIGHT = 320;
+var GAME_WIDTH = 640;
 
 var Game = function Game(context) {
   var _this = this;
@@ -176,6 +184,8 @@ var Game = function Game(context) {
 
   this.render = function () {
     _this.display.fill("#333");
+
+    _this.display.drawMap();
 
     _this.display.drawPabbot();
 
@@ -242,8 +252,9 @@ var Game = function Game(context) {
   this.run = this.run.bind(this);
   this.handlePause();
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  this.map = new _map_js__WEBPACK_IMPORTED_MODULE_3__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
-  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot);
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map);
 };
 
 
@@ -266,8 +277,12 @@ document.addEventListener("DOMContentLoaded", function () {
   var context = canvas.getContext("2d");
   var game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](context);
   window.addEventListener("resize", game.resize);
-  game.resize();
-  game.run();
+  window.addEventListener("load", function (e) {
+    game.resize();
+    game.run();
+  }, {
+    once: true
+  });
 });
 
 /***/ }),
@@ -359,6 +374,45 @@ var InputHandler = function InputHandler(pabbot) {
 
 /***/ }),
 
+/***/ "./src/map.js":
+/*!********************!*\
+  !*** ./src/map.js ***!
+  \********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Map; });
+/* harmony import */ var _tileSheet_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tileSheet.js */ "./src/tileSheet.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+var Map = function Map() {
+  var _this = this;
+
+  _classCallCheck(this, Map);
+
+  this.render = function (mapArray, colCount, buffer) {
+    for (var i = 0; i < mapArray.length; i++) {
+      var value = mapArray[i] - 1;
+      var sourceX = value % _this.tileSheet.colCount * 32;
+      var sourceY = Math.floor(value / _this.tileSheet.colCount) * 32;
+      var destinationX = i % colCount * 32;
+      var destinationY = Math.floor(i / colCount) * 32;
+      buffer.drawImage(_this.tileSheet.image, sourceX, sourceY, _this.tileSheet.tileSize, _this.tileSheet.tileSize, destinationX, destinationY, _this.tileSheet.tileSize, _this.tileSheet.tileSize);
+    }
+  };
+
+  this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_0__["default"](32, 8);
+  this.tileSheet.image.src = "../assets/grassGround.png";
+};
+
+
+
+/***/ }),
+
 /***/ "./src/pabbot.js":
 /*!***********************!*\
   !*** ./src/pabbot.js ***!
@@ -432,6 +486,30 @@ var Pabbot = function Pabbot() {
       }
     }
   };
+};
+
+
+
+/***/ }),
+
+/***/ "./src/tileSheet.js":
+/*!**************************!*\
+  !*** ./src/tileSheet.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TileSheet; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TileSheet = function TileSheet(tileSize, colCount) {
+  _classCallCheck(this, TileSheet);
+
+  this.image = new Image();
+  this.tileSize = tileSize;
+  this.colCount = colCount;
 };
 
 

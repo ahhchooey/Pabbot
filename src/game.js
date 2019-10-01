@@ -1,10 +1,11 @@
 import InputHandler from "./inputHandler.js";
 import Pabbot from "./pabbot.js";
 import Display from "./display.js";
+import Map from "./map.js";
 
 
-const GAME_HEIGHT = 600;
-const GAME_WIDTH = 800;
+const GAME_HEIGHT = 320;
+const GAME_WIDTH = 640;
 
 export default class Game {
   constructor(context) {
@@ -18,12 +19,14 @@ export default class Game {
     this.handlePause();
 
     this.pabbot = new Pabbot();
+    this.map = new Map();
     this.inputHandler = new InputHandler(this.pabbot);
-    this.display = new Display(this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot);
+    this.display = new Display(this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map);
   }
 
   render = () => {
     this.display.fill("#333");
+    this.display.drawMap();
     this.display.drawPabbot();
     this.display.render();
   }

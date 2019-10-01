@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let game = new Game(context);
   window.addEventListener("resize", game.resize)
 
-  game.resize();
-  game.run();
+  window.addEventListener("load", (e) => {
+    game.resize();
+    game.run();
+  }, {
+    once: true
+  })
 })

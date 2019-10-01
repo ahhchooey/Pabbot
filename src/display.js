@@ -1,11 +1,12 @@
 
 
 export default class Display {
-  constructor(context, width, height, pabbot) {
+  constructor(context, width, height, pabbot, map) {
     this.context = context;
     this.width = width;
     this.height = height;
     this.pabbot = pabbot;
+    this.map = map;
 
     this.buffer = document.createElement("canvas").getContext("2d");
     this.buffer.canvas.width = width;
@@ -19,6 +20,10 @@ export default class Display {
 
   drawPabbot = () => {
     this.pabbot.render(this.buffer);
+  }
+
+  drawMap = () => {
+    this.map.render(tempData, 20, this.buffer);
   }
 
   fill = (color) => {
@@ -52,3 +57,5 @@ export default class Display {
   }
   
 }
+
+const tempData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
