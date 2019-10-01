@@ -76,8 +76,8 @@ export default class Game {
 
   resize = (e) => {
     this.display.resize(
-      document.documentElement.clientWidth - 100,
-      document.documentElement.clientHeight - 100,
+      document.documentElement.clientWidth - 50,
+      document.documentElement.clientHeight - 250,
       GAME_HEIGHT/GAME_WIDTH 
     )
   }

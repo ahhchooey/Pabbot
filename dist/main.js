@@ -231,7 +231,7 @@ var Game = function Game(context) {
   };
 
   this.resize = function (e) {
-    _this.display.resize(document.documentElement.clientWidth - 100, document.documentElement.clientHeight - 100, GAME_HEIGHT / GAME_WIDTH);
+    _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight - 250, GAME_HEIGHT / GAME_WIDTH);
   };
 
   this.context = context;
