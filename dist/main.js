@@ -263,6 +263,7 @@ var InputHandler = function InputHandler(pabbot) {
       case 74:
         if (_this.jumped) {
           _this.jumped = false;
+          pabbot.cancelJump();
         }
 
         break;
@@ -307,6 +308,7 @@ var Pabbot = function Pabbot() {
   this.height = 32;
   this.maxSpeed = 100;
   this.jumpHeight = 500;
+  this.gravity = 500;
   this.isJumping = false;
 
   this.render = function (context) {
@@ -317,7 +319,7 @@ var Pabbot = function Pabbot() {
   this.move = function (timeDelta) {
     _this.position.x += _this.speed.x / timeDelta;
     _this.position.y += _this.speed.y / timeDelta;
-    _this.speed.y += 500 / timeDelta;
+    _this.speed.y += _this.gravity / timeDelta;
   };
 
   this.stop = function () {
@@ -336,6 +338,14 @@ var Pabbot = function Pabbot() {
     if (!_this.isJumping) {
       _this.speed.y = -_this.jumpHeight;
       _this.isJumping = true;
+    }
+  };
+
+  this.cancelJump = function () {
+    if (_this.isJumping) {
+      if (_this.speed.y < 0) {
+        _this.speed.y = 0;
+      }
     }
   };
 };

@@ -48,6 +48,7 @@ export default class InputHandler {
         case 74:
           if (this.jumped) {
             this.jumped = false;
+            pabbot.cancelJump();
           }
           break;
         case 75:

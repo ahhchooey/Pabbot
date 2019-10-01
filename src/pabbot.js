@@ -14,6 +14,7 @@ export default class Pabbot {
   height = 32;
   maxSpeed = 100;
   jumpHeight = 500;
+  gravity = 500;
   isJumping = false;
 
   render = (context) => {
@@ -24,7 +25,7 @@ export default class Pabbot {
   move = (timeDelta) => {
     this.position.x += this.speed.x / timeDelta;
     this.position.y += this.speed.y /timeDelta;
-    this.speed.y += 500 / timeDelta
+    this.speed.y += this.gravity / timeDelta
   }
 
   stop = () => {
@@ -39,10 +40,18 @@ export default class Pabbot {
     this.speed.x = this.maxSpeed;
   }
 
-  jump =() => {
+  jump = () => {
     if (!this.isJumping) {
       this.speed.y = -this.jumpHeight;
       this.isJumping = true;
+    }
+  }
+
+  cancelJump = () => {
+    if (this.isJumping) {
+      if (this.speed.y < 0) {
+        this.speed.y = 0;
+      }
     }
   }
 
