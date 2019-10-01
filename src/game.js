@@ -1,4 +1,5 @@
 import InputHandler from "./inputHandler.js";
+import Pabbot from "./pabbot.js";
 
 
 const GAME_HEIGHT = 600;
@@ -10,21 +11,14 @@ export default class Game {
 
     this.playId;
     this.timeStart = 0;
-
-    this.inputHandler = new InputHandler();
     this.run = this.run.bind(this);
     this.handlePause();
-    this.run();
+
+    this.pabbot = new Pabbot();
+    this.inputHandler = new InputHandler(this.pabbot);
   }
 
-  handlePause = () => {
-    document.addEventListener("keydown", (e) => {
-      if (e.keyCode === 27) {
-        (this.playId) ? this.pause() : this.run()
-      }
-    })
-  }
-
+  // Basic game loop and pausing are handled with the following methods
   frame = (timeStamp) => {
     this.playId = undefined;
 
@@ -33,14 +27,17 @@ export default class Game {
 
     this.context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
+    this.pabbot.move(timeDelta);
+    this.pabbot.render(this.context);
+
     this.run();
-  }
+  };
 
   run = () => {
     if (!this.playId) {
       this.playId = window.requestAnimationFrame(this.frame);
     }
-  }
+  };
 
   pause = () => {
     if (this.playId) {
@@ -48,6 +45,18 @@ export default class Game {
       this.playId = undefined;
       console.log("game is paused")
     }
+  };
+
+  handlePause = () => {
+    document.addEventListener("keydown", (e) => {
+      if (e.keyCode === 27) {
+        (this.playId) ? this.pause() : this.run()
+      }
+    })
+  };
+
+  isCollide = (obj) => {
+    
   }
 
 }

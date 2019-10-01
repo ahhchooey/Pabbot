@@ -1,7 +1,7 @@
 
 
 export default class InputHandler {
-  constructor() {
+  constructor(pabbot) {
 
     document.addEventListener("keydown", (e) => {
       //w87, a65, s83, d68, j74, k75, esc27
@@ -10,16 +10,16 @@ export default class InputHandler {
           console.log("up")
           break;
         case 65:
-          console.log("left")
+          pabbot.moveLeft();
           break;
         case 83:
           console.log("down")
           break;
         case 68:
-          console.log("right")
+          pabbot.moveRight();
           break;
         case 74:
-          console.log("jump")
+          pabbot.jump();
           break;
         case 75:
           console.log("dash")
@@ -33,13 +33,13 @@ export default class InputHandler {
           console.log("up")
           break;
         case 65:
-          console.log("left")
+          if (pabbot.speed.x < 0) pabbot.stop();
           break;
         case 83:
           console.log("down")
           break;
         case 68:
-          console.log("right")
+          if (pabbot.speed.x > 0) pabbot.stop();
           break;
         case 74:
           console.log("jump")

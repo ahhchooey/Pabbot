@@ -97,7 +97,9 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
 /* harmony import */ var _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inputHandler.js */ "./src/inputHandler.js");
+/* harmony import */ var _pabbot_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pabbot.js */ "./src/pabbot.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 
 var GAME_HEIGHT = 600;
@@ -108,20 +110,16 @@ var Game = function Game(context) {
 
   _classCallCheck(this, Game);
 
-  this.handlePause = function () {
-    document.addEventListener("keydown", function (e) {
-      if (e.keyCode === 27) {
-        _this.playId ? _this.pause() : _this.run();
-      }
-    });
-  };
-
   this.frame = function (timeStamp) {
     _this.playId = undefined;
     var timeDelta = timeStamp - _this.timeStart;
     _this.timeStart = timeStamp;
 
     _this.context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+    _this.pabbot.move(timeDelta);
+
+    _this.pabbot.render(_this.context);
 
     _this.run();
   };
@@ -140,14 +138,25 @@ var Game = function Game(context) {
     }
   };
 
+  this.handlePause = function () {
+    document.addEventListener("keydown", function (e) {
+      if (e.keyCode === 27) {
+        _this.playId ? _this.pause() : _this.run();
+      }
+    });
+  };
+
+  this.isCollide = function (obj) {};
+
   this.context = context;
   this.playId;
   this.timeStart = 0;
-  this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
   this.run = this.run.bind(this);
   this.handlePause();
-  this.run();
-};
+  this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
+} // Basic game loop and pausing are handled with the following methods
+;
 
 
 
@@ -168,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var canvas = document.getElementById("game");
   var context = canvas.getContext("2d");
   var game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](context);
+  game.run();
 });
 
 /***/ }),
@@ -184,7 +194,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return InputHandler; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var InputHandler = function InputHandler() {
+var InputHandler = function InputHandler(pabbot) {
   _classCallCheck(this, InputHandler);
 
   document.addEventListener("keydown", function (e) {
@@ -195,7 +205,7 @@ var InputHandler = function InputHandler() {
         break;
 
       case 65:
-        console.log("left");
+        pabbot.moveLeft();
         break;
 
       case 83:
@@ -203,11 +213,11 @@ var InputHandler = function InputHandler() {
         break;
 
       case 68:
-        console.log("right");
+        pabbot.moveRight();
         break;
 
       case 74:
-        console.log("jump");
+        pabbot.jump();
         break;
 
       case 75:
@@ -222,7 +232,7 @@ var InputHandler = function InputHandler() {
         break;
 
       case 65:
-        console.log("left");
+        if (pabbot.speed.x < 0) pabbot.stop();
         break;
 
       case 83:
@@ -230,7 +240,7 @@ var InputHandler = function InputHandler() {
         break;
 
       case 68:
-        console.log("right");
+        if (pabbot.speed.x > 0) pabbot.stop();
         break;
 
       case 74:
@@ -242,6 +252,77 @@ var InputHandler = function InputHandler() {
         break;
     }
   });
+};
+
+
+
+/***/ }),
+
+/***/ "./src/pabbot.js":
+/*!***********************!*\
+  !*** ./src/pabbot.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Pabbot; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Pabbot = function Pabbot() {
+  var _this = this;
+
+  _classCallCheck(this, Pabbot);
+
+  this.speed = {
+    x: 0,
+    y: 0
+  };
+  this.position = {
+    x: 400,
+    y: 300
+  };
+  this.maxSpeed = 100;
+  this.jumpHeight = 150;
+  this.isJumping = false;
+
+  this.render = function (context) {
+    context.fillStyle = "#1a1";
+    context.fillRect(_this.position.x, _this.position.y, 32, 32);
+  };
+
+  this.move = function (timeDelta) {
+    _this.position.x += _this.speed.x / timeDelta;
+    _this.position.y += _this.speed.y / timeDelta;
+    _this.speed.y += 150 / timeDelta;
+    if (_this.position.x < 0) _this.position.x = 0;
+    if (_this.position.x > 800 - 32) _this.position.x = 800 - 32;
+
+    if (_this.position.y > 600 - 32) {
+      _this.position.y = 600 - 32;
+      _this.isJumping = false;
+    }
+  };
+
+  this.stop = function () {
+    _this.speed.x = 0;
+  };
+
+  this.moveLeft = function () {
+    _this.speed.x = -_this.maxSpeed;
+  };
+
+  this.moveRight = function () {
+    _this.speed.x = _this.maxSpeed;
+  };
+
+  this.jump = function () {
+    if (!_this.isJumping) {
+      _this.speed.y = -_this.jumpHeight;
+      _this.isJumping = true;
+    }
+  };
 };
 
 
