@@ -151,6 +151,68 @@ var Display = function Display(context, _width, _height, pabbot, map) {
 
 
 var tempData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+var tempCollision = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
+/***/ }),
+
+/***/ "./src/entity.js":
+/*!***********************!*\
+  !*** ./src/entity.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Entity; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Entity = function Entity(_x, _y, width, height) {
+  var _this = this;
+
+  _classCallCheck(this, Entity);
+
+  this.getTop = function () {
+    return _this.position.y;
+  };
+
+  this.getLeft = function () {
+    return _this.position.x;
+  };
+
+  this.getBottom = function () {
+    return _this.position.y + _this.height;
+  };
+
+  this.getRight = function () {
+    return _this.position.x + _this.width;
+  };
+
+  this.setTop = function (y) {
+    _this.position.y = y;
+  };
+
+  this.setLeft = function (x) {
+    _this.postion.x = x;
+  };
+
+  this.setBottom = function (y) {
+    _this.position.y = y - _this.height;
+  };
+
+  this.setRight = function (x) {
+    _this.position.x = x - _this.width;
+  };
+
+  this.position = {
+    x: _x,
+    y: _y
+  };
+  this.width = width;
+  this.height = height;
+};
+
+
 
 /***/ }),
 
@@ -252,7 +314,7 @@ var Game = function Game(context) {
   this.timeStart = 0;
   this.run = this.run.bind(this);
   this.handlePause();
-  this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](0, 0, 32, 32);
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_3__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
   this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map);
@@ -436,88 +498,108 @@ var Map = function Map() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Pabbot; });
+/* harmony import */ var _entity_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./entity.js */ "./src/entity.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Pabbot = function Pabbot() {
-  var _this = this;
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-  _classCallCheck(this, Pabbot);
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-  this.speed = {
-    x: 0,
-    y: 0
-  };
-  this.position = {
-    x: 400,
-    y: 300
-  };
-  this.width = 32;
-  this.height = 32;
-  this.maxSpeed = 100;
-  this.dashSpeed = 300;
-  this.jumpHeight = 500;
-  this.gravity = 500;
-  this.terminalVelocity = 1000;
-  this.isJumping = false;
-  this.isDashing = false;
-  this.upActive = false;
-  this.leftActive = false;
-  this.downActive = false;
-  this.rightActive = false;
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-  this.render = function (context) {
-    context.fillStyle = "#1a1";
-    context.fillRect(_this.position.x, _this.position.y, _this.width, _this.height);
-  };
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-  this.move = function (timeDelta) {
-    _this.position.x += _this.speed.x / timeDelta;
-    _this.position.y += _this.speed.y / timeDelta;
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-    if (_this.speed.y <= _this.terminalVelocity) {
-      _this.speed.y += _this.gravity / timeDelta;
-    }
-  };
 
-  this.stop = function () {
-    _this.speed.x = 0;
-  };
 
-  this.moveLeft = function () {
-    _this.speed.x = -_this.maxSpeed;
-  };
+var Pabbot =
+/*#__PURE__*/
+function (_Entity) {
+  _inherits(Pabbot, _Entity);
 
-  this.moveRight = function () {
-    _this.speed.x = _this.maxSpeed;
-  };
+  function Pabbot(x, y, width, height) {
+    var _this;
 
-  this.jump = function () {
-    if (!_this.isJumping) {
-      _this.speed.y = -_this.jumpHeight;
-      _this.isJumping = true;
-    }
-  };
+    _classCallCheck(this, Pabbot);
 
-  this.cancelJump = function () {
-    if (_this.isJumping) {
-      if (_this.speed.y < 0) {
-        _this.speed.y = 0;
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Pabbot).call(this, x, y, width, height));
+    _this.speed = {
+      x: 0,
+      y: 0
+    };
+    _this.maxSpeed = 100;
+    _this.dashSpeed = 300;
+    _this.jumpHeight = 500;
+    _this.gravity = 500;
+    _this.terminalVelocity = 1000;
+    _this.isJumping = false;
+    _this.isDashing = false;
+    _this.upActive = false;
+    _this.leftActive = false;
+    _this.downActive = false;
+    _this.rightActive = false;
+
+    _this.render = function (context) {
+      context.fillStyle = "#1a1";
+      context.fillRect(_this.position.x, _this.position.y, _this.width, _this.height);
+    };
+
+    _this.move = function (timeDelta) {
+      _this.position.x += _this.speed.x / timeDelta;
+      _this.position.y += _this.speed.y / timeDelta;
+
+      if (_this.speed.y <= _this.terminalVelocity) {
+        _this.speed.y += _this.gravity / timeDelta;
       }
-    }
-  };
+    };
 
-  this.dash = function () {
-    if (_this.isJumping && !_this.isDashing) {
-      _this.isDashing = true;
+    _this.stop = function () {
       _this.speed.x = 0;
-      _this.speed.y = 0;
-      if (_this.upActive) _this.speed.y -= _this.dashSpeed;
-      if (_this.leftActive) _this.speed.x -= _this.dashSpeed;
-      if (_this.downActive) _this.speed.y += _this.dashSpeed;
-      if (_this.rightActive) _this.speed.x += _this.dashSpeed;
-    }
-  };
-};
+    };
+
+    _this.moveLeft = function () {
+      _this.speed.x = -_this.maxSpeed;
+    };
+
+    _this.moveRight = function () {
+      _this.speed.x = _this.maxSpeed;
+    };
+
+    _this.jump = function () {
+      if (!_this.isJumping) {
+        _this.speed.y = -_this.jumpHeight;
+        _this.isJumping = true;
+      }
+    };
+
+    _this.cancelJump = function () {
+      if (_this.isJumping) {
+        if (_this.speed.y < 0) {
+          _this.speed.y = 0;
+        }
+      }
+    };
+
+    _this.dash = function () {
+      if (_this.isJumping && !_this.isDashing) {
+        _this.isDashing = true;
+        _this.speed.x = 0;
+        _this.speed.y = 0;
+        if (_this.upActive) _this.speed.y -= _this.dashSpeed;
+        if (_this.leftActive) _this.speed.x -= _this.dashSpeed;
+        if (_this.downActive) _this.speed.y += _this.dashSpeed;
+        if (_this.rightActive) _this.speed.x += _this.dashSpeed;
+      }
+    };
+
+    return _this;
+  }
+
+  return Pabbot;
+}(_entity_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 

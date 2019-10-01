@@ -1,17 +1,15 @@
+import Entity from "./entity.js";
 
 
-export default class Pabbot {
+export default class Pabbot extends Entity {
+  constructor(x, y, width, height) {
+    super(x, y, width, height)
+  }
 
   speed = {
     x: 0,
     y: 0
   };
-  position = {
-    x: 400,
-    y: 300
-  }
-  width = 32;
-  height = 32;
   maxSpeed = 100;
   dashSpeed = 300;
   jumpHeight = 500;

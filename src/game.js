@@ -18,7 +18,7 @@ export default class Game {
     this.run = this.run.bind(this);
     this.handlePause();
 
-    this.pabbot = new Pabbot();
+    this.pabbot = new Pabbot(0, 0, 32, 32);
     this.map = new Map();
     this.inputHandler = new InputHandler(this.pabbot);
     this.display = new Display(this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map);
