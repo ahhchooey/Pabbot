@@ -309,6 +309,7 @@ var Pabbot = function Pabbot() {
   this.maxSpeed = 100;
   this.jumpHeight = 500;
   this.gravity = 500;
+  this.terminalVelocity = 1000;
   this.isJumping = false;
 
   this.render = function (context) {
@@ -319,7 +320,10 @@ var Pabbot = function Pabbot() {
   this.move = function (timeDelta) {
     _this.position.x += _this.speed.x / timeDelta;
     _this.position.y += _this.speed.y / timeDelta;
-    _this.speed.y += _this.gravity / timeDelta;
+
+    if (_this.speed.y <= _this.terminalVelocity) {
+      _this.speed.y += _this.gravity / timeDelta;
+    }
   };
 
   this.stop = function () {

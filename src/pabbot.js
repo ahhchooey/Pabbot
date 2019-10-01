@@ -15,6 +15,7 @@ export default class Pabbot {
   maxSpeed = 100;
   jumpHeight = 500;
   gravity = 500;
+  terminalVelocity = 1000;
   isJumping = false;
 
   render = (context) => {
@@ -25,7 +26,9 @@ export default class Pabbot {
   move = (timeDelta) => {
     this.position.x += this.speed.x / timeDelta;
     this.position.y += this.speed.y /timeDelta;
-    this.speed.y += this.gravity / timeDelta
+    if (this.speed.y <= this.terminalVelocity) {
+      this.speed.y += this.gravity / timeDelta;
+    }
   }
 
   stop = () => {
