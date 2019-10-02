@@ -1,16 +1,19 @@
 import Entity from "./entity.js";
+import TileSheet from "./tileSheet.js";
 
 
 export default class Pabbot extends Entity {
   constructor(x, y, width, height) {
     super(x, y, width, height)
+    this.tileSheet = new TileSheet(32, 20);
+    this.tileSheet.image.src = "../assets/Pabbot.png";
   }
 
   speed = {
     x: 0,
     y: 0
   };
-  maxSpeed = 100;
+  maxSpeed = 50;
   dashSpeed = 200;
   jumpHeight = 200;
   gravity = 200;
@@ -22,10 +25,70 @@ export default class Pabbot extends Entity {
   leftActive = false;
   downActive = false;
   rightActive = false;
+  facing = "right";
 
-  render = (context) => {
-    context.fillStyle = "#1a1"  
-    context.fillRect(
+  standRight = 0;
+  standLeft = 32;
+  runningRight = [64, 64, 64, 128, 128, 128];
+  runningLeft = [96, 96, 96, 160, 160, 160];
+  jumpingRight = 192;
+  fallingRight = 256;
+  jumpingLeft = 224;
+  fallingLeft = 288;
+  dashingRight = [480, 480, 480, 480, 512, 512, 512, 512, 544, 544, 544, 544, 576, 576, 576, 576];
+  dashingLeft = [576, 576, 576, 576, 544, 544, 544, 544, 512, 512, 512, 512, 488, 488, 488, 488];
+
+  render = (buffer) => {
+    let sprite;
+    let hold;
+    switch(true) {
+      case (this.facing === "right" && !this.isJumping && this.speed.x === 0):
+        sprite = this.standRight;
+        break;
+      case (this.facing === "right" && !this.isJumping && this.speed.x !== 0): 
+        hold = this.runningRight.shift();
+        this.runningRight.push(hold);
+        sprite = hold;
+        break;
+      case (this.facing === "right" && this.isDashing):
+        hold = this.dashingRight.shift();
+        this.dashingRight.push(hold);
+        sprite = hold;
+        break;
+      case (this.facing === "right" && this.isJumping  && this.speed.y < 0):
+        sprite = this.jumpingRight;
+        break;
+      case (this.facing === "right" && this.isJumping && this.speed.y > 0):
+        sprite = this.fallingRight;
+        break;
+
+      case (this.facing === "left" && !this.isJumping && this.speed.x === 0):
+        sprite = this.standLeft;
+        break;
+      case (this.facing ==="left" && !this.isJumping && this.speed.x !== 0):
+        hold = this.runningLeft.shift();
+        this.runningLeft.push(hold);
+        sprite = hold;
+        break;
+      case (this.facing === "left" && this.isDashing):
+        hold = this.dashingLeft.shift();
+        this.dashingLeft.push(hold);
+        sprite = hold;
+        break;
+      case (this.facing === "left" && this.isJumping && this.speed.y < 0):
+        sprite = this.jumpingLeft;
+        break;
+      case (this.facing === "left" && this.isJumping && this.speed.y > 0):
+        sprite = this.fallingLeft;
+        break;
+    }
+
+    buffer.drawImage(
+      this.tileSheet.image,
+      sprite,
+      0,
+      this.width,
+      this.height,
       Math.round(this.position.x),
       Math.round(this.position.y),
       this.width,

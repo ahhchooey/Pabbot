@@ -114,7 +114,7 @@ export default class Collision {
   collidePlatformBottom = (ent, tileBottom) => {
     if (ent.getTop() < tileBottom && ent.getPastTop() >= tileBottom) {
       ent.setTop(tileBottom + 0.01);
-      ent.speed.y = 400;
+      ent.speed.y = 100;
       return true;
     }
     return false;

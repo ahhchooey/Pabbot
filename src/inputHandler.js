@@ -13,6 +13,7 @@ export default class InputHandler {
           break;
         case 65:
           pabbot.leftActive = true;
+          pabbot.facing = "left";
           pabbot.moveLeft();
           break;
         case 83:
@@ -20,6 +21,7 @@ export default class InputHandler {
           break;
         case 68:
           pabbot.rightActive = true;
+          pabbot.facing = "right"
           pabbot.moveRight();
           break;
         case 74:

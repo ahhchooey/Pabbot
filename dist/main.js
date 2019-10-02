@@ -248,7 +248,7 @@ var Collision = function Collision(width, height, collisionMap) {
   this.collidePlatformBottom = function (ent, tileBottom) {
     if (ent.getTop() < tileBottom && ent.getPastTop() >= tileBottom) {
       ent.setTop(tileBottom + 0.01);
-      ent.speed.y = 400;
+      ent.speed.y = 100;
       return true;
     }
 
@@ -455,9 +455,9 @@ var Game = function Game(context) {
   this.render = function () {
     _this.display.fill("#333");
 
-    _this.display.drawMap(tempMap);
-
     _this.display.drawPabbot();
+
+    _this.display.drawMap(tempMap);
 
     _this.display.render();
   };
@@ -520,7 +520,7 @@ var Game = function Game(context) {
 
 
 var tempMap = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 12, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 13, 14, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 14, 1, 2, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 0, 1, 2, 2, 6, 6, 6, 6, 6, 6, 3, 14, 0, 14, 14, 13, 14, 0, 1, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6];
-var tempCollision = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 8, 4, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var tempCollision = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 8, 4, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 /***/ }),
 
@@ -578,6 +578,7 @@ var InputHandler = function InputHandler(pabbot) {
 
       case 65:
         pabbot.leftActive = true;
+        pabbot.facing = "left";
         pabbot.moveLeft();
         break;
 
@@ -587,6 +588,7 @@ var InputHandler = function InputHandler(pabbot) {
 
       case 68:
         pabbot.rightActive = true;
+        pabbot.facing = "right";
         pabbot.moveRight();
         break;
 
@@ -699,6 +701,7 @@ var Map = function Map() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Pabbot; });
 /* harmony import */ var _entity_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./entity.js */ "./src/entity.js");
+/* harmony import */ var _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tileSheet.js */ "./src/tileSheet.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -712,6 +715,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -730,7 +734,7 @@ function (_Entity) {
       x: 0,
       y: 0
     };
-    _this.maxSpeed = 100;
+    _this.maxSpeed = 50;
     _this.dashSpeed = 200;
     _this.jumpHeight = 200;
     _this.gravity = 200;
@@ -741,10 +745,81 @@ function (_Entity) {
     _this.leftActive = false;
     _this.downActive = false;
     _this.rightActive = false;
+    _this.facing = "right";
+    _this.standRight = 0;
+    _this.standLeft = 32;
+    _this.runningRight = [64, 64, 64, 128, 128, 128];
+    _this.runningLeft = [96, 96, 96, 160, 160, 160];
+    _this.jumpingRight = 192;
+    _this.fallingRight = 256;
+    _this.jumpingLeft = 224;
+    _this.fallingLeft = 288;
+    _this.dashingRight = [480, 480, 480, 480, 512, 512, 512, 512, 544, 544, 544, 544, 576, 576, 576, 576];
+    _this.dashingLeft = [576, 576, 576, 576, 544, 544, 544, 544, 512, 512, 512, 512, 488, 488, 488, 488];
 
-    _this.render = function (context) {
-      context.fillStyle = "#1a1";
-      context.fillRect(Math.round(_this.position.x), Math.round(_this.position.y), _this.width, _this.height);
+    _this.render = function (buffer) {
+      var sprite;
+      var hold;
+
+      switch (true) {
+        case _this.facing === "right" && !_this.isJumping && _this.speed.x === 0:
+          sprite = _this.standRight;
+          break;
+
+        case _this.facing === "right" && !_this.isJumping && _this.speed.x !== 0:
+          hold = _this.runningRight.shift();
+
+          _this.runningRight.push(hold);
+
+          sprite = hold;
+          break;
+
+        case _this.facing === "right" && _this.isDashing:
+          hold = _this.dashingRight.shift();
+
+          _this.dashingRight.push(hold);
+
+          sprite = hold;
+          break;
+
+        case _this.facing === "right" && _this.isJumping && _this.speed.y < 0:
+          sprite = _this.jumpingRight;
+          break;
+
+        case _this.facing === "right" && _this.isJumping && _this.speed.y > 0:
+          sprite = _this.fallingRight;
+          break;
+
+        case _this.facing === "left" && !_this.isJumping && _this.speed.x === 0:
+          sprite = _this.standLeft;
+          break;
+
+        case _this.facing === "left" && !_this.isJumping && _this.speed.x !== 0:
+          hold = _this.runningLeft.shift();
+
+          _this.runningLeft.push(hold);
+
+          sprite = hold;
+          break;
+
+        case _this.facing === "left" && _this.isDashing:
+          hold = _this.dashingLeft.shift();
+
+          _this.dashingLeft.push(hold);
+
+          sprite = hold;
+          break;
+
+        case _this.facing === "left" && _this.isJumping && _this.speed.y < 0:
+          sprite = _this.jumpingLeft;
+          break;
+
+        case _this.facing === "left" && _this.isJumping && _this.speed.y > 0:
+          sprite = _this.fallingLeft;
+          break;
+      }
+
+      buffer.drawImage(_this.tileSheet.image, sprite, 0, _this.width, _this.height, Math.round(_this.position.x), Math.round(_this.position.y), _this.width, _this.height);
     };
 
     _this.move = function (timeDelta) {
@@ -797,6 +872,8 @@ function (_Entity) {
       }
     };
 
+    _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](32, 20);
+    _this.tileSheet.image.src = "../assets/Pabbot.png";
     return _this;
   }
 
