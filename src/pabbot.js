@@ -11,9 +11,9 @@ export default class Pabbot extends Entity {
     y: 0
   };
   maxSpeed = 100;
-  dashSpeed = 300;
-  jumpHeight = 400;
-  gravity = 400;
+  dashSpeed = 200;
+  jumpHeight = 200;
+  gravity = 200;
   terminalVelocity = 1000;
 
   isJumping = false;

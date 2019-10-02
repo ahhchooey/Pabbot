@@ -96,7 +96,7 @@ export default class Collision {
   collidePlatformLeft = (ent, tileLeft) => {
     if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) {
       ent.setRight(tileLeft -0.01);
-      ent.speed.x = 0;
+      ent.isJumping = false;
       return true;
     }
     return false;
@@ -105,7 +105,7 @@ export default class Collision {
   collidePlatformRight = (ent, tileRight) => {
     if (ent.getLeft() < tileRight && ent.getPastLeft() >= tileRight) {
       ent.setLeft(tileRight + 0.01);
-      ent.speed.x = 0;
+      ent.isJumping = false;
       return true;
     }
     return false;
