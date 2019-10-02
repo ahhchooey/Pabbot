@@ -25,13 +25,21 @@ export default class Pabbot extends Entity {
 
   render = (context) => {
     context.fillStyle = "#1a1"  
-    context.fillRect(this.position.x, this.position.y, this.width, this.height);
+    context.fillRect(
+      Math.round(this.position.x),
+      Math.round(this.position.y),
+      this.width,
+      this.height
+    );
   }
 
   move = (timeDelta) => {
+    this.pastPos.x = this.position.x;
+    this.pastPos.y = this.position.y;
+
     this.position.x += this.speed.x / timeDelta;
     this.position.y += this.speed.y /timeDelta;
-    if (this.speed.y <= this.terminalVelocity && this.isJumping) {
+    if (this.speed.y <= this.terminalVelocity) {
       this.speed.y += this.gravity / timeDelta;
     }
   }

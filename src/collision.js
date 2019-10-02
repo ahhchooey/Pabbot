@@ -8,7 +8,7 @@ export default class Collision {
   }
 
   isCollide = (ent) => {
-    if (ent.getTop() < 0) ent.setTop(0);
+    //if (ent.getTop() < 0) ent.setTop(0);
     if (ent.getLeft() < 0) ent.setLeft(0);
     if (ent.getBottom() > this.gameHeight) {
       ent.setBottom(this.gameHeight)
@@ -43,29 +43,49 @@ export default class Collision {
 
   collide = (value, ent, tileX, tileY) => {
     switch(value) {
-      case 1:
+      case 1: //only top collision
         this.collidePlatformTop(ent, tileY);
         break;
-      case 2:
+      case 2: //top and left collision
         if (this.collidePlatformTop(ent, tileY)) return;
         this.collidePlatformLeft(ent, tileX);
         break;
-      case 3:
-        if (this.collidePlatformTop(ent)) return;
+      case 3: //top and right collision
+        if (this.collidePlatformTop(ent, tileY)) return;
         this.collidePlatformRight(ent, tileX + 32);
         break;
-      case 4:
-        this.collidePlatformTop(ent, tileY);
+      case 4: //all four side collision
+        if (this.collidePlatformTop(ent, tileY)) return;
+        if (this.collidePlatformLeft(ent, tileX)) return;
+        if (this.collidePlatformRight(ent, tileX + 32)) return;
+        this.collidePlatformBottom(ent, tileY + 32);
+        break;
+      case 5: //only left collision
+        this.collidePlatformLeft(ent, tileX);
+        break;
+      case 6: //only right collision
+        this.collidePlatformRight(ent, tileX + 32);
+        break;
+      case 7: //only bottom collision
+        this.collidePlatformBottom(ent, tileY + 32);
+        break;
+      case 8: //top, left, and bottom collision
+        if (this.collidePlatformTop(ent, tileY)) return;
+        if (this.collidePlatformLeft(ent, tileX)) return;
+        this.collidePlatformBottom(ent, tileY + 32);
+        break;
+      case 9: //top, right, and bottom collision
+        if (this.collidePlatformTop(ent, tileY)) return;
+        if (this.collidePlatformRight(ent, tileX + 32)) return;
         this.collidePlatformBottom(ent, tileY + 32);
         break;
     }
   }
 
   collidePlatformTop = (ent, tileTop) => {
-    console.log("tileTop", tileTop);
-    console.log("bottom", ent.getBottom());
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
       ent.setBottom(tileTop - 0.01);
+      ent.speed.y = 0;
       ent.isJumping = false;
       ent.isDashing = false;
       return true;
@@ -75,7 +95,6 @@ export default class Collision {
 
   collidePlatformLeft = (ent, tileLeft) => {
     if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) {
-      console.log("left")
       ent.setRight(tileLeft -0.01);
       ent.speed.x = 0;
       return true;
@@ -84,17 +103,18 @@ export default class Collision {
   }
 
   collidePlatformRight = (ent, tileRight) => {
-    if (ent.getLeft() < tileRight && ent.getPastLeft() <= tileRight) {
+    if (ent.getLeft() < tileRight && ent.getPastLeft() >= tileRight) {
       ent.setLeft(tileRight + 0.01);
+      ent.speed.x = 0;
       return true;
     }
     return false;
   }
 
   collidePlatformBottom = (ent, tileBottom) => {
-    if (ent.getTop() < tileBottom && ent.getPastTop() <= tileBottom) {
+    if (ent.getTop() < tileBottom && ent.getPastTop() >= tileBottom) {
       ent.setTop(tileBottom + 0.01);
-      ent.speed.y = 500;
+      ent.speed.y = 400;
       return true;
     }
     return false;

@@ -104,7 +104,7 @@ var Collision = function Collision(width, height, collisionMap) {
   _classCallCheck(this, Collision);
 
   this.isCollide = function (ent) {
-    if (ent.getTop() < 0) ent.setTop(0);
+    //if (ent.getTop() < 0) ent.setTop(0);
     if (ent.getLeft() < 0) ent.setLeft(0);
 
     if (ent.getBottom() > _this.gameHeight) {
@@ -144,11 +144,13 @@ var Collision = function Collision(width, height, collisionMap) {
   this.collide = function (value, ent, tileX, tileY) {
     switch (value) {
       case 1:
+        //only top collision
         _this.collidePlatformTop(ent, tileY);
 
         break;
 
       case 2:
+        //top and left collision
         if (_this.collidePlatformTop(ent, tileY)) return;
 
         _this.collidePlatformLeft(ent, tileX);
@@ -156,14 +158,54 @@ var Collision = function Collision(width, height, collisionMap) {
         break;
 
       case 3:
-        if (_this.collidePlatformTop(ent)) return;
+        //top and right collision
+        if (_this.collidePlatformTop(ent, tileY)) return;
 
         _this.collidePlatformRight(ent, tileX + 32);
 
         break;
 
       case 4:
-        _this.collidePlatformTop(ent, tileY);
+        //all four side collision
+        if (_this.collidePlatformTop(ent, tileY)) return;
+        if (_this.collidePlatformLeft(ent, tileX)) return;
+        if (_this.collidePlatformRight(ent, tileX + 32)) return;
+
+        _this.collidePlatformBottom(ent, tileY + 32);
+
+        break;
+
+      case 5:
+        //only left collision
+        _this.collidePlatformLeft(ent, tileX);
+
+        break;
+
+      case 6:
+        //only right collision
+        _this.collidePlatformRight(ent, tileX + 32);
+
+        break;
+
+      case 7:
+        //only bottom collision
+        _this.collidePlatformBottom(ent, tileY + 32);
+
+        break;
+
+      case 8:
+        //top, left, and bottom collision
+        if (_this.collidePlatformTop(ent, tileY)) return;
+        if (_this.collidePlatformLeft(ent, tileX)) return;
+
+        _this.collidePlatformBottom(ent, tileY + 32);
+
+        break;
+
+      case 9:
+        //top, right, and bottom collision
+        if (_this.collidePlatformTop(ent, tileY)) return;
+        if (_this.collidePlatformRight(ent, tileX + 32)) return;
 
         _this.collidePlatformBottom(ent, tileY + 32);
 
@@ -172,11 +214,9 @@ var Collision = function Collision(width, height, collisionMap) {
   };
 
   this.collidePlatformTop = function (ent, tileTop) {
-    console.log("tileTop", tileTop);
-    console.log("bottom", ent.getBottom());
-
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
       ent.setBottom(tileTop - 0.01);
+      ent.speed.y = 0;
       ent.isJumping = false;
       ent.isDashing = false;
       return true;
@@ -187,7 +227,6 @@ var Collision = function Collision(width, height, collisionMap) {
 
   this.collidePlatformLeft = function (ent, tileLeft) {
     if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) {
-      console.log("left");
       ent.setRight(tileLeft - 0.01);
       ent.speed.x = 0;
       return true;
@@ -197,8 +236,9 @@ var Collision = function Collision(width, height, collisionMap) {
   };
 
   this.collidePlatformRight = function (ent, tileRight) {
-    if (ent.getLeft() < tileRight && ent.getPastLeft() <= tileRight) {
+    if (ent.getLeft() < tileRight && ent.getPastLeft() >= tileRight) {
       ent.setLeft(tileRight + 0.01);
+      ent.speed.x = 0;
       return true;
     }
 
@@ -206,9 +246,9 @@ var Collision = function Collision(width, height, collisionMap) {
   };
 
   this.collidePlatformBottom = function (ent, tileBottom) {
-    if (ent.getTop() < tileBottom && ent.getPastTop() <= tileBottom) {
+    if (ent.getTop() < tileBottom && ent.getPastTop() >= tileBottom) {
       ent.setTop(tileBottom + 0.01);
-      ent.speed.y = 500;
+      ent.speed.y = 400;
       return true;
     }
 
@@ -240,12 +280,6 @@ var Display = function Display(context, _width, _height, pabbot, map) {
   var _this = this;
 
   _classCallCheck(this, Display);
-
-  this.drawRectangle = function (x, y, width, height, color) {
-    _this.buffer.fillStyle = color;
-
-    _this.buffer.fillRect(Math.floor(x), Math.floor(y), width, height);
-  };
 
   this.drawPabbot = function () {
     _this.pabbot.render(_this.buffer);
@@ -437,9 +471,9 @@ var Game = function Game(context) {
 
     _this.pabbot.move(timeDelta);
 
-    _this.collision.isCollide(_this.pabbot);
-
     _this.render();
+
+    _this.collision.isCollide(_this.pabbot);
 
     _this.run();
   };
@@ -464,17 +498,6 @@ var Game = function Game(context) {
         _this.playId ? _this.pause() : _this.run();
       }
     });
-  };
-
-  this.isCollide = function (obj) {
-    if (obj.position.x < 0) obj.position.x = 0;
-    if (obj.position.x > GAME_WIDTH - obj.width) obj.position.x = GAME_WIDTH - obj.width;
-
-    if (obj.position.y > GAME_HEIGHT - obj.height) {
-      obj.position.y = GAME_HEIGHT - obj.height;
-      obj.isJumping = false;
-      obj.isDashing = false;
-    }
   };
 
   this.resize = function (e) {
@@ -721,14 +744,16 @@ function (_Entity) {
 
     _this.render = function (context) {
       context.fillStyle = "#1a1";
-      context.fillRect(_this.position.x, _this.position.y, _this.width, _this.height);
+      context.fillRect(Math.round(_this.position.x), Math.round(_this.position.y), _this.width, _this.height);
     };
 
     _this.move = function (timeDelta) {
+      _this.pastPos.x = _this.position.x;
+      _this.pastPos.y = _this.position.y;
       _this.position.x += _this.speed.x / timeDelta;
       _this.position.y += _this.speed.y / timeDelta;
 
-      if (_this.speed.y <= _this.terminalVelocity && _this.isJumping) {
+      if (_this.speed.y <= _this.terminalVelocity) {
         _this.speed.y += _this.gravity / timeDelta;
       }
     };

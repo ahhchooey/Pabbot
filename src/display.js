@@ -13,11 +13,6 @@ export default class Display {
     this.buffer.canvas.height = height;
   }
 
-  drawRectangle = (x, y, width, height, color) => {
-    this.buffer.fillStyle = color;
-    this.buffer.fillRect(Math.floor(x), Math.floor(y), width, height);
-  };
-
   drawPabbot = () => {
     this.pabbot.render(this.buffer);
   }
