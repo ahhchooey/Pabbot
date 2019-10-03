@@ -1,10 +1,11 @@
 
 
 export default class Collision {
-  constructor(width, height, collisionMap) {
+  constructor(width, height, collisionMap, mapWidth) {
     this.gameWidth = width;
     this.gameHeight = height;
     this.collisionMap = collisionMap;
+    this.mapWidth = mapWidth;
   }
 
   isCollide = (ent) => {
@@ -22,22 +23,22 @@ export default class Collision {
 
     top = Math.floor(ent.getTop() / 32);
     left = Math.floor(ent.getLeft() / 32);
-    value = this.collisionMap[top * 20 + left];
+    value = this.collisionMap[top * this.mapWidth + left];
     this.collide(value, ent, left * 32, top * 32);
 
     top = Math.floor(ent.getTop() / 32);
     right = Math.floor(ent.getRight() / 32);
-    value = this.collisionMap[top * 20 + right];
+    value = this.collisionMap[top * this.mapWidth + right];
     this.collide(value, ent, right * 32, top * 32);
 
     left = Math.floor(ent.getLeft() / 32);
     bottom = Math.floor(ent.getBottom() / 32);
-    value = this.collisionMap[bottom * 20 + left];
+    value = this.collisionMap[bottom * this.mapWidth + left];
     this.collide(value, ent, left * 32, bottom * 32);
 
     bottom = Math.floor(ent.getBottom() / 32);
     right = Math.floor(ent.getRight() / 32);
-    value = this.collisionMap[bottom * 20 + right];
+    value = this.collisionMap[bottom * this.mapWidth + right];
     this.collide(value, ent, right * 32, bottom * 32);
   }
 

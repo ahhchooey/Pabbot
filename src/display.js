@@ -1,12 +1,13 @@
 
 
 export default class Display {
-  constructor(context, width, height, pabbot, map) {
+  constructor(context, width, height, pabbot, map, mapWidth) {
     this.context = context;
     this.width = width;
     this.height = height;
     this.pabbot = pabbot;
     this.map = map;
+    this.mapWidth = mapWidth;
 
     this.buffer = document.createElement("canvas").getContext("2d");
     this.buffer.canvas.width = width;
@@ -18,7 +19,7 @@ export default class Display {
   }
 
   drawMap = (data) => {
-    this.map.render(data, 20, this.buffer);
+    this.map.render(data, this.mapWidth, this.buffer);
   }
 
   fill = (color) => {

@@ -3,16 +3,17 @@ import Pabbot from "./pabbot.js";
 import Display from "./display.js";
 import Map from "./map.js";
 import Collision from "./collision.js";
+import gameMap from "../assets/maps/testMap2.js";
 
 
-const GAME_HEIGHT = 320;
-const GAME_WIDTH = 640;
+const GAME_HEIGHT = gameMap.height * 32;
+const GAME_WIDTH = gameMap.width * 32;
 
 export default class Game {
   constructor(context) {
     this.context = context;
     this.context.canvas.height = GAME_HEIGHT;
-    this.context.canvas.width = GAME_WIDTH;
+    this.context.canvas.width = 1000;
 
     this.playId;
     this.timeStart = 0;
@@ -22,14 +23,21 @@ export default class Game {
     this.pabbot = new Pabbot(0, 0, 32, 32);
     this.map = new Map();
     this.inputHandler = new InputHandler(this.pabbot);
-    this.display = new Display(this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map);
-    this.collision = new Collision(GAME_WIDTH, GAME_HEIGHT, tempCollision);
+    this.display = new Display(this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map,
+      gameMap.width
+    );
+    this.collision = new Collision(
+      GAME_WIDTH, 
+      GAME_HEIGHT, 
+      gameMap.collisionMap, 
+      gameMap.width
+    );
   }
 
   render = () => {
     this.display.fill("#333");
     this.display.drawPabbot();
-    this.display.drawMap(tempMap);
+    this.display.drawMap(gameMap.mapArray, gameMap.width);
     this.display.render();
   }
 
@@ -80,28 +88,3 @@ export default class Game {
 
 }
 
-const tempMap = [
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 
-  0, 0, 0, 12, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 13, 14, 0, 15, 
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 14, 1, 2, 2, 2, 2, 6, 
-  0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 0, 1, 2, 2, 6, 6, 6, 6, 6, 6, 
-  3, 14, 0, 14, 14, 13, 14, 0, 1, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 
-  6, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6
-]
-
-const tempCollision = [
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-  0, 0, 0, 8, 4, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0,
-  3, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-];

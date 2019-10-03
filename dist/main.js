@@ -86,6 +86,82 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./assets/maps/testMap2.js":
+/*!*********************************!*\
+  !*** ./assets/maps/testMap2.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util.js */ "./assets/maps/util.js");
+
+var gameMap = {
+  "mapArray": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 12, 16, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 5, 6, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 15, 6, 15, 6, 15, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 6, 6, 6, 6, 3, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 15, 6, 15, 6, 15, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 6, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 15, 15, 15, 6, 15, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 6, 6, 6, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 6, 6, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 5, 6, 15, 6, 15, 6, 15, 6, 6, 0, 13, 0, 0, 14, 14, 14, 14, 14, 0, 1, 6, 6, 6, 6, 6, 6, 7, 0, 0, 0, 0, 14, 14, 0, 0, 14, 14, 0, 0, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 12, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 14, 14, 0, 0, 0, 1, 6, 6, 7, 0, 0, 0, 0, 0, 0, 5, 6, 15, 6, 15, 6, 15, 6, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 2, 2, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+  "tilewidth": 32,
+  "height": 10,
+  "width": 100
+};
+gameMap.collisionMap = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["collisionMapGenerator"])(gameMap.mapArray);
+/* harmony default export */ __webpack_exports__["default"] = (gameMap);
+
+/***/ }),
+
+/***/ "./assets/maps/util.js":
+/*!*****************************!*\
+  !*** ./assets/maps/util.js ***!
+  \*****************************/
+/*! exports provided: collisionMapGenerator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "collisionMapGenerator", function() { return collisionMapGenerator; });
+var collisionMapGenerator = function collisionMapGenerator(array) {
+  return array.map(function (value) {
+    switch (value) {
+      case 1:
+        return 2;
+
+      case 2:
+        return 1;
+
+      case 3:
+        return 3;
+
+      case 4:
+        return 4;
+
+      case 5:
+        return 5;
+
+      case 7:
+        return 6;
+
+      case 8:
+        return 9;
+
+      case 10:
+        return 7;
+
+      case 12:
+        return 8;
+
+      case 15:
+        return 4;
+
+      case 16:
+        return 4;
+
+      default:
+        return 0;
+    }
+  });
+};
+
+/***/ }),
+
 /***/ "./src/collision.js":
 /*!**************************!*\
   !*** ./src/collision.js ***!
@@ -98,7 +174,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Collision; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Collision = function Collision(width, height, collisionMap) {
+var Collision = function Collision(width, height, collisionMap, mapWidth) {
   var _this = this;
 
   _classCallCheck(this, Collision);
@@ -118,25 +194,25 @@ var Collision = function Collision(width, height, collisionMap) {
     var top, left, bottom, right, value;
     top = Math.floor(ent.getTop() / 32);
     left = Math.floor(ent.getLeft() / 32);
-    value = _this.collisionMap[top * 20 + left];
+    value = _this.collisionMap[top * _this.mapWidth + left];
 
     _this.collide(value, ent, left * 32, top * 32);
 
     top = Math.floor(ent.getTop() / 32);
     right = Math.floor(ent.getRight() / 32);
-    value = _this.collisionMap[top * 20 + right];
+    value = _this.collisionMap[top * _this.mapWidth + right];
 
     _this.collide(value, ent, right * 32, top * 32);
 
     left = Math.floor(ent.getLeft() / 32);
     bottom = Math.floor(ent.getBottom() / 32);
-    value = _this.collisionMap[bottom * 20 + left];
+    value = _this.collisionMap[bottom * _this.mapWidth + left];
 
     _this.collide(value, ent, left * 32, bottom * 32);
 
     bottom = Math.floor(ent.getBottom() / 32);
     right = Math.floor(ent.getRight() / 32);
-    value = _this.collisionMap[bottom * 20 + right];
+    value = _this.collisionMap[bottom * _this.mapWidth + right];
 
     _this.collide(value, ent, right * 32, bottom * 32);
   };
@@ -258,6 +334,7 @@ var Collision = function Collision(width, height, collisionMap) {
   this.gameWidth = width;
   this.gameHeight = height;
   this.collisionMap = collisionMap;
+  this.mapWidth = mapWidth;
 };
 
 
@@ -276,7 +353,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Display; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Display = function Display(context, _width, _height, pabbot, map) {
+var Display = function Display(context, _width, _height, pabbot, map, mapWidth) {
   var _this = this;
 
   _classCallCheck(this, Display);
@@ -286,7 +363,7 @@ var Display = function Display(context, _width, _height, pabbot, map) {
   };
 
   this.drawMap = function (data) {
-    _this.map.render(data, 20, _this.buffer);
+    _this.map.render(data, _this.mapWidth, _this.buffer);
   };
 
   this.fill = function (color) {
@@ -316,6 +393,7 @@ var Display = function Display(context, _width, _height, pabbot, map) {
   this.height = _height;
   this.pabbot = pabbot;
   this.map = map;
+  this.mapWidth = mapWidth;
   this.buffer = document.createElement("canvas").getContext("2d");
   this.buffer.canvas.width = _width;
   this.buffer.canvas.height = _height;
@@ -437,6 +515,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _display_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./display.js */ "./src/display.js");
 /* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./map.js */ "./src/map.js");
 /* harmony import */ var _collision_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./collision.js */ "./src/collision.js");
+/* harmony import */ var _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../assets/maps/testMap2.js */ "./assets/maps/testMap2.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
@@ -444,8 +523,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var GAME_HEIGHT = 320;
-var GAME_WIDTH = 640;
+
+var GAME_HEIGHT = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].height * 32;
+var GAME_WIDTH = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].width * 32;
 
 var Game = function Game(context) {
   var _this = this;
@@ -457,7 +537,7 @@ var Game = function Game(context) {
 
     _this.display.drawPabbot();
 
-    _this.display.drawMap(tempMap);
+    _this.display.drawMap(_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].mapArray, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].width);
 
     _this.display.render();
   };
@@ -506,7 +586,7 @@ var Game = function Game(context) {
 
   this.context = context;
   this.context.canvas.height = GAME_HEIGHT;
-  this.context.canvas.width = GAME_WIDTH;
+  this.context.canvas.width = 1000;
   this.playId;
   this.timeStart = 0;
   this.run = this.run.bind(this);
@@ -514,13 +594,11 @@ var Game = function Game(context) {
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](0, 0, 32, 32);
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_3__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
-  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map);
-  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_4__["default"](GAME_WIDTH, GAME_HEIGHT, tempCollision);
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].width);
+  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_4__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].collisionMap, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].width);
 };
 
 
-var tempMap = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 12, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 13, 14, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 14, 1, 2, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 0, 1, 2, 2, 6, 6, 6, 6, 6, 6, 3, 14, 0, 14, 14, 13, 14, 0, 1, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6];
-var tempCollision = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 8, 4, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 /***/ }),
 
