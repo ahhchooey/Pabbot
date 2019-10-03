@@ -14,7 +14,7 @@ export default class Pabbot extends Entity {
     y: 0
   };
   maxSpeed = 50;
-  dashSpeed = 200;
+  dashSpeed = 100;
   jumpHeight = 200;
   gravity = 200;
   terminalVelocity = 1000;
@@ -29,8 +29,8 @@ export default class Pabbot extends Entity {
 
   standRight = 0;
   standLeft = 32;
-  runningRight = [64, 64, 64, 128, 128, 128];
-  runningLeft = [96, 96, 96, 160, 160, 160];
+  runningRight = [64, 64, 64, 64, 64, 64, 128, 128, 128, 128, 128, 128];
+  runningLeft = [96, 96, 96, 96, 96, 96, 160, 160, 160, 160, 160, 160];
   jumpingRight = 192;
   fallingRight = 256;
   jumpingLeft = 224;

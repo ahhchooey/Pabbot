@@ -162,6 +162,43 @@ var collisionMapGenerator = function collisionMapGenerator(array) {
 
 /***/ }),
 
+/***/ "./src/camera.js":
+/*!***********************!*\
+  !*** ./src/camera.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Camera; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Camera = function Camera(gameMap, width, height, pabbot) {
+  var _this = this;
+
+  _classCallCheck(this, Camera);
+
+  this.render = function () {
+    _this.x = _this.following.position.x - _this.width / 2;
+    _this.y = _this.following.position.y - _this.height / 2;
+    _this.x = Math.max(0, Math.min(_this.x, _this.maxX));
+    _this.y = Math.max(0, Math.min(_this.y, _this.maxY));
+  };
+
+  this.x = 0;
+  this.y = 0;
+  this.width = width;
+  this.height = height;
+  this.following = pabbot;
+  this.maxX = gameMap.width * 32 - width;
+  this.maxY = gameMap.height * 32 - height;
+};
+
+
+
+/***/ }),
+
 /***/ "./src/collision.js":
 /*!**************************!*\
   !*** ./src/collision.js ***!
@@ -353,7 +390,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Display; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Display = function Display(context, _width, _height, pabbot, map, mapWidth) {
+var Display = function Display(context, _width, _height, pabbot, map, mapWidth, camera, dW, dH) {
   var _this = this;
 
   _classCallCheck(this, Display);
@@ -373,7 +410,10 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth) 
   };
 
   this.render = function () {
-    _this.context.drawImage(_this.buffer.canvas, 0, 0, _this.buffer.canvas.width, _this.buffer.canvas.height, 0, 0, _this.context.canvas.width, _this.context.canvas.height);
+    var startCol = Math.floor(_this.camera.x);
+    var startRow = Math.floor(_this.camera.y);
+
+    _this.context.drawImage(_this.buffer.canvas, startCol, startRow, _this.displayWidth, _this.displayHeight, 0, 0, _this.context.canvas.width, _this.context.canvas.height);
   };
 
   this.resize = function (width, height, ratio) {
@@ -384,8 +424,6 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth) 
       _this.context.canvas.width = height / ratio;
       _this.context.canvas.height = height;
     }
-
-    _this.context.imageSmoothingEnabled = false;
   };
 
   this.context = context;
@@ -394,6 +432,9 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth) 
   this.pabbot = pabbot;
   this.map = map;
   this.mapWidth = mapWidth;
+  this.camera = camera;
+  this.displayWidth = dW;
+  this.displayHeight = dH;
   this.buffer = document.createElement("canvas").getContext("2d");
   this.buffer.canvas.width = _width;
   this.buffer.canvas.height = _height;
@@ -513,9 +554,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inputHandler.js */ "./src/inputHandler.js");
 /* harmony import */ var _pabbot_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pabbot.js */ "./src/pabbot.js");
 /* harmony import */ var _display_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./display.js */ "./src/display.js");
-/* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./map.js */ "./src/map.js");
-/* harmony import */ var _collision_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./collision.js */ "./src/collision.js");
-/* harmony import */ var _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../assets/maps/testMap2.js */ "./assets/maps/testMap2.js");
+/* harmony import */ var _camera_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./camera.js */ "./src/camera.js");
+/* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./map.js */ "./src/map.js");
+/* harmony import */ var _collision_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./collision.js */ "./src/collision.js");
+/* harmony import */ var _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../assets/maps/testMap2.js */ "./assets/maps/testMap2.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
@@ -524,8 +566,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var GAME_HEIGHT = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].height * 32;
-var GAME_WIDTH = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].width * 32;
+
+var GAME_HEIGHT = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].height * 32;
+var GAME_WIDTH = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].width * 32;
 
 var Game = function Game(context) {
   var _this = this;
@@ -537,7 +580,7 @@ var Game = function Game(context) {
 
     _this.display.drawPabbot();
 
-    _this.display.drawMap(_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].mapArray, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].width);
+    _this.display.drawMap(_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].mapArray, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].width);
 
     _this.display.render();
   };
@@ -551,9 +594,11 @@ var Game = function Game(context) {
 
     _this.pabbot.move(timeDelta);
 
+    _this.collision.isCollide(_this.pabbot);
+
     _this.render();
 
-    _this.collision.isCollide(_this.pabbot);
+    _this.camera.render();
 
     _this.run();
   };
@@ -580,22 +625,23 @@ var Game = function Game(context) {
     });
   };
 
-  this.resize = function (e) {
-    _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight - 250, GAME_HEIGHT / GAME_WIDTH);
+  this.resize = function () {
+    _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight - 250, _this.context.canvas.height / _this.context.canvas.width);
   };
 
   this.context = context;
-  this.context.canvas.height = GAME_HEIGHT;
-  this.context.canvas.width = 1000;
+  this.context.canvas.height = 320;
+  this.context.canvas.width = 700;
   this.playId;
   this.timeStart = 0;
   this.run = this.run.bind(this);
   this.handlePause();
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](0, 0, 32, 32);
-  this.map = new _map_js__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
-  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].width);
-  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_4__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].collisionMap, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_5__["default"].width);
+  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height);
+  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].collisionMap, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].width);
 };
 
 
@@ -813,7 +859,7 @@ function (_Entity) {
       y: 0
     };
     _this.maxSpeed = 50;
-    _this.dashSpeed = 200;
+    _this.dashSpeed = 100;
     _this.jumpHeight = 200;
     _this.gravity = 200;
     _this.terminalVelocity = 1000;
@@ -826,8 +872,8 @@ function (_Entity) {
     _this.facing = "right";
     _this.standRight = 0;
     _this.standLeft = 32;
-    _this.runningRight = [64, 64, 64, 128, 128, 128];
-    _this.runningLeft = [96, 96, 96, 160, 160, 160];
+    _this.runningRight = [64, 64, 64, 64, 64, 64, 128, 128, 128, 128, 128, 128];
+    _this.runningLeft = [96, 96, 96, 96, 96, 96, 160, 160, 160, 160, 160, 160];
     _this.jumpingRight = 192;
     _this.fallingRight = 256;
     _this.jumpingLeft = 224;

@@ -1,6 +1,7 @@
 import InputHandler from "./inputHandler.js";
 import Pabbot from "./pabbot.js";
 import Display from "./display.js";
+import Camera from "./camera.js";
 import Map from "./map.js";
 import Collision from "./collision.js";
 import gameMap from "../assets/maps/testMap2.js";
@@ -12,8 +13,8 @@ const GAME_WIDTH = gameMap.width * 32;
 export default class Game {
   constructor(context) {
     this.context = context;
-    this.context.canvas.height = GAME_HEIGHT;
-    this.context.canvas.width = 1000;
+    this.context.canvas.height = 320;
+    this.context.canvas.width = 700;
 
     this.playId;
     this.timeStart = 0;
@@ -23,8 +24,22 @@ export default class Game {
     this.pabbot = new Pabbot(0, 0, 32, 32);
     this.map = new Map();
     this.inputHandler = new InputHandler(this.pabbot);
-    this.display = new Display(this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map,
-      gameMap.width
+    this.camera = new Camera(
+      gameMap, 
+      this.context.canvas.width, 
+      this.context.canvas.height,
+      this.pabbot
+    );
+    this.display = new Display(
+      this.context, 
+      GAME_WIDTH, 
+      GAME_HEIGHT, 
+      this.pabbot, 
+      this.map,
+      gameMap.width,
+      this.camera,
+      this.context.canvas.width,
+      this.context.canvas.height
     );
     this.collision = new Collision(
       GAME_WIDTH, 
@@ -50,8 +65,9 @@ export default class Game {
     this.context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
     this.pabbot.move(timeDelta);
-    this.render();
     this.collision.isCollide(this.pabbot);
+    this.render();
+    this.camera.render();
 
     this.run();
   };
@@ -78,11 +94,11 @@ export default class Game {
     })
   };
 
-  resize = (e) => {
+  resize = () => {
     this.display.resize(
       document.documentElement.clientWidth - 50,
       document.documentElement.clientHeight - 250,
-      GAME_HEIGHT/GAME_WIDTH 
+      this.context.canvas.height/this.context.canvas.width 
     )
   }
 
