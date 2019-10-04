@@ -16,13 +16,14 @@ export default class Pabbot extends Entity {
     y: 0
   };
   maxSpeed = 50;
-  dashSpeed = 100;
+  dashSpeed = 75;
   jumpHeight = 200;
   gravity = 200;
   terminalVelocity = 1000;
 
   isJumping = false;
   isDashing = false;
+  isWalled = false;
   upActive = false;
   leftActive = false;
   downActive = false;
@@ -39,6 +40,8 @@ export default class Pabbot extends Entity {
   fallingLeft = 288;
   dashingRight = [480, 480, 480, 480, 512, 512, 512, 512, 544, 544, 544, 544, 576, 576, 576, 576];
   dashingLeft = [576, 576, 576, 576, 544, 544, 544, 544, 512, 512, 512, 512, 488, 488, 488, 488];
+
+  healthBall = 640;
 
   render = (buffer) => {
     let sprite;
@@ -98,6 +101,22 @@ export default class Pabbot extends Entity {
     )
   }
 
+  renderHealth = (buffer, x) => {
+    for (let i = 0; i < this.health; i++) {
+      buffer.drawImage(
+        this.tileSheet.image,
+        608,
+        0,
+        this.width,
+        this.height,
+        (20 + 23 * i) + x,
+        20,
+        this.width - 10,
+        this.height - 10
+      )
+    }
+  }
+
   move = (timeDelta) => {
     this.pastPos.x = this.position.x;
     this.pastPos.y = this.position.y;
@@ -136,6 +155,21 @@ export default class Pabbot extends Entity {
     }
   }
 
+  wallJump = () => {
+    if (this.isWalled && this.isJumping) {
+      this.isWalled = false;
+      this.speed.y = -this.jumpHeight;
+      if (this.facing === "right") {
+        this.speed.x = -this.maxSpeed;
+        this.facing = "left";
+      } else {
+        this.speed.x = this.maxSpeed;
+        this.facing = "right"
+      }
+      setTimeout(this.stop, 500);
+    }
+  }
+
   dash = () => {
     if (this.isJumping && !this.isDashing) {
       this.isDashing = true;
@@ -162,7 +196,16 @@ export default class Pabbot extends Entity {
           this.lastHit = 100;
           this.health--;
         }
+        if (this.speed.x === 0) {
+          this.speed.y -= 100;
+          this.speed.x = enemy.speed.x;
+        } else {
+          this.speed.x = -this.speed.x * 0.3;
+          this.speed.y = -this.speed.y * 0.7;
+        }
+        setTimeout(this.stop, 200);
       }
     })
   }
+
 }

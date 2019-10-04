@@ -25,7 +25,7 @@ const gameMap = {
     {
       type: "potato",
       x: 2600,
-      y: 100,
+      y: 100
     },
     {
       type: "potato",

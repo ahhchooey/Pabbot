@@ -24,6 +24,7 @@ export default class Display {
 
   drawMap = (data) => {
     this.map.render(data, this.mapWidth, this.buffer);
+    this.pabbot.renderHealth(this.buffer, Math.floor(this.camera.x));
   }
 
   drawEnemies = () => {

@@ -28,6 +28,8 @@ export default class InputHandler {
           if (!this.jumped) {
             this.jumped = true;
             pabbot.jump();
+          } if (this.jumped) {
+            pabbot.wallJump();
           }
           break;
         case 75:

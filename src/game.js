@@ -67,7 +67,7 @@ export default class Game {
     let timeDelta = timeStamp - this.timeStart;
     this.timeStart = timeStamp;
 
-    this.context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
 
     this.pabbot.move(timeDelta);
     this.collision.isCollide(this.pabbot);
@@ -97,7 +97,16 @@ export default class Game {
     if (this.playId) {
       window.cancelAnimationFrame(this.playId);
       this.playId = undefined;
-      console.log("game is paused")
+      this.context.globalAlpha = 0.1;
+      this.context.fillStyle = "rbga(255, 255, 255, 0.0)";
+      this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+      this.context.globalAlpha = 1;
+      this.context.font = "50px Georgia";
+      this.context.fillText(
+        "Paused", 
+        this.context.canvas.width/2 - 75, 
+        this.context.canvas.height/2 - 100
+      );
     }
   };
 

@@ -353,6 +353,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth) {
       ent.speed.y = 0;
       ent.isJumping = false;
       ent.isDashing = false;
+      ent.isWalled = false;
       return true;
     }
 
@@ -362,7 +363,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth) {
   this.collidePlatformLeft = function (ent, tileLeft) {
     if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) {
       ent.setRight(tileLeft - 0.01);
-      ent.isJumping = false;
+      ent.isWalled = true;
       return true;
     }
 
@@ -372,7 +373,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth) {
   this.collidePlatformRight = function (ent, tileRight) {
     if (ent.getLeft() < tileRight && ent.getPastLeft() >= tileRight) {
       ent.setLeft(tileRight + 0.01);
-      ent.isJumping = false;
+      ent.isWalled = true;
       return true;
     }
 
@@ -422,6 +423,8 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
 
   this.drawMap = function (data) {
     _this.map.render(data, _this.mapWidth, _this.buffer);
+
+    _this.pabbot.renderHealth(_this.buffer, Math.floor(_this.camera.x));
   };
 
   this.drawEnemies = function () {
@@ -833,7 +836,7 @@ var Game = function Game(context) {
     var timeDelta = timeStamp - _this.timeStart;
     _this.timeStart = timeStamp;
 
-    _this.context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    _this.context.clearRect(0, 0, _this.context.canvas.width, _this.context.canvas.height);
 
     _this.pabbot.move(timeDelta);
 
@@ -870,7 +873,15 @@ var Game = function Game(context) {
     if (_this.playId) {
       window.cancelAnimationFrame(_this.playId);
       _this.playId = undefined;
-      console.log("game is paused");
+      _this.context.globalAlpha = 0.1;
+      _this.context.fillStyle = "rbga(255, 255, 255, 0.0)";
+
+      _this.context.fillRect(0, 0, _this.context.canvas.width, _this.context.canvas.height);
+
+      _this.context.globalAlpha = 1;
+      _this.context.font = "50px Georgia";
+
+      _this.context.fillText("Paused", _this.context.canvas.width / 2 - 75, _this.context.canvas.height / 2 - 100);
     }
   };
 
@@ -986,6 +997,10 @@ var InputHandler = function InputHandler(pabbot) {
         if (!_this.jumped) {
           _this.jumped = true;
           pabbot.jump();
+        }
+
+        if (_this.jumped) {
+          pabbot.wallJump();
         }
 
         break;
@@ -1114,24 +1129,25 @@ var Pabbot =
 function (_Entity) {
   _inherits(Pabbot, _Entity);
 
-  function Pabbot(x, y, width, height) {
+  function Pabbot(_x, y, width, height) {
     var _this;
 
     _classCallCheck(this, Pabbot);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Pabbot).call(this, x, y, width, height));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Pabbot).call(this, _x, y, width, height));
     _this.health = 3;
     _this.speed = {
       x: 0,
       y: 0
     };
     _this.maxSpeed = 50;
-    _this.dashSpeed = 100;
+    _this.dashSpeed = 75;
     _this.jumpHeight = 200;
     _this.gravity = 200;
     _this.terminalVelocity = 1000;
     _this.isJumping = false;
     _this.isDashing = false;
+    _this.isWalled = false;
     _this.upActive = false;
     _this.leftActive = false;
     _this.downActive = false;
@@ -1147,6 +1163,7 @@ function (_Entity) {
     _this.fallingLeft = 288;
     _this.dashingRight = [480, 480, 480, 480, 512, 512, 512, 512, 544, 544, 544, 544, 576, 576, 576, 576];
     _this.dashingLeft = [576, 576, 576, 576, 544, 544, 544, 544, 512, 512, 512, 512, 488, 488, 488, 488];
+    _this.healthBall = 640;
 
     _this.render = function (buffer) {
       var sprite;
@@ -1213,6 +1230,12 @@ function (_Entity) {
       buffer.drawImage(_this.tileSheet.image, sprite, 0, _this.width, _this.height, Math.round(_this.position.x), Math.round(_this.position.y), _this.width, _this.height);
     };
 
+    _this.renderHealth = function (buffer, x) {
+      for (var i = 0; i < _this.health; i++) {
+        buffer.drawImage(_this.tileSheet.image, 608, 0, _this.width, _this.height, 20 + 23 * i + x, 20, _this.width - 10, _this.height - 10);
+      }
+    };
+
     _this.move = function (timeDelta) {
       _this.pastPos.x = _this.position.x;
       _this.pastPos.y = _this.position.y;
@@ -1251,6 +1274,23 @@ function (_Entity) {
       }
     };
 
+    _this.wallJump = function () {
+      if (_this.isWalled && _this.isJumping) {
+        _this.isWalled = false;
+        _this.speed.y = -_this.jumpHeight;
+
+        if (_this.facing === "right") {
+          _this.speed.x = -_this.maxSpeed;
+          _this.facing = "left";
+        } else {
+          _this.speed.x = _this.maxSpeed;
+          _this.facing = "right";
+        }
+
+        setTimeout(_this.stop, 500);
+      }
+    };
+
     _this.dash = function () {
       if (_this.isJumping && !_this.isDashing) {
         _this.isDashing = true;
@@ -1277,6 +1317,16 @@ function (_Entity) {
             _this.lastHit = 100;
             _this.health--;
           }
+
+          if (_this.speed.x === 0) {
+            _this.speed.y -= 100;
+            _this.speed.x = enemy.speed.x;
+          } else {
+            _this.speed.x = -_this.speed.x * 0.3;
+            _this.speed.y = -_this.speed.y * 0.7;
+          }
+
+          setTimeout(_this.stop, 200);
         }
       });
     };
