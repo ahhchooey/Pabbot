@@ -9,6 +9,8 @@ export default class Pabbot extends Entity {
     this.tileSheet.image.src = "../assets/Pabbot.png";
   }
 
+  health = 3;
+
   speed = {
     x: 0,
     y: 0
@@ -93,7 +95,7 @@ export default class Pabbot extends Entity {
       Math.round(this.position.y),
       this.width,
       this.height
-    );
+    )
   }
 
   move = (timeDelta) => {
@@ -146,4 +148,21 @@ export default class Pabbot extends Entity {
     }
   }
 
+  lastHit = 0;
+
+  danger = (enemies) => {
+    this.lastHit--;
+    enemies.forEach(enemy => {
+      if (this.getDistance(enemy) < 30 && this.lastHit <= 0) {
+        if (this.isDashing) {
+          console.log("hit")
+          enemy.health--;
+        } else {
+          console.log("ouch")
+          this.lastHit = 100;
+          this.health--;
+        }
+      }
+    })
+  }
 }

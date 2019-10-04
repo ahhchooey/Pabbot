@@ -1,7 +1,7 @@
 
 
 export default class Display {
-  constructor(context, width, height, pabbot, map, mapWidth, camera, dW, dH) {
+  constructor(context, width, height, pabbot, map, mapWidth, camera, dW, dH, enemies) {
     this.context = context;
     this.width = width;
     this.height = height;
@@ -11,6 +11,7 @@ export default class Display {
     this.camera = camera;
     this.displayWidth = dW;
     this.displayHeight = dH;
+    this.enemies = enemies;
 
     this.buffer = document.createElement("canvas").getContext("2d");
     this.buffer.canvas.width = width;
@@ -23,6 +24,10 @@ export default class Display {
 
   drawMap = (data) => {
     this.map.render(data, this.mapWidth, this.buffer);
+  }
+
+  drawEnemies = () => {
+    this.enemies.renderAll(this.buffer);
   }
 
   fill = (color) => {

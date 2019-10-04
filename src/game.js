@@ -4,6 +4,7 @@ import Display from "./display.js";
 import Camera from "./camera.js";
 import Map from "./map.js";
 import Collision from "./collision.js";
+import Enemies from "./enemies/enemies.js";
 import gameMap from "../assets/maps/testMap2.js";
 
 
@@ -22,6 +23,8 @@ export default class Game {
     this.handlePause();
 
     this.pabbot = new Pabbot(0, 0, 32, 32);
+    this.enemies = new Enemies(gameMap.enemies);
+
     this.map = new Map();
     this.inputHandler = new InputHandler(this.pabbot);
     this.camera = new Camera(
@@ -39,7 +42,8 @@ export default class Game {
       gameMap.width,
       this.camera,
       this.context.canvas.width,
-      this.context.canvas.height
+      this.context.canvas.height,
+      this.enemies
     );
     this.collision = new Collision(
       GAME_WIDTH, 
@@ -51,6 +55,7 @@ export default class Game {
 
   render = () => {
     this.display.fill("#333");
+    this.display.drawEnemies();
     this.display.drawPabbot();
     this.display.drawMap(gameMap.mapArray, gameMap.width);
     this.display.render();
@@ -66,8 +71,18 @@ export default class Game {
 
     this.pabbot.move(timeDelta);
     this.collision.isCollide(this.pabbot);
+    this.pabbot.danger(this.enemies.enemies);
+
+    this.enemies.moveAll(timeDelta);
+    this.enemies.enemies.forEach(enemy => this.collision.isCollide(enemy));
+
     this.render();
     this.camera.render();
+
+    this.enemies.checkDeath();
+    if (this.dead()) {
+      console.log("youre ded sucker")
+    }
 
     this.run();
   };
@@ -100,6 +115,13 @@ export default class Game {
       document.documentElement.clientHeight - 250,
       this.context.canvas.height/this.context.canvas.width 
     )
+  }
+
+  dead = () => {
+    if (this.pabbot.health <= 0) {
+      return true;
+    }
+    return false;
   }
 
 }

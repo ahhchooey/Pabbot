@@ -33,4 +33,10 @@ export default class Entity {
   setPastLeft = (x) => {this.pastPos.x = x};
   setPastBottom = (y) => {this.pastPos.y = y + 32};
   setPastRight = (x) => {this.pastPos.x = x + 32};
+
+  getDistance = (other) => {
+    let horiz = Math.abs(this.position.x - other.position.x);
+    let vert = Math.abs(this.position.y - other.position.y);
+    return Math.pow((horiz * horiz + vert * vert), 0.5)
+  }
 }

@@ -101,7 +101,28 @@ var gameMap = {
   "mapArray": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 12, 16, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 5, 6, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 15, 6, 15, 6, 15, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 6, 6, 6, 6, 3, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 4, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 15, 6, 15, 6, 15, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 6, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 15, 15, 15, 6, 15, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 6, 6, 6, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 6, 6, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 5, 6, 15, 6, 15, 6, 15, 6, 6, 0, 13, 0, 0, 14, 14, 14, 14, 14, 0, 1, 6, 6, 6, 6, 6, 6, 7, 0, 0, 0, 0, 14, 14, 0, 0, 14, 14, 0, 0, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 12, 16, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 14, 14, 0, 0, 0, 1, 6, 6, 7, 0, 0, 0, 0, 0, 0, 5, 6, 15, 6, 15, 6, 15, 6, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 2, 2, 2, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6],
   "tilewidth": 32,
   "height": 10,
-  "width": 100
+  "width": 100,
+  "enemies": [{
+    type: "potato",
+    x: 500,
+    y: 100
+  }, {
+    type: "potato",
+    x: 800,
+    y: 100
+  }, {
+    type: "potato",
+    x: 1200,
+    y: 100
+  }, {
+    type: "potato",
+    x: 2600,
+    y: 100
+  }, {
+    type: "potato",
+    x: 2800,
+    y: 100
+  }]
 };
 gameMap.collisionMap = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["collisionMapGenerator"])(gameMap.mapArray);
 /* harmony default export */ __webpack_exports__["default"] = (gameMap);
@@ -390,7 +411,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Display; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Display = function Display(context, _width, _height, pabbot, map, mapWidth, camera, dW, dH) {
+var Display = function Display(context, _width, _height, pabbot, map, mapWidth, camera, dW, dH, enemies) {
   var _this = this;
 
   _classCallCheck(this, Display);
@@ -401,6 +422,10 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
 
   this.drawMap = function (data) {
     _this.map.render(data, _this.mapWidth, _this.buffer);
+  };
+
+  this.drawEnemies = function () {
+    _this.enemies.renderAll(_this.buffer);
   };
 
   this.fill = function (color) {
@@ -435,10 +460,218 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
   this.camera = camera;
   this.displayWidth = dW;
   this.displayHeight = dH;
+  this.enemies = enemies;
   this.buffer = document.createElement("canvas").getContext("2d");
   this.buffer.canvas.width = _width;
   this.buffer.canvas.height = _height;
 };
+
+
+
+/***/ }),
+
+/***/ "./src/enemies/enemies.js":
+/*!********************************!*\
+  !*** ./src/enemies/enemies.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Enemies; });
+/* harmony import */ var _potato_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./potato.js */ "./src/enemies/potato.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+var Enemies = function Enemies(enemies) {
+  var _this = this;
+
+  _classCallCheck(this, Enemies);
+
+  this.renderAll = function (buffer) {
+    _this.enemies.forEach(function (enemy) {
+      return enemy.render(buffer);
+    });
+  };
+
+  this.moveAll = function (deltaTime) {
+    _this.enemies.forEach(function (enemy) {
+      return enemy.move(deltaTime);
+    });
+  };
+
+  this.checkDeath = function () {
+    var newEn = [];
+
+    _this.enemies.forEach(function (enemy, i) {
+      if (enemy.health > 0) {
+        newEn.push(enemy);
+      }
+    });
+
+    _this.enemies = newEn;
+  };
+
+  this.enemies = enemies.map(function (enemy) {
+    switch (enemy.type) {
+      case "potato":
+        return new _potato_js__WEBPACK_IMPORTED_MODULE_0__["default"](enemy.x, enemy.y, 32, 32, enemy.moveSet);
+    }
+  });
+};
+
+
+
+/***/ }),
+
+/***/ "./src/enemies/potato.js":
+/*!*******************************!*\
+  !*** ./src/enemies/potato.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Potato; });
+/* harmony import */ var _entity_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entity.js */ "./src/entity.js");
+/* harmony import */ var _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../tileSheet.js */ "./src/tileSheet.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Potato =
+/*#__PURE__*/
+function (_Entity) {
+  _inherits(Potato, _Entity);
+
+  function Potato(x, y, width, height, moveSet) {
+    var _this;
+
+    _classCallCheck(this, Potato);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Potato).call(this, x, y, width, height));
+    _this.speed = {
+      x: 0,
+      y: 0
+    };
+    _this.maxSpeed = 40;
+    _this.gravity = 200;
+    _this.terminalVelocity = 1000;
+    _this.facing = "left";
+    _this.stepCount = 0;
+    _this.standRight = 0;
+    _this.standLeft = 32;
+    _this.runningRight = [64, 64, 64, 64, 64, 64, 128, 128, 128, 128, 128, 128];
+    _this.runningLeft = [96, 96, 96, 96, 96, 96, 160, 160, 160, 160, 160, 160];
+
+    _this.render = function (buffer) {
+      var sprite;
+      var hold;
+
+      switch (true) {
+        case _this.facing === "right" && _this.speed.x === 0:
+          sprite = _this.standRight;
+          break;
+
+        case _this.facing === "left" && _this.speed.x === 0:
+          sprite = _this.standLeft;
+          break;
+
+        case _this.facing === "right":
+          hold = _this.runningRight.shift();
+
+          _this.runningRight.push(hold);
+
+          sprite = hold;
+          break;
+
+        case _this.facing === "left":
+          hold = _this.runningLeft.shift();
+
+          _this.runningLeft.push(hold);
+
+          sprite = hold;
+          break;
+      }
+
+      buffer.drawImage(_this.tileSheet.image, sprite, 0, _this.width, _this.height, Math.round(_this.position.x), Math.round(_this.position.y), _this.width, _this.height);
+    };
+
+    _this.move = function (timeDelta) {
+      _this.stepCount--;
+
+      if (_this.stepCount <= 0) {
+        _this.stepCount = 50;
+
+        _this.moveSet.push(_this.moveSet.shift());
+      }
+
+      switch (_this.moveSet[0]) {
+        case "stand":
+          _this.stop();
+
+          break;
+
+        case "left":
+          _this.moveLeft();
+
+          break;
+
+        case "right":
+          _this.moveRight();
+
+          break;
+      }
+
+      _this.pastPos.x = _this.position.x;
+      _this.pastPos.y = _this.position.y;
+      _this.position.x += _this.speed.x / timeDelta;
+      _this.position.y += _this.speed.y / timeDelta;
+
+      if (_this.speed.y <= _this.terminalVelocity) {
+        _this.speed.y += _this.gravity / timeDelta;
+      }
+    };
+
+    _this.stop = function () {
+      _this.speed.x = 0;
+    };
+
+    _this.moveLeft = function () {
+      _this.facing = "left";
+      _this.speed.x = -_this.maxSpeed;
+    };
+
+    _this.moveRight = function () {
+      _this.facing = "right";
+      _this.speed.x = _this.maxSpeed;
+    };
+
+    _this.health = 1;
+    _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](32, 6);
+    _this.tileSheet.image.src = "../assets/CharliePotato.png";
+    _this.moveSet = ["left", "left", "stand", "right", "right", "stand"] || false;
+    return _this;
+  }
+
+  return Potato;
+}(_entity_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 
@@ -525,6 +758,12 @@ var Entity = function Entity(_x, _y, width, height) {
     _this.pastPos.x = x + 32;
   };
 
+  this.getDistance = function (other) {
+    var horiz = Math.abs(_this.position.x - other.position.x);
+    var vert = Math.abs(_this.position.y - other.position.y);
+    return Math.pow(horiz * horiz + vert * vert, 0.5);
+  };
+
   this.position = {
     x: _x,
     y: _y
@@ -557,7 +796,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _camera_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./camera.js */ "./src/camera.js");
 /* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./map.js */ "./src/map.js");
 /* harmony import */ var _collision_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./collision.js */ "./src/collision.js");
-/* harmony import */ var _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../assets/maps/testMap2.js */ "./assets/maps/testMap2.js");
+/* harmony import */ var _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./enemies/enemies.js */ "./src/enemies/enemies.js");
+/* harmony import */ var _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../assets/maps/testMap2.js */ "./assets/maps/testMap2.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
@@ -567,8 +807,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var GAME_HEIGHT = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].height * 32;
-var GAME_WIDTH = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].width * 32;
+
+var GAME_HEIGHT = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
+var GAME_WIDTH = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
 
 var Game = function Game(context) {
   var _this = this;
@@ -578,9 +819,11 @@ var Game = function Game(context) {
   this.render = function () {
     _this.display.fill("#333");
 
+    _this.display.drawEnemies();
+
     _this.display.drawPabbot();
 
-    _this.display.drawMap(_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].mapArray, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].width);
+    _this.display.drawMap(_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].mapArray, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width);
 
     _this.display.render();
   };
@@ -596,9 +839,23 @@ var Game = function Game(context) {
 
     _this.collision.isCollide(_this.pabbot);
 
+    _this.pabbot.danger(_this.enemies.enemies);
+
+    _this.enemies.moveAll(timeDelta);
+
+    _this.enemies.enemies.forEach(function (enemy) {
+      return _this.collision.isCollide(enemy);
+    });
+
     _this.render();
 
     _this.camera.render();
+
+    _this.enemies.checkDeath();
+
+    if (_this.dead()) {
+      console.log("youre ded sucker");
+    }
 
     _this.run();
   };
@@ -629,6 +886,14 @@ var Game = function Game(context) {
     _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight - 250, _this.context.canvas.height / _this.context.canvas.width);
   };
 
+  this.dead = function () {
+    if (_this.pabbot.health <= 0) {
+      return true;
+    }
+
+    return false;
+  };
+
   this.context = context;
   this.context.canvas.height = 320;
   this.context.canvas.width = 700;
@@ -637,11 +902,12 @@ var Game = function Game(context) {
   this.run = this.run.bind(this);
   this.handlePause();
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](0, 0, 32, 32);
+  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].enemies);
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
-  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
-  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height);
-  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].collisionMap, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_6__["default"].width);
+  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies);
+  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].collisionMap, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width);
 };
 
 
@@ -854,6 +1120,7 @@ function (_Entity) {
     _classCallCheck(this, Pabbot);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Pabbot).call(this, x, y, width, height));
+    _this.health = 3;
     _this.speed = {
       x: 0,
       y: 0
@@ -994,6 +1261,24 @@ function (_Entity) {
         if (_this.downActive) _this.speed.y += _this.dashSpeed;
         if (_this.rightActive) _this.speed.x += _this.dashSpeed;
       }
+    };
+
+    _this.lastHit = 0;
+
+    _this.danger = function (enemies) {
+      _this.lastHit--;
+      enemies.forEach(function (enemy) {
+        if (_this.getDistance(enemy) < 30 && _this.lastHit <= 0) {
+          if (_this.isDashing) {
+            console.log("hit");
+            enemy.health--;
+          } else {
+            console.log("ouch");
+            _this.lastHit = 100;
+            _this.health--;
+          }
+        }
+      });
     };
 
     _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](32, 20);
