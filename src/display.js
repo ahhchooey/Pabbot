@@ -1,7 +1,8 @@
+import Menu from "./menu.js";
 
 
 export default class Display {
-  constructor(context, width, height, pabbot, map, mapWidth, camera, dW, dH, enemies) {
+  constructor(context, width, height, pabbot, map, mapWidth, camera, dW, dH, enemies, run) {
     this.context = context;
     this.width = width;
     this.height = height;
@@ -12,10 +13,66 @@ export default class Display {
     this.displayWidth = dW;
     this.displayHeight = dH;
     this.enemies = enemies;
+    this.run = run;
 
     this.buffer = document.createElement("canvas").getContext("2d");
     this.buffer.canvas.width = width;
     this.buffer.canvas.height = height;
+
+    this.menu = new Menu(this.displayHeight, this.displayWidth, this.context, this.buffer);
+    document.addEventListener("keydown", this.handleMenu)
+  }
+
+  handleMenu = (e) => {
+    switch(e.key) {
+      case "ArrowUp":
+      case "w":
+        this.menu.movePointerUp();
+        this.drawMenu();
+        break;
+      case "ArrowDown":
+      case "s":
+        this.menu.movePointerDown();
+        this.drawMenu();
+        break;
+      case "Enter":
+      case "j":
+        this.menuSelect();
+        this.drawMenu();
+        break;
+    }
+  }
+
+  menuSelect = () => {
+    switch(this.menu.currentPointer()) {
+      case "start":
+        this.menu.startGame(this.run);
+        document.removeEventListener("keydown", this.handleMenu)
+        break;
+      case "controls":
+        this.menu.showControls();
+        break;
+      case "about":
+        this.menu.showAbout();
+        this.menu.drawLinks(this.buffer);
+        break;
+    }
+  }
+
+  drawMenu = () => {
+    this.menu.render(this.buffer);
+
+    this.context.drawImage(
+      this.buffer.canvas,
+      0,
+      0,
+      this.displayWidth,
+      this.displayHeight,
+      0,
+      0,
+      this.context.canvas.width,
+      this.context.canvas.height
+    )
   }
 
   drawPabbot = () => {
@@ -61,6 +118,7 @@ export default class Display {
       this.context.canvas.width = height / ratio;
       this.context.canvas.height = height;
     }
+    this.menu.reOffset();
   }
   
 }

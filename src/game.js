@@ -33,6 +33,13 @@ export default class Game {
       this.context.canvas.height,
       this.pabbot
     );
+    this.collision = new Collision(
+      GAME_WIDTH, 
+      GAME_HEIGHT, 
+      gameMap.collisionMap, 
+      gameMap.width
+    );
+
     this.display = new Display(
       this.context, 
       GAME_WIDTH, 
@@ -43,14 +50,13 @@ export default class Game {
       this.camera,
       this.context.canvas.width,
       this.context.canvas.height,
-      this.enemies
+      this.enemies,
+      this.run
     );
-    this.collision = new Collision(
-      GAME_WIDTH, 
-      GAME_HEIGHT, 
-      gameMap.collisionMap, 
-      gameMap.width
-    );
+  }
+
+  renderMenu = () => {
+    this.display.drawMenu();
   }
 
   render = () => {
@@ -121,7 +127,7 @@ export default class Game {
   resize = () => {
     this.display.resize(
       document.documentElement.clientWidth - 50,
-      document.documentElement.clientHeight - 250,
+      document.documentElement.clientHeight,
       this.context.canvas.height/this.context.canvas.width 
     )
   }

@@ -21,5 +21,9 @@ body {
 }
 
 #game {
-  border: 1px solid white;
+  border: 0px;
+}
+
+.links {
+  position: relative;
 }

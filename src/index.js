@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let context = canvas.getContext("2d");
 
   let game = new Game(context);
-  window.addEventListener("resize", game.resize)
 
   window.addEventListener("load", (e) => {
     game.resize();
-    game.run();
+    game.renderMenu();
   }, {
     once: true
   })
+  window.addEventListener("resize", game.resize)
 })

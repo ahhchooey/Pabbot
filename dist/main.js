@@ -410,12 +410,71 @@ var Collision = function Collision(width, height, collisionMap, mapWidth) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Display; });
+/* harmony import */ var _menu_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./menu.js */ "./src/menu.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Display = function Display(context, _width, _height, pabbot, map, mapWidth, camera, dW, dH, enemies) {
+
+
+var Display = function Display(context, _width, _height, pabbot, map, mapWidth, camera, dW, dH, enemies, run) {
   var _this = this;
 
   _classCallCheck(this, Display);
+
+  this.handleMenu = function (e) {
+    switch (e.key) {
+      case "ArrowUp":
+      case "w":
+        _this.menu.movePointerUp();
+
+        _this.drawMenu();
+
+        break;
+
+      case "ArrowDown":
+      case "s":
+        _this.menu.movePointerDown();
+
+        _this.drawMenu();
+
+        break;
+
+      case "Enter":
+      case "j":
+        _this.menuSelect();
+
+        _this.drawMenu();
+
+        break;
+    }
+  };
+
+  this.menuSelect = function () {
+    switch (_this.menu.currentPointer()) {
+      case "start":
+        _this.menu.startGame(_this.run);
+
+        document.removeEventListener("keydown", _this.handleMenu);
+        break;
+
+      case "controls":
+        _this.menu.showControls();
+
+        break;
+
+      case "about":
+        _this.menu.showAbout();
+
+        _this.menu.drawLinks(_this.buffer);
+
+        break;
+    }
+  };
+
+  this.drawMenu = function () {
+    _this.menu.render(_this.buffer);
+
+    _this.context.drawImage(_this.buffer.canvas, 0, 0, _this.displayWidth, _this.displayHeight, 0, 0, _this.context.canvas.width, _this.context.canvas.height);
+  };
 
   this.drawPabbot = function () {
     _this.pabbot.render(_this.buffer);
@@ -452,6 +511,8 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
       _this.context.canvas.width = height / ratio;
       _this.context.canvas.height = height;
     }
+
+    _this.menu.reOffset();
   };
 
   this.context = context;
@@ -464,9 +525,12 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
   this.displayWidth = dW;
   this.displayHeight = dH;
   this.enemies = enemies;
+  this.run = run;
   this.buffer = document.createElement("canvas").getContext("2d");
   this.buffer.canvas.width = _width;
   this.buffer.canvas.height = _height;
+  this.menu = new _menu_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.displayHeight, this.displayWidth, this.context, this.buffer);
+  document.addEventListener("keydown", this.handleMenu);
 };
 
 
@@ -819,6 +883,10 @@ var Game = function Game(context) {
 
   _classCallCheck(this, Game);
 
+  this.renderMenu = function () {
+    _this.display.drawMenu();
+  };
+
   this.render = function () {
     _this.display.fill("#333");
 
@@ -894,7 +962,7 @@ var Game = function Game(context) {
   };
 
   this.resize = function () {
-    _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight - 250, _this.context.canvas.height / _this.context.canvas.width);
+    _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight, _this.context.canvas.height / _this.context.canvas.width);
   };
 
   this.dead = function () {
@@ -917,8 +985,8 @@ var Game = function Game(context) {
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
   this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
-  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies);
   this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].collisionMap, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width);
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run);
 };
 
 
@@ -940,13 +1008,13 @@ document.addEventListener("DOMContentLoaded", function () {
   var canvas = document.getElementById("game");
   var context = canvas.getContext("2d");
   var game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](context);
-  window.addEventListener("resize", game.resize);
   window.addEventListener("load", function (e) {
     game.resize();
-    game.run();
+    game.renderMenu();
   }, {
     once: true
   });
+  window.addEventListener("resize", game.resize);
 });
 
 /***/ }),
@@ -1095,6 +1163,243 @@ var Map = function Map() {
 
 /***/ }),
 
+/***/ "./src/menu.js":
+/*!*********************!*\
+  !*** ./src/menu.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Menu; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Menu = function Menu(dH, dW, context, _buffer) {
+  var _this = this;
+
+  _classCallCheck(this, Menu);
+
+  this.hexPush = function () {
+    var cw = _this.context.canvas.width;
+    var ch = _this.context.canvas.height;
+
+    _this.hexes.push({
+      points: [{
+        x: 0.14 * cw,
+        y: 0.79 * ch
+      }, {
+        x: 0.23 * cw,
+        y: 0.79 * ch
+      }, {
+        x: 0.23 * cw,
+        y: 0.85 * ch
+      }, {
+        x: 0.14 * cw,
+        y: 0.85 * ch
+      }],
+      url: "www.google.com"
+    }, {
+      points: [{
+        x: 0.26 * cw,
+        y: 0.79 * ch
+      }, {
+        x: 0.37 * cw,
+        y: 0.79 * ch
+      }, {
+        x: 0.37 * cw,
+        y: 0.85 * ch
+      }, {
+        x: 0.26 * cw,
+        y: 0.85 * ch
+      }],
+      url: "www.github.com"
+    }, {
+      points: [{
+        x: 0.40 * cw,
+        y: 0.79 * ch
+      }, {
+        x: 0.50 * cw,
+        y: 0.79 * ch
+      }, {
+        x: 0.50 * cw,
+        y: 0.85 * ch
+      }, {
+        x: 0.40 * cw,
+        y: 0.85 * ch
+      }],
+      url: "www.apple.com"
+    });
+  };
+
+  this.drawLinks = function (buffer) {
+    _this.canvas.addEventListener("mousedown", _this.handleClick);
+
+    for (var i = 0; i < _this.hexes.length; i++) {
+      var hex = _this.hexes[i];
+      buffer.strokeStyle = "#fff";
+      buffer.beginPath();
+      buffer.moveTo(hex.points[0].x, hex.points[0].y);
+
+      for (var j = 1; j < hex.points.length; j++) {
+        buffer.lineTo(hex.points[j].x, hex.points[j].y);
+      }
+
+      buffer.closePath();
+      buffer.stroke();
+    }
+  };
+
+  this.handleClick = function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var mouseX = parseInt(e.clientX - _this.offsetX);
+    var mouseY = parseInt(e.clientY - _this.offsetY);
+
+    for (var i = 0; i < _this.hexes.length; i++) {
+      var hex = _this.hexes[i];
+
+      _this.buffer.beginPath();
+
+      _this.buffer.moveTo(hex.points[0].x, hex.points[0].y);
+
+      for (var j = 1; j < hex.points.length; j++) {
+        _this.buffer.lineTo(hex.points[j].x, hex.points[j].y);
+      }
+
+      _this.buffer.closePath();
+
+      if (_this.buffer.isPointInPath(mouseX, mouseY)) console.log(hex.url);
+    }
+
+    console.log("mouseX", mouseX / _this.context.canvas.width);
+    console.log("mouseY", mouseY / _this.context.canvas.height);
+  };
+
+  this.pointerPositions = ["start", "controls", "about"];
+
+  this.currentPointer = function () {
+    return _this.pointerPositions[0];
+  };
+
+  this.movePointerDown = function () {
+    _this.pointerPositions.push(_this.pointerPositions.shift());
+  };
+
+  this.movePointerUp = function () {
+    _this.pointerPositions.unshift(_this.pointerPositions.pop());
+  };
+
+  this.startGame = function (run) {
+    run();
+  };
+
+  this.showControls = function () {
+    _this.currentScreen = "controls";
+  };
+
+  this.showAbout = function () {
+    _this.currentScreen = "about";
+  };
+
+  this.reOffset = function () {
+    _this.offsetX = 25;
+    _this.offsetY = (document.documentElement.clientHeight - _this.context.canvas.height) / 2;
+  };
+
+  this.clickGithub = function () {
+    console.log(window.location);
+  };
+
+  this.clickLinkedIn = function () {
+    console.log(window.location);
+  };
+
+  this.currentScreen = "main";
+
+  this.render = function (buffer) {
+    buffer.fillStyle = "#000";
+    buffer.fillRect(0, 0, _this.dW, _this.dH);
+    buffer.fillStyle = "#fff";
+
+    switch (_this.currentScreen) {
+      case "main":
+        buffer.font = "50px serif";
+        buffer.fillText("Pabbot", 150, 120);
+        break;
+
+      case "controls":
+        buffer.font = "20px serif";
+        buffer.fillText("Controls", 100, 100);
+        buffer.fillText("ArrowKeys/WASD - Up, Down, Left, Right", 100, 130);
+        buffer.fillText("Enter - Menu Select", 100, 150);
+        buffer.fillText("J/Space - Jump (when on ground)", 100, 170);
+        buffer.fillText("K/LShift - Spin (when jumping)", 100, 190);
+        break;
+
+      case "about":
+        buffer.font = "20px serif";
+        buffer.fillText("About Me", 100, 100);
+        buffer.fillText("Hi, I'm Alex, a software developer.", 100, 130);
+        buffer.fillText("This is pabbot, a game where you play as Pabbot.", 100, 150);
+        buffer.fillText("The goal of the game is simply to make it to the", 100, 170);
+        buffer.fillText("end. There are monsters on the path to victory.", 100, 190);
+        buffer.fillText("Make sure you spin to win.", 100, 210);
+        buffer.fillText("If you want, check out my other work.", 100, 250);
+        buffer.fillText("GitHub     LinkedIn     Portfolio", 100, 270);
+        break;
+    }
+
+    buffer.font = "20px serif";
+    var wordLeft = _this.dW / 2 + 200;
+    var wordTop = _this.dH / 2 + 20;
+    buffer.fillText("Start", wordLeft, wordTop);
+    buffer.fillText("Controls", wordLeft, wordTop + 25);
+    buffer.fillText("About", wordLeft, wordTop + 50);
+    var locus = [wordLeft, wordLeft];
+
+    switch (_this.currentPointer()) {
+      case "start":
+        locus = [wordLeft - 10, wordTop - 5];
+        break;
+
+      case "controls":
+        locus = [wordLeft - 10, wordTop + 20];
+        break;
+
+      case "about":
+        locus = [wordLeft - 10, wordTop + 45];
+        break;
+    }
+
+    buffer.beginPath();
+    buffer.moveTo(locus[0], locus[1]);
+    buffer.lineTo(locus[0] - 5, locus[1] - 5);
+    buffer.lineTo(locus[0] - 5, locus[1] + 5);
+    buffer.closePath();
+    buffer.fill();
+  };
+
+  this.dW = dW;
+  this.dH = dH;
+  this.context = context;
+  this.buffer = _buffer;
+  this.canvas = document.getElementById("game");
+  this.reOffset();
+
+  window.onresize = function (e) {
+    return _this.reOffset();
+  };
+
+  this.isDown = false;
+  this.hexes = [];
+  this.hexPush();
+};
+
+
+
+/***/ }),
+
 /***/ "./src/pabbot.js":
 /*!***********************!*\
   !*** ./src/pabbot.js ***!
@@ -1153,6 +1458,7 @@ function (_Entity) {
     _this.downActive = false;
     _this.rightActive = false;
     _this.facing = "right";
+    _this.lastHit = 0;
     _this.standRight = 0;
     _this.standLeft = 32;
     _this.runningRight = [64, 64, 64, 64, 64, 64, 128, 128, 128, 128, 128, 128];
@@ -1302,8 +1608,6 @@ function (_Entity) {
         if (_this.rightActive) _this.speed.x += _this.dashSpeed;
       }
     };
-
-    _this.lastHit = 0;
 
     _this.danger = function (enemies) {
       _this.lastHit--;

@@ -29,6 +29,7 @@ export default class Pabbot extends Entity {
   downActive = false;
   rightActive = false;
   facing = "right";
+  lastHit = 0;
 
   standRight = 0;
   standLeft = 32;
@@ -181,8 +182,6 @@ export default class Pabbot extends Entity {
       if (this.rightActive) this.speed.x += this.dashSpeed;
     }
   }
-
-  lastHit = 0;
 
   danger = (enemies) => {
     this.lastHit--;
