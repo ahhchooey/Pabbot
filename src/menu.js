@@ -13,8 +13,6 @@ export default class Menu {
     this.isDown = false;
     
     this.hexes = [];
-    this.hexPush();
-    
   }
 
   hexPush = () => {
@@ -28,7 +26,7 @@ export default class Menu {
           {x: 0.23*cw, y: 0.85*ch},
           {x: 0.14*cw, y: 0.85*ch} 
         ],
-        url: "www.google.com"
+        url: "http://www.github.com/ahhchooey"
       },
       {
         points: [
@@ -37,7 +35,7 @@ export default class Menu {
           {x: 0.37*cw, y: 0.85*ch},
           {x: 0.26*cw, y: 0.85*ch}
         ],
-        url: "www.github.com"
+        url: "https://www.linkedin.com/in/alex-chui-075785117/"
       },
       {
         points: [
@@ -46,7 +44,7 @@ export default class Menu {
           {x: 0.50*cw, y: 0.85*ch},
           {x: 0.40*cw, y: 0.85*ch}
         ],
-        url: "www.apple.com"
+        url: "http://www.github.com/ahhchooey"
       }
     )
   }
@@ -81,10 +79,10 @@ export default class Menu {
         this.buffer.lineTo(hex.points[j].x, hex.points[j].y);
       }
       this.buffer.closePath();
-      if (this.buffer.isPointInPath(mouseX, mouseY)) console.log(hex.url)
+      if (this.buffer.isPointInPath(mouseX, mouseY)) {
+        window.location = hex.url
+      }
     }
-    console.log("mouseX", mouseX/this.context.canvas.width)
-    console.log("mouseY", mouseY/this.context.canvas.height)
   }
 
   pointerPositions = ["start", "controls", "about"];
@@ -111,6 +109,7 @@ export default class Menu {
 
   showAbout = () => {
     this.currentScreen = "about";
+    this.hexPush();
   }
 
   reOffset = () => {

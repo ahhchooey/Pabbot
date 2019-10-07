@@ -1198,7 +1198,7 @@ var Menu = function Menu(dH, dW, context, _buffer) {
         x: 0.14 * cw,
         y: 0.85 * ch
       }],
-      url: "www.google.com"
+      url: "http://www.github.com/ahhchooey"
     }, {
       points: [{
         x: 0.26 * cw,
@@ -1213,7 +1213,7 @@ var Menu = function Menu(dH, dW, context, _buffer) {
         x: 0.26 * cw,
         y: 0.85 * ch
       }],
-      url: "www.github.com"
+      url: "https://www.linkedin.com/in/alex-chui-075785117/"
     }, {
       points: [{
         x: 0.40 * cw,
@@ -1228,7 +1228,7 @@ var Menu = function Menu(dH, dW, context, _buffer) {
         x: 0.40 * cw,
         y: 0.85 * ch
       }],
-      url: "www.apple.com"
+      url: "http://www.github.com/ahhchooey"
     });
   };
 
@@ -1269,11 +1269,10 @@ var Menu = function Menu(dH, dW, context, _buffer) {
 
       _this.buffer.closePath();
 
-      if (_this.buffer.isPointInPath(mouseX, mouseY)) console.log(hex.url);
+      if (_this.buffer.isPointInPath(mouseX, mouseY)) {
+        window.location = hex.url;
+      }
     }
-
-    console.log("mouseX", mouseX / _this.context.canvas.width);
-    console.log("mouseY", mouseY / _this.context.canvas.height);
   };
 
   this.pointerPositions = ["start", "controls", "about"];
@@ -1300,6 +1299,8 @@ var Menu = function Menu(dH, dW, context, _buffer) {
 
   this.showAbout = function () {
     _this.currentScreen = "about";
+
+    _this.hexPush();
   };
 
   this.reOffset = function () {
@@ -1393,7 +1394,6 @@ var Menu = function Menu(dH, dW, context, _buffer) {
 
   this.isDown = false;
   this.hexes = [];
-  this.hexPush();
 };
 
 
