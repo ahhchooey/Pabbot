@@ -5,11 +5,14 @@ import Camera from "./camera.js";
 import Map from "./map.js";
 import Collision from "./collision.js";
 import Enemies from "./enemies/enemies.js";
+
+
 import gameMap from "../assets/maps/testMap2.js";
+import testMap from "../assets/maps/testMap.js";
 
 
-const GAME_HEIGHT = gameMap.height * 32;
-const GAME_WIDTH = gameMap.width * 32;
+let GAME_HEIGHT = gameMap.height * 32;
+let GAME_WIDTH = gameMap.width * 32;
 
 export default class Game {
   constructor(context) {
@@ -37,7 +40,8 @@ export default class Game {
       GAME_WIDTH, 
       GAME_HEIGHT, 
       gameMap.collisionMap, 
-      gameMap.width
+      gameMap.width,
+      this.nextLevel
     );
 
     this.display = new Display(
@@ -51,7 +55,8 @@ export default class Game {
       this.context.canvas.width,
       this.context.canvas.height,
       this.enemies,
-      this.run
+      this.run,
+      gameMap
     );
   }
 
@@ -60,11 +65,10 @@ export default class Game {
   }
 
   render = () => {
-    //this.display.fill("#17290b");
     this.display.drawBackground();
     this.display.drawEnemies();
     this.display.drawPabbot();
-    this.display.drawMap(gameMap.mapArray, gameMap.width);
+    this.display.drawMap();
     this.display.render();
   }
 
@@ -140,5 +144,53 @@ export default class Game {
     return false;
   }
 
+  maps = [testMap]
+
+  nextLevel = () => {
+    if (this.maps.length === 0) return;
+    let currentMap = this.maps.shift();
+    this.context.canvas.width = 700;
+    this.context.canvas.height = 320;
+
+    GAME_HEIGHT = currentMap.height * 32;
+    GAME_WIDTH = currentMap.width * 32;
+
+    this.enemies = new Enemies(currentMap.enemies);
+    this.pabbot.position = {
+      x: 0,
+      y: 0
+    }
+
+    this.map = new Map();
+    this.camera = new Camera(
+      currentMap, 
+      this.context.canvas.width, 
+      this.context.canvas.height,
+      this.pabbot
+    );
+    this.collision = new Collision(
+      GAME_WIDTH, 
+      GAME_HEIGHT, 
+      currentMap.collisionMap, 
+      currentMap.width,
+      this.nextLevel
+    );
+
+    this.display = new Display(
+      this.context, 
+      GAME_WIDTH, 
+      GAME_HEIGHT, 
+      this.pabbot, 
+      this.map,
+      currentMap.width,
+      this.camera,
+      this.context.canvas.width,
+      this.context.canvas.height,
+      this.enemies,
+      this.run,
+      currentMap
+    );
+    this.resize();
+  }
 }
 

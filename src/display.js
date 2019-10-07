@@ -2,7 +2,7 @@ import Menu from "./menu.js";
 
 
 export default class Display {
-  constructor(context, width, height, pabbot, map, mapWidth, camera, dW, dH, enemies, run) {
+  constructor(context, width, height, pabbot, map, mapWidth, camera, dW, dH, enemies, run, gM) {
     this.context = context;
     this.width = width;
     this.height = height;
@@ -14,6 +14,8 @@ export default class Display {
     this.displayHeight = dH;
     this.enemies = enemies;
     this.run = run;
+    this.gameMap = gM;
+    console.log(this.gameMap)
 
     this.buffer = document.createElement("canvas").getContext("2d");
     this.buffer.canvas.width = width;
@@ -82,8 +84,8 @@ export default class Display {
     this.pabbot.render(this.buffer);
   }
 
-  drawMap = (data) => {
-    this.map.render(data, this.mapWidth, this.buffer);
+  drawMap = () => {
+    this.map.render(this.gameMap.mapArray, this.mapWidth, this.buffer);
     this.pabbot.renderHealth(this.buffer, Math.floor(this.camera.x));
   }
 

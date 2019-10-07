@@ -1,11 +1,12 @@
 
 
 export default class Collision {
-  constructor(width, height, collisionMap, mapWidth) {
+  constructor(width, height, collisionMap, mapWidth, nextLevel) {
     this.gameWidth = width;
     this.gameHeight = height;
     this.collisionMap = collisionMap;
     this.mapWidth = mapWidth;
+    this.nextLevel = nextLevel;
   }
 
   isCollide = (ent) => {
@@ -96,6 +97,9 @@ export default class Collision {
       case 13:
         this.collideInstantDeath(ent, tileY);
         break;
+      case 14:
+        this.collideNextLevel(ent, tileX);
+        break;
     }
   }
 
@@ -139,10 +143,16 @@ export default class Collision {
   }
 
   collideInstantDeath = (ent, tileTop) => {
-    console.log("outside")
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
-      console.log("inside")
       ent.health -= 3;
+      return true;
+    }
+    return false;
+  }
+
+  collideNextLevel = (ent, tileLeft) => {
+    if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) { 
+      this.nextLevel();
       return true;
     }
     return false;
