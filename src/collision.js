@@ -80,6 +80,22 @@ export default class Collision {
         if (this.collidePlatformRight(ent, tileX + 32)) return;
         this.collidePlatformBottom(ent, tileY + 32);
         break;
+      case 10: //bottom and left collision
+        if (this.collidePlatformBottom(ent, tileY + 32)) return;
+        this.collidePlatformLeft(ent, tileX);
+        break;
+      case 11: //bottom and right collision
+        if (this.collidePlatformBottom(ent, tileY + 32)) return;
+        this.collidePlatformRight(ent, tileX + 32);
+        break;
+      case 12: //tree stump collision
+        if (this.collidePlatformTop(ent, tileY + 16)) return;
+        if (this.collidePlatformLeft(ent, tileX)) return;
+        this.collidePlatformRight(ent, tileX + 32);
+        break;
+      case 13:
+        this.collideInstantDeath(ent, tileY);
+        break;
     }
   }
 
@@ -117,6 +133,16 @@ export default class Collision {
     if (ent.getTop() < tileBottom && ent.getPastTop() >= tileBottom) {
       ent.setTop(tileBottom + 0.01);
       ent.speed.y = 100;
+      return true;
+    }
+    return false;
+  }
+
+  collideInstantDeath = (ent, tileTop) => {
+    console.log("outside")
+    if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
+      console.log("inside")
+      ent.health -= 3;
       return true;
     }
     return false;

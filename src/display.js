@@ -21,6 +21,9 @@ export default class Display {
 
     this.menu = new Menu(this.displayHeight, this.displayWidth, this.context, this.buffer);
     document.addEventListener("keydown", this.handleMenu)
+
+    this.background = new Image();
+    this.background.src = "../assets/pixel_forest.png";
   }
 
   handleMenu = (e) => {
@@ -92,6 +95,20 @@ export default class Display {
     this.buffer.fillStyle = color;
     this.buffer.fillRect(0, 0, this.width, this.height)
   };
+
+  drawBackground = () => {
+    this.buffer.drawImage(
+      this.background, 
+      0, 
+      0,
+      this.displayWidth,
+      this.displayHeight,
+      this.camera.x,
+      this.camera.y,
+      this.context.canvas.width,
+      this.context.canvas.height
+    )
+  }
 
   render = () => {
     let startCol = Math.floor(this.camera.x);

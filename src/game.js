@@ -60,7 +60,8 @@ export default class Game {
   }
 
   render = () => {
-    this.display.fill("#333");
+    //this.display.fill("#17290b");
+    this.display.drawBackground();
     this.display.drawEnemies();
     this.display.drawPabbot();
     this.display.drawMap(gameMap.mapArray, gameMap.width);

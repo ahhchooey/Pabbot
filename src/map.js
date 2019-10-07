@@ -3,8 +3,8 @@ import TileSheet from "./tileSheet.js";
 
 export default class Map {
   constructor() {
-    this.tileSheet = new TileSheet(32, 4);
-    this.tileSheet.image.src = "../assets/grassGround.png";
+    this.tileSheet = new TileSheet(32, 6);
+    this.tileSheet.image.src = "../assets/terrain.png";
   }
 
   render = (mapArray, colCount, buffer) => {
