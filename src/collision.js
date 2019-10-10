@@ -9,38 +9,37 @@ export default class Collision {
     this.nextLevel = nextLevel;
   }
 
-  isCollide = (ent) => {
+  isCollide = (ent, dead, gameOver) => {
     //if (ent.getTop() < 0) ent.setTop(0);
     if (ent.getLeft() < 0) ent.setLeft(0);
     if (ent.getBottom() > this.gameHeight) {
-      ent.setBottom(this.gameHeight)
-      ent.isJumping = false;
-      ent.isDashing = false;
+      gameOver();
     };
     if (ent.getRight() > this.gameWidth) ent.setRight(this.gameWidth);
 
+    if (!dead) {
+      let top, left, bottom, right, value;
 
-    let top, left, bottom, right, value;
+      top = Math.floor(ent.getTop() / 32);
+      left = Math.floor(ent.getLeft() / 32);
+      value = this.collisionMap[top * this.mapWidth + left];
+      this.collide(value, ent, left * 32, top * 32);
 
-    top = Math.floor(ent.getTop() / 32);
-    left = Math.floor(ent.getLeft() / 32);
-    value = this.collisionMap[top * this.mapWidth + left];
-    this.collide(value, ent, left * 32, top * 32);
+      top = Math.floor(ent.getTop() / 32);
+      right = Math.floor(ent.getRight() / 32);
+      value = this.collisionMap[top * this.mapWidth + right];
+      this.collide(value, ent, right * 32, top * 32);
 
-    top = Math.floor(ent.getTop() / 32);
-    right = Math.floor(ent.getRight() / 32);
-    value = this.collisionMap[top * this.mapWidth + right];
-    this.collide(value, ent, right * 32, top * 32);
+      left = Math.floor(ent.getLeft() / 32);
+      bottom = Math.floor(ent.getBottom() / 32);
+      value = this.collisionMap[bottom * this.mapWidth + left];
+      this.collide(value, ent, left * 32, bottom * 32);
 
-    left = Math.floor(ent.getLeft() / 32);
-    bottom = Math.floor(ent.getBottom() / 32);
-    value = this.collisionMap[bottom * this.mapWidth + left];
-    this.collide(value, ent, left * 32, bottom * 32);
-
-    bottom = Math.floor(ent.getBottom() / 32);
-    right = Math.floor(ent.getRight() / 32);
-    value = this.collisionMap[bottom * this.mapWidth + right];
-    this.collide(value, ent, right * 32, bottom * 32);
+      bottom = Math.floor(ent.getBottom() / 32);
+      right = Math.floor(ent.getRight() / 32);
+      value = this.collisionMap[bottom * this.mapWidth + right];
+      this.collide(value, ent, right * 32, bottom * 32);
+    }
   }
 
   collide = (value, ent, tileX, tileY) => {
@@ -128,7 +127,7 @@ export default class Collision {
     if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) {
       ent.setRight(tileLeft - 0.01);
       ent.isWalledRight = true;
-      setTimeout(() => ent.isWalledRight = false, 300)
+      setTimeout(() => ent.isWalledRight = false, 275)
       return true;
     }
     return false;
@@ -138,7 +137,7 @@ export default class Collision {
     if (ent.getLeft() < tileRight && ent.getPastLeft() >= tileRight) {
       ent.setLeft(tileRight + 0.01);
       ent.isWalledLeft = true;
-      setTimeout(() => ent.isWalledLeft = false, 300)
+      setTimeout(() => ent.isWalledLeft = false, 275)
       return true;
     }
     return false;

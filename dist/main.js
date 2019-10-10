@@ -297,42 +297,43 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
 
   _classCallCheck(this, Collision);
 
-  this.isCollide = function (ent) {
+  this.isCollide = function (ent, dead, gameOver) {
     //if (ent.getTop() < 0) ent.setTop(0);
     if (ent.getLeft() < 0) ent.setLeft(0);
 
     if (ent.getBottom() > _this.gameHeight) {
-      ent.setBottom(_this.gameHeight);
-      ent.isJumping = false;
-      ent.isDashing = false;
+      gameOver();
     }
 
     ;
     if (ent.getRight() > _this.gameWidth) ent.setRight(_this.gameWidth);
-    var top, left, bottom, right, value;
-    top = Math.floor(ent.getTop() / 32);
-    left = Math.floor(ent.getLeft() / 32);
-    value = _this.collisionMap[top * _this.mapWidth + left];
 
-    _this.collide(value, ent, left * 32, top * 32);
+    if (!dead) {
+      var top, left, bottom, right, value;
+      top = Math.floor(ent.getTop() / 32);
+      left = Math.floor(ent.getLeft() / 32);
+      value = _this.collisionMap[top * _this.mapWidth + left];
 
-    top = Math.floor(ent.getTop() / 32);
-    right = Math.floor(ent.getRight() / 32);
-    value = _this.collisionMap[top * _this.mapWidth + right];
+      _this.collide(value, ent, left * 32, top * 32);
 
-    _this.collide(value, ent, right * 32, top * 32);
+      top = Math.floor(ent.getTop() / 32);
+      right = Math.floor(ent.getRight() / 32);
+      value = _this.collisionMap[top * _this.mapWidth + right];
 
-    left = Math.floor(ent.getLeft() / 32);
-    bottom = Math.floor(ent.getBottom() / 32);
-    value = _this.collisionMap[bottom * _this.mapWidth + left];
+      _this.collide(value, ent, right * 32, top * 32);
 
-    _this.collide(value, ent, left * 32, bottom * 32);
+      left = Math.floor(ent.getLeft() / 32);
+      bottom = Math.floor(ent.getBottom() / 32);
+      value = _this.collisionMap[bottom * _this.mapWidth + left];
 
-    bottom = Math.floor(ent.getBottom() / 32);
-    right = Math.floor(ent.getRight() / 32);
-    value = _this.collisionMap[bottom * _this.mapWidth + right];
+      _this.collide(value, ent, left * 32, bottom * 32);
 
-    _this.collide(value, ent, right * 32, bottom * 32);
+      bottom = Math.floor(ent.getBottom() / 32);
+      right = Math.floor(ent.getRight() / 32);
+      value = _this.collisionMap[bottom * _this.mapWidth + right];
+
+      _this.collide(value, ent, right * 32, bottom * 32);
+    }
   };
 
   this.collide = function (value, ent, tileX, tileY) {
@@ -476,7 +477,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
       ent.isWalledRight = true;
       setTimeout(function () {
         return ent.isWalledRight = false;
-      }, 300);
+      }, 275);
       return true;
     }
 
@@ -489,7 +490,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
       ent.isWalledLeft = true;
       setTimeout(function () {
         return ent.isWalledLeft = false;
-      }, 300);
+      }, 275);
       return true;
     }
 
@@ -1023,7 +1024,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var GAME_HEIGHT = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
 var GAME_WIDTH = _assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
 
-var Game = function Game(context) {
+var Game = function Game(context, reset) {
   var _this = this;
 
   _classCallCheck(this, Game);
@@ -1037,15 +1038,14 @@ var Game = function Game(context) {
 
     _this.display.drawEnemies();
 
-    _this.display.drawPabbot();
-
     _this.display.drawMap();
+
+    _this.display.drawPabbot();
 
     _this.display.render();
   };
 
   this.frame = function (timeStamp) {
-    _this.playId = undefined;
     var timeDelta = timeStamp - _this.timeStart;
     _this.timeStart = timeStamp;
 
@@ -1053,7 +1053,7 @@ var Game = function Game(context) {
 
     _this.pabbot.move(timeDelta);
 
-    _this.collision.isCollide(_this.pabbot);
+    _this.collision.isCollide(_this.pabbot, _this.dead(), _this.gameOver);
 
     _this.pabbot.danger(_this.enemies.enemies);
 
@@ -1069,55 +1069,89 @@ var Game = function Game(context) {
 
     _this.enemies.checkDeath();
 
-    if (_this.dead()) {
-      console.log("youre ded sucker");
-    }
+    if (!_this.end) {
+      _this.run();
+    } else {
+      _this.context.globalAlpha = 0.3;
+      _this.context.fillStyle = "#000";
 
-    _this.run();
+      _this.context.fillRect(0, 0, _this.context.canvas.width, _this.context.canvas.height);
+
+      _this.context.globalAlpha = 1;
+      _this.context.font = "50px Georgia";
+      _this.context.fillStyle = "#FFF";
+
+      _this.context.fillText("Game Over", _this.context.canvas.width / 2 - 75, _this.context.canvas.height / 2 - 100);
+    }
+  };
+
+  this.end = false;
+
+  this.gameOver = function () {
+    document.removeEventListener("keydown", _this.handleEscape);
+
+    if (_this.playId) {
+      window.cancelAnimationFrame(_this.playId);
+      setTimeout(_this.reset, 2000);
+      _this.end = true;
+    }
   };
 
   this.run = function () {
-    if (!_this.playId) {
-      _this.playId = window.requestAnimationFrame(_this.frame);
-    }
+    _this.playId = window.requestAnimationFrame(_this.frame);
   };
 
   this.pause = function () {
     if (_this.playId) {
       window.cancelAnimationFrame(_this.playId);
       _this.playId = undefined;
-      _this.context.globalAlpha = 0.1;
-      _this.context.fillStyle = "rbga(255, 255, 255, 0.0)";
+      _this.context.globalAlpha = 0.3;
+      _this.context.fillStyle = "#000";
 
       _this.context.fillRect(0, 0, _this.context.canvas.width, _this.context.canvas.height);
 
       _this.context.globalAlpha = 1;
       _this.context.font = "50px Georgia";
+      _this.context.fillStyle = "#FFF";
 
       _this.context.fillText("Paused", _this.context.canvas.width / 2 - 75, _this.context.canvas.height / 2 - 100);
     }
   };
 
   this.handlePause = function () {
-    document.addEventListener("keydown", function (e) {
-      if (e.keyCode === 27) {
-        _this.playId ? _this.pause() : _this.run();
-      }
-    });
+    document.addEventListener("keydown", _this.handleEscape);
+  };
+
+  this.handleEscape = function (e) {
+    if (e.keyCode === 27) {
+      _this.playId ? _this.pause() : _this.run();
+    }
   };
 
   this.resize = function () {
     _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight, _this.context.canvas.height / _this.context.canvas.width);
   };
 
+  this.deadJump = false;
+
   this.dead = function () {
     if (_this.pabbot.health <= 0) {
+      if (!_this.deadJump) {
+        _this.deadJump = true;
+        _this.pabbot.speed.y += -200;
+        _this.pabbot.speed.x = _this.pabbot.speed.x || 50;
+
+        _this.inputHandler.destroy();
+      }
+
+      ;
       return true;
     }
 
     return false;
   };
 
+  this.mapReset = [_assets_maps_testMap_js__WEBPACK_IMPORTED_MODULE_8__["default"]];
   this.maps = [_assets_maps_testMap_js__WEBPACK_IMPORTED_MODULE_8__["default"]];
 
   this.nextLevel = function () {
@@ -1143,11 +1177,13 @@ var Game = function Game(context) {
   };
 
   this.context = context;
+  this.reset = reset;
   this.context.canvas.height = 320;
   this.context.canvas.width = 700;
   this.playId;
   this.timeStart = 0;
   this.run = this.run.bind(this);
+  this.gameOver = this.gameOver.bind(this);
   this.handlePause();
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](0, 0, 32, 32);
   this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_testMap2_js__WEBPACK_IMPORTED_MODULE_7__["default"].enemies);
@@ -1183,7 +1219,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var canvas = document.getElementById("game");
   var context = canvas.getContext("2d");
-  var game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](context);
+
+  var reset = function reset() {
+    game = null;
+    game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](context, reset);
+    game.resize();
+    game.renderMenu();
+  };
+
+  var game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](context, reset);
   window.addEventListener("load", function (e) {
     game.resize();
     game.renderMenu();
@@ -1212,43 +1256,47 @@ var InputHandler = function InputHandler(pabbot) {
 
   _classCallCheck(this, InputHandler);
 
-  this.jumped = false;
-  this.dashed = false;
-  document.addEventListener("keydown", function (e) {
+  this.handleDown = function (e) {
     //w87, a65, s83, d68, j74, k75, esc27
     switch (e.key) {
       case "w":
       case "ArrowUp":
-        pabbot.upActive = true;
+        _this.pabbot.upActive = true;
         break;
 
       case "a":
       case "ArrowLeft":
-        pabbot.leftActive = true;
-        pabbot.facing = "left";
-        pabbot.moveLeft();
+        _this.pabbot.leftActive = true;
+        _this.pabbot.facing = "left";
+
+        _this.pabbot.moveLeft();
+
         break;
 
       case "s":
       case "ArrowDown":
-        pabbot.downActive = true;
+        _this.pabbot.downActive = true;
         break;
 
       case "d":
       case "ArrowRight":
-        pabbot.rightActive = true;
-        pabbot.facing = "right";
-        pabbot.moveRight();
+        _this.pabbot.rightActive = true;
+        _this.pabbot.facing = "right";
+
+        _this.pabbot.moveRight();
+
         break;
 
       case "j":
       case " ":
-        if (!_this.jumped && !pabbot.isJumping) {
+        if (!_this.jumped && !_this.pabbot.isJumping) {
           _this.jumped = true;
-          pabbot.jump();
+
+          _this.pabbot.jump();
         } else {
           console.log("wj");
-          pabbot.wallJump();
+
+          _this.pabbot.wallJump();
         }
 
         break;
@@ -1257,41 +1305,44 @@ var InputHandler = function InputHandler(pabbot) {
       case "Shift":
         if (!_this.dashed) {
           _this.dashed = true;
-          pabbot.dash();
+
+          _this.pabbot.dash();
         }
 
         break;
     }
-  });
-  document.addEventListener("keyup", function (e) {
+  };
+
+  this.handleUp = function (e) {
     switch (e.key) {
       case "w":
       case "ArrowUp":
-        pabbot.upActive = false;
+        _this.pabbot.upActive = false;
         break;
 
       case "a":
       case "ArrowLeft":
-        pabbot.leftActive = false;
-        if (pabbot.speed.x < 0) pabbot.stop();
+        _this.pabbot.leftActive = false;
+        if (_this.pabbot.speed.x < 0) _this.pabbot.stop();
         break;
 
       case "s":
       case "ArrowDown":
-        pabbot.downActive = false;
+        _this.pabbot.downActive = false;
         break;
 
       case "d":
       case "ArrowRight":
-        pabbot.rightActive = false;
-        if (pabbot.speed.x > 0) pabbot.stop();
+        _this.pabbot.rightActive = false;
+        if (_this.pabbot.speed.x > 0) _this.pabbot.stop();
         break;
 
       case "j":
       case " ":
         if (_this.jumped) {
           _this.jumped = false;
-          pabbot.cancelJump();
+
+          _this.pabbot.cancelJump();
         }
 
         break;
@@ -1304,7 +1355,18 @@ var InputHandler = function InputHandler(pabbot) {
 
         break;
     }
-  });
+  };
+
+  this.destroy = function () {
+    document.removeEventListener("keydown", _this.handleDown);
+    document.removeEventListener("keyup", _this.handleUp);
+  };
+
+  this.jumped = false;
+  this.dashed = false;
+  this.pabbot = pabbot;
+  document.addEventListener("keydown", this.handleDown);
+  document.addEventListener("keyup", this.handleUp);
 };
 
 
@@ -1751,18 +1813,10 @@ function (_Entity) {
 
     _this.moveLeft = function () {
       _this.speed.x = -_this.maxSpeed;
-
-      if (_this.facing === "right") {
-        _this.stop();
-      }
     };
 
     _this.moveRight = function () {
       _this.speed.x = _this.maxSpeed;
-
-      if (_this.facing === "left") {
-        _this.stop();
-      }
     };
 
     _this.jump = function () {

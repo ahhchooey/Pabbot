@@ -136,16 +136,10 @@ export default class Pabbot extends Entity {
 
   moveLeft = () => {
     this.speed.x = -this.maxSpeed;
-    if(this.facing === "right") {
-      this.stop();
-    }
   }
 
   moveRight = () => {
     this.speed.x = this.maxSpeed;
-    if(this.facing === "left") {
-      this.stop();
-    }
   }
 
   jump = () => {

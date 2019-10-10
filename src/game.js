@@ -15,14 +15,16 @@ let GAME_HEIGHT = gameMap.height * 32;
 let GAME_WIDTH = gameMap.width * 32;
 
 export default class Game {
-  constructor(context) {
+  constructor(context, reset) {
     this.context = context;
+    this.reset = reset;
     this.context.canvas.height = 320;
     this.context.canvas.width = 700;
 
     this.playId;
     this.timeStart = 0;
     this.run = this.run.bind(this);
+    this.gameOver = this.gameOver.bind(this);
     this.handlePause();
 
     this.pabbot = new Pabbot(0, 0, 32, 32);
@@ -67,13 +69,12 @@ export default class Game {
   render = () => {
     this.display.drawBackground();
     this.display.drawEnemies();
-    this.display.drawPabbot();
     this.display.drawMap();
+    this.display.drawPabbot();
     this.display.render();
   }
 
   frame = (timeStamp) => {
-    this.playId = undefined;
 
     let timeDelta = timeStamp - this.timeStart;
     this.timeStart = timeStamp;
@@ -81,7 +82,7 @@ export default class Game {
     this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
 
     this.pabbot.move(timeDelta);
-    this.collision.isCollide(this.pabbot);
+    this.collision.isCollide(this.pabbot, this.dead(), this.gameOver);
     this.pabbot.danger(this.enemies.enemies);
 
     this.enemies.moveAll(timeDelta);
@@ -91,28 +92,50 @@ export default class Game {
     this.camera.render();
 
     this.enemies.checkDeath();
-    if (this.dead()) {
-      console.log("youre ded sucker")
-    }
 
-    this.run();
+    if (!this.end) {
+      this.run();
+    } else {
+      this.context.globalAlpha = 0.3;
+      this.context.fillStyle = "#000";
+      this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+      this.context.globalAlpha = 1;
+      this.context.font = "50px Georgia";
+      this.context.fillStyle = "#FFF";
+      this.context.fillText(
+        "Game Over", 
+        this.context.canvas.width/2 - 75, 
+        this.context.canvas.height/2 - 100
+      );
+    }
   };
 
-  run = () => {
-    if (!this.playId) {
-      this.playId = window.requestAnimationFrame(this.frame);
+  end = false;
+
+  gameOver = () => {
+    document.removeEventListener("keydown", this.handleEscape)
+    if (this.playId) {
+
+      window.cancelAnimationFrame(this.playId);
+      setTimeout(this.reset, 2000);
+      this.end = true;
     }
+  }
+
+  run = () => {
+      this.playId = window.requestAnimationFrame(this.frame);
   };
 
   pause = () => {
     if (this.playId) {
       window.cancelAnimationFrame(this.playId);
       this.playId = undefined;
-      this.context.globalAlpha = 0.1;
-      this.context.fillStyle = "rbga(255, 255, 255, 0.0)";
+      this.context.globalAlpha = 0.3;
+      this.context.fillStyle = "#000";
       this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
       this.context.globalAlpha = 1;
       this.context.font = "50px Georgia";
+      this.context.fillStyle = "#FFF";
       this.context.fillText(
         "Paused", 
         this.context.canvas.width/2 - 75, 
@@ -122,12 +145,14 @@ export default class Game {
   };
 
   handlePause = () => {
-    document.addEventListener("keydown", (e) => {
-      if (e.keyCode === 27) {
-        (this.playId) ? this.pause() : this.run()
-      }
-    })
+    document.addEventListener("keydown", this.handleEscape)
   };
+
+  handleEscape = (e) => {
+    if (e.keyCode === 27) {
+      (this.playId) ? this.pause() : this.run()
+    }
+  }
 
   resize = () => {
     this.display.resize(
@@ -137,13 +162,22 @@ export default class Game {
     )
   }
 
+  deadJump = false;
+
   dead = () => {
     if (this.pabbot.health <= 0) {
+      if (!this.deadJump) {
+        this.deadJump = true
+        this.pabbot.speed.y += -200;
+        this.pabbot.speed.x = this.pabbot.speed.x || 50;
+        this.inputHandler.destroy();
+      };
       return true;
     }
     return false;
   }
 
+  mapReset = [testMap]
   maps = [testMap]
 
   nextLevel = () => {

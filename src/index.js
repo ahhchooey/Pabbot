@@ -9,8 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let canvas = document.getElementById("game");
   let context = canvas.getContext("2d");
+  const reset = () => {
+    game = null;
+    game = new Game(context, reset);
+    game.resize();
+    game.renderMenu();
+  }
 
-  let game = new Game(context);
+  let game = new Game(context, reset);
 
   window.addEventListener("load", (e) => {
     game.resize();
@@ -20,3 +26,4 @@ document.addEventListener("DOMContentLoaded", () => {
   })
   window.addEventListener("resize", game.resize)
 })
+
