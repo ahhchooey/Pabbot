@@ -1015,6 +1015,7 @@ var Game = function Game(context, reset) {
   _classCallCheck(this, Game);
 
   this.maps = [_assets_maps_testMap_js__WEBPACK_IMPORTED_MODULE_8__["default"]];
+  this.backgrounds = ["../assets/pixel_forest2.png"];
 
   this.renderMenu = function () {
     _this.display.drawMenu();
@@ -1140,8 +1141,11 @@ var Game = function Game(context, reset) {
 
   this.nextLevel = function () {
     if (_this.maps.length === 0) return;
+    if (_this.backgrounds.length === 0) return;
 
     var currentMap = _this.maps.shift();
+
+    var currentBackground = _this.backgrounds.shift();
 
     _this.context.canvas.width = 700;
     _this.context.canvas.height = 320;
@@ -1156,6 +1160,8 @@ var Game = function Game(context, reset) {
     _this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](currentMap, _this.context.canvas.width, _this.context.canvas.height, _this.pabbot);
     _this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, currentMap.collisionMap, currentMap.width, _this.nextLevel);
     _this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](_this.context, GAME_WIDTH, GAME_HEIGHT, _this.pabbot, _this.map, currentMap.width, _this.camera, _this.context.canvas.width, _this.context.canvas.height, _this.enemies, _this.run, currentMap);
+    console.log(currentBackground);
+    _this.display.background.src = currentBackground;
 
     _this.display.destroyHandle();
 

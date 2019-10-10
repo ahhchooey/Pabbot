@@ -10,7 +10,6 @@ import Enemies from "./enemies/enemies.js";
 import gameMap from "../assets/maps/testMap2.js";
 import testMap from "../assets/maps/testMap.js";
 
-
 let GAME_HEIGHT = gameMap.height * 32;
 let GAME_WIDTH = gameMap.width * 32;
 
@@ -63,6 +62,7 @@ export default class Game {
   }
 
   maps = [testMap]
+  backgrounds = ["../assets/pixel_forest2.png"]
 
   renderMenu = () => {
     this.display.drawMenu();
@@ -181,7 +181,9 @@ export default class Game {
 
   nextLevel = () => {
     if (this.maps.length === 0) return;
+    if (this.backgrounds.length === 0) return;
     let currentMap = this.maps.shift();
+    let currentBackground = this.backgrounds.shift();
     this.context.canvas.width = 700;
     this.context.canvas.height = 320;
 
@@ -224,6 +226,8 @@ export default class Game {
       this.run,
       currentMap
     );
+    console.log(currentBackground)
+    this.display.background.src = currentBackground;
     this.display.destroyHandle();
     this.resize();
   }
