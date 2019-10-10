@@ -143,7 +143,11 @@ export default class Menu {
         buffer.fillText("ArrowKeys/WASD - Up, Down, Left, Right", 100, 130)
         buffer.fillText("Enter - Menu Select", 100, 150)
         buffer.fillText("J/Space - Jump (when on ground)", 100, 170)
-        buffer.fillText("K/LShift - Spin (when jumping)", 100, 190)
+        buffer.fillText("K/Shift - Spin (when jumping)", 100, 190)
+        buffer.fillText("ESC - Pause/Resume", 100, 210)
+        buffer.fillText("Spin on Enemies to eliminate them", 100, 240)
+        buffer.fillText("Jump on Walls to wall jump", 100, 260)
+        buffer.fillText("Make it to the end of each level", 100, 280)
         break;
       case "about":
         buffer.font = "20px serif";

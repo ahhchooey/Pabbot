@@ -23,7 +23,8 @@ export default class Pabbot extends Entity {
 
   isJumping = false;
   isDashing = false;
-  isWalled = false;
+  isWalledRight = false;
+  isWalledLeft = false;
   upActive = false;
   leftActive = false;
   downActive = false;
@@ -135,10 +136,16 @@ export default class Pabbot extends Entity {
 
   moveLeft = () => {
     this.speed.x = -this.maxSpeed;
+    if(this.facing === "right") {
+      this.stop();
+    }
   }
 
   moveRight = () => {
     this.speed.x = this.maxSpeed;
+    if(this.facing === "left") {
+      this.stop();
+    }
   }
 
   jump = () => {
@@ -157,17 +164,19 @@ export default class Pabbot extends Entity {
   }
 
   wallJump = () => {
-    if (this.isWalled && this.isJumping) {
+    console.log("outside")
+    if (this.isWalledRight && this.isJumping) {
+      console.log("right")
       this.isWalled = false;
       this.speed.y = -this.jumpHeight;
-      if (this.facing === "right") {
-        this.speed.x = -this.maxSpeed;
-        this.facing = "left";
-      } else {
-        this.speed.x = this.maxSpeed;
-        this.facing = "right"
-      }
-      setTimeout(this.stop, 500);
+      this.speed.x = -this.maxSpeed;
+      this.facing = "left";
+    } else if (this.isWalledLeft && this.isJumping) {
+      console.log("leftk")
+      this.isWalled = false;
+      this.speed.y = -this.jumpHeight;
+      this.speed.x = this.maxSpeed;
+      this.facing = "right"
     }
   }
 

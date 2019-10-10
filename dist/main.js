@@ -446,6 +446,21 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
       ent.setBottom(tileTop - 0.01);
       ent.speed.y = 0;
+
+      if (ent.rightActive) {
+        ent.speed.x = ent.maxSpeed;
+        ent.facing = "right";
+      }
+
+      ;
+
+      if (ent.leftActive) {
+        ent.speed.x = -ent.maxSpeed;
+        ent.facing = "left";
+      }
+
+      ;
+      if (!ent.rightActive && !ent.leftActive) ent.stop();
       ent.isJumping = false;
       ent.isDashing = false;
       ent.isWalled = false;
@@ -458,7 +473,10 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
   this.collidePlatformLeft = function (ent, tileLeft) {
     if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) {
       ent.setRight(tileLeft - 0.01);
-      ent.isWalled = true;
+      ent.isWalledRight = true;
+      setTimeout(function () {
+        return ent.isWalledRight = false;
+      }, 300);
       return true;
     }
 
@@ -468,7 +486,10 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
   this.collidePlatformRight = function (ent, tileRight) {
     if (ent.getLeft() < tileRight && ent.getPastLeft() >= tileRight) {
       ent.setLeft(tileRight + 0.01);
-      ent.isWalled = true;
+      ent.isWalledLeft = true;
+      setTimeout(function () {
+        return ent.isWalledLeft = false;
+      }, 300);
       return true;
     }
 
@@ -646,7 +667,6 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
   this.enemies = enemies;
   this.run = run;
   this.gameMap = gM;
-  console.log(this.gameMap);
   this.buffer = document.createElement("canvas").getContext("2d");
   this.buffer.canvas.width = _width;
   this.buffer.canvas.height = _height;
@@ -1154,6 +1174,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game.js */ "./src/game.js");
 
 document.addEventListener("DOMContentLoaded", function () {
+  var scale = 'scale(1)';
+  document.body.style.webkitTransform = scale; // Chrome, Opera, Safari
+
+  document.body.style.msTransform = scale; // IE 9
+
+  document.body.style.transform = scale; // General
+
   var canvas = document.getElementById("game");
   var context = canvas.getContext("2d");
   var game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](context);
@@ -1189,40 +1216,45 @@ var InputHandler = function InputHandler(pabbot) {
   this.dashed = false;
   document.addEventListener("keydown", function (e) {
     //w87, a65, s83, d68, j74, k75, esc27
-    switch (e.keyCode) {
-      case 87:
+    switch (e.key) {
+      case "w":
+      case "ArrowUp":
         pabbot.upActive = true;
         break;
 
-      case 65:
+      case "a":
+      case "ArrowLeft":
         pabbot.leftActive = true;
         pabbot.facing = "left";
         pabbot.moveLeft();
         break;
 
-      case 83:
+      case "s":
+      case "ArrowDown":
         pabbot.downActive = true;
         break;
 
-      case 68:
+      case "d":
+      case "ArrowRight":
         pabbot.rightActive = true;
         pabbot.facing = "right";
         pabbot.moveRight();
         break;
 
-      case 74:
-        if (!_this.jumped) {
+      case "j":
+      case " ":
+        if (!_this.jumped && !pabbot.isJumping) {
           _this.jumped = true;
           pabbot.jump();
-        }
-
-        if (_this.jumped) {
+        } else {
+          console.log("wj");
           pabbot.wallJump();
         }
 
         break;
 
-      case 75:
+      case "k":
+      case "Shift":
         if (!_this.dashed) {
           _this.dashed = true;
           pabbot.dash();
@@ -1232,26 +1264,31 @@ var InputHandler = function InputHandler(pabbot) {
     }
   });
   document.addEventListener("keyup", function (e) {
-    switch (e.keyCode) {
-      case 87:
+    switch (e.key) {
+      case "w":
+      case "ArrowUp":
         pabbot.upActive = false;
         break;
 
-      case 65:
+      case "a":
+      case "ArrowLeft":
         pabbot.leftActive = false;
         if (pabbot.speed.x < 0) pabbot.stop();
         break;
 
-      case 83:
+      case "s":
+      case "ArrowDown":
         pabbot.downActive = false;
         break;
 
-      case 68:
+      case "d":
+      case "ArrowRight":
         pabbot.rightActive = false;
         if (pabbot.speed.x > 0) pabbot.stop();
         break;
 
-      case 74:
+      case "j":
+      case " ":
         if (_this.jumped) {
           _this.jumped = false;
           pabbot.cancelJump();
@@ -1259,7 +1296,8 @@ var InputHandler = function InputHandler(pabbot) {
 
         break;
 
-      case 75:
+      case "k":
+      case "Shift":
         if (_this.dashed) {
           _this.dashed = false;
         }
@@ -1484,7 +1522,11 @@ var Menu = function Menu(dH, dW, context, _buffer) {
         buffer.fillText("ArrowKeys/WASD - Up, Down, Left, Right", 100, 130);
         buffer.fillText("Enter - Menu Select", 100, 150);
         buffer.fillText("J/Space - Jump (when on ground)", 100, 170);
-        buffer.fillText("K/LShift - Spin (when jumping)", 100, 190);
+        buffer.fillText("K/Shift - Spin (when jumping)", 100, 190);
+        buffer.fillText("ESC - Pause/Resume", 100, 210);
+        buffer.fillText("Spin on Enemies to eliminate them", 100, 240);
+        buffer.fillText("Jump on Walls to wall jump", 100, 260);
+        buffer.fillText("Make it to the end of each level", 100, 280);
         break;
 
       case "about":
@@ -1601,7 +1643,8 @@ function (_Entity) {
     _this.terminalVelocity = 1000;
     _this.isJumping = false;
     _this.isDashing = false;
-    _this.isWalled = false;
+    _this.isWalledRight = false;
+    _this.isWalledLeft = false;
     _this.upActive = false;
     _this.leftActive = false;
     _this.downActive = false;
@@ -1708,10 +1751,18 @@ function (_Entity) {
 
     _this.moveLeft = function () {
       _this.speed.x = -_this.maxSpeed;
+
+      if (_this.facing === "right") {
+        _this.stop();
+      }
     };
 
     _this.moveRight = function () {
       _this.speed.x = _this.maxSpeed;
+
+      if (_this.facing === "left") {
+        _this.stop();
+      }
     };
 
     _this.jump = function () {
@@ -1730,19 +1781,20 @@ function (_Entity) {
     };
 
     _this.wallJump = function () {
-      if (_this.isWalled && _this.isJumping) {
+      console.log("outside");
+
+      if (_this.isWalledRight && _this.isJumping) {
+        console.log("right");
         _this.isWalled = false;
         _this.speed.y = -_this.jumpHeight;
-
-        if (_this.facing === "right") {
-          _this.speed.x = -_this.maxSpeed;
-          _this.facing = "left";
-        } else {
-          _this.speed.x = _this.maxSpeed;
-          _this.facing = "right";
-        }
-
-        setTimeout(_this.stop, 500);
+        _this.speed.x = -_this.maxSpeed;
+        _this.facing = "left";
+      } else if (_this.isWalledLeft && _this.isJumping) {
+        console.log("leftk");
+        _this.isWalled = false;
+        _this.speed.y = -_this.jumpHeight;
+        _this.speed.x = _this.maxSpeed;
+        _this.facing = "right";
       }
     };
 

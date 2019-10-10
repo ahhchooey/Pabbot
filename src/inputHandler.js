@@ -7,32 +7,39 @@ export default class InputHandler {
 
     document.addEventListener("keydown", (e) => {
       //w87, a65, s83, d68, j74, k75, esc27
-      switch(e.keyCode) {
-        case 87:
+      switch(e.key) {
+        case "w":
+        case "ArrowUp":
           pabbot.upActive = true;
           break;
-        case 65:
+        case "a":
+        case "ArrowLeft":
           pabbot.leftActive = true;
           pabbot.facing = "left";
           pabbot.moveLeft();
           break;
-        case 83:
+        case "s":
+        case "ArrowDown":
           pabbot.downActive = true;
           break;
-        case 68:
+        case "d":
+        case "ArrowRight":
           pabbot.rightActive = true;
           pabbot.facing = "right"
           pabbot.moveRight();
           break;
-        case 74:
-          if (!this.jumped) {
+        case "j":
+        case " ":
+          if (!this.jumped && !pabbot.isJumping) {
             this.jumped = true;
             pabbot.jump();
-          } if (this.jumped) {
+          } else {
+            console.log("wj")
             pabbot.wallJump();
           }
           break;
-        case 75:
+        case "k":
+        case "Shift":
           if (!this.dashed) {
             this.dashed = true;
             pabbot.dash();
@@ -42,28 +49,34 @@ export default class InputHandler {
     })
 
     document.addEventListener("keyup", (e) => {
-      switch(e.keyCode) {
-        case 87:
+      switch(e.key) {
+        case "w":
+        case "ArrowUp":
           pabbot.upActive = false;
           break;
-        case 65:
+        case "a":
+        case "ArrowLeft":
           pabbot.leftActive = false;
           if (pabbot.speed.x < 0) pabbot.stop();
           break;
-        case 83:
+        case "s":
+        case "ArrowDown":
           pabbot.downActive = false;
           break;
-        case 68:
+        case "d":
+        case "ArrowRight":
           pabbot.rightActive = false;
           if (pabbot.speed.x > 0) pabbot.stop();
           break;
-        case 74:
+        case "j":
+        case " ":
           if (this.jumped) {
             this.jumped = false;
             pabbot.cancelJump();
           }
           break;
-        case 75:
+        case "k":
+        case "Shift":
           if (this.dashed) {
             this.dashed = false;
           }

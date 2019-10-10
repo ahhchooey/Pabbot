@@ -107,6 +107,15 @@ export default class Collision {
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
       ent.setBottom(tileTop - 0.01);
       ent.speed.y = 0;
+      if (ent.rightActive) {
+        ent.speed.x = ent.maxSpeed;
+        ent.facing = "right";
+      };
+      if (ent.leftActive) {
+        ent.speed.x = -ent.maxSpeed;
+        ent.facing = "left";
+      };
+      if (!ent.rightActive && !ent.leftActive) ent.stop();
       ent.isJumping = false;
       ent.isDashing = false;
       ent.isWalled = false;
@@ -118,7 +127,8 @@ export default class Collision {
   collidePlatformLeft = (ent, tileLeft) => {
     if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) {
       ent.setRight(tileLeft - 0.01);
-      ent.isWalled = true;
+      ent.isWalledRight = true;
+      setTimeout(() => ent.isWalledRight = false, 300)
       return true;
     }
     return false;
@@ -127,7 +137,8 @@ export default class Collision {
   collidePlatformRight = (ent, tileRight) => {
     if (ent.getLeft() < tileRight && ent.getPastLeft() >= tileRight) {
       ent.setLeft(tileRight + 0.01);
-      ent.isWalled = true;
+      ent.isWalledLeft = true;
+      setTimeout(() => ent.isWalledLeft = false, 300)
       return true;
     }
     return false;

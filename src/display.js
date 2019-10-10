@@ -15,7 +15,6 @@ export default class Display {
     this.enemies = enemies;
     this.run = run;
     this.gameMap = gM;
-    console.log(this.gameMap)
 
     this.buffer = document.createElement("canvas").getContext("2d");
     this.buffer.canvas.width = width;
