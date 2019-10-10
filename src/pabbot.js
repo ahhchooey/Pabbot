@@ -158,15 +158,12 @@ export default class Pabbot extends Entity {
   }
 
   wallJump = () => {
-    console.log("outside")
     if (this.isWalledRight && this.isJumping) {
-      console.log("right")
       this.isWalled = false;
       this.speed.y = -this.jumpHeight;
       this.speed.x = -this.maxSpeed;
       this.facing = "left";
     } else if (this.isWalledLeft && this.isJumping) {
-      console.log("leftk")
       this.isWalled = false;
       this.speed.y = -this.jumpHeight;
       this.speed.x = this.maxSpeed;
@@ -191,10 +188,8 @@ export default class Pabbot extends Entity {
     enemies.forEach(enemy => {
       if (this.getDistance(enemy) < 30 && this.lastHit <= 0) {
         if (this.isDashing) {
-          console.log("hit")
           enemy.health--;
         } else {
-          console.log("ouch")
           this.lastHit = 100;
           this.health--;
         }
@@ -203,7 +198,7 @@ export default class Pabbot extends Entity {
           this.speed.x = enemy.speed.x;
         } else {
           this.speed.x = -this.speed.x * 0.3;
-          this.speed.y = -this.speed.y * 0.7;
+          this.speed.y = -100;
         }
         setTimeout(this.stop, 200);
       }

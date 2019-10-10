@@ -39,7 +39,6 @@ export default class InputHandler {
           this.jumped = true;
           this.pabbot.jump();
         } else {
-          console.log("wj")
           this.pabbot.wallJump();
         }
         break;

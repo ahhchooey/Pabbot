@@ -301,7 +301,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
     //if (ent.getTop() < 0) ent.setTop(0);
     if (ent.getLeft() < 0) ent.setLeft(0);
 
-    if (ent.getBottom() > _this.gameHeight) {
+    if (ent.getTop() > _this.gameHeight) {
       gameOver();
     }
 
@@ -1029,6 +1029,8 @@ var Game = function Game(context, reset) {
 
   _classCallCheck(this, Game);
 
+  this.maps = [_assets_maps_testMap_js__WEBPACK_IMPORTED_MODULE_8__["default"]];
+
   this.renderMenu = function () {
     _this.display.drawMenu();
   };
@@ -1081,7 +1083,7 @@ var Game = function Game(context, reset) {
       _this.context.font = "50px Georgia";
       _this.context.fillStyle = "#FFF";
 
-      _this.context.fillText("Game Over", _this.context.canvas.width / 2 - 75, _this.context.canvas.height / 2 - 100);
+      _this.context.fillText("Game Over", _this.context.canvas.width / 2 - 100, _this.context.canvas.height / 2 - 100);
     }
   };
 
@@ -1138,7 +1140,7 @@ var Game = function Game(context, reset) {
     if (_this.pabbot.health <= 0) {
       if (!_this.deadJump) {
         _this.deadJump = true;
-        _this.pabbot.speed.y += -200;
+        _this.pabbot.speed.y = -100;
         _this.pabbot.speed.x = _this.pabbot.speed.x || 50;
 
         _this.inputHandler.destroy();
@@ -1150,9 +1152,6 @@ var Game = function Game(context, reset) {
 
     return false;
   };
-
-  this.mapReset = [_assets_maps_testMap_js__WEBPACK_IMPORTED_MODULE_8__["default"]];
-  this.maps = [_assets_maps_testMap_js__WEBPACK_IMPORTED_MODULE_8__["default"]];
 
   this.nextLevel = function () {
     if (_this.maps.length === 0) return;
@@ -1294,8 +1293,6 @@ var InputHandler = function InputHandler(pabbot) {
 
           _this.pabbot.jump();
         } else {
-          console.log("wj");
-
           _this.pabbot.wallJump();
         }
 
@@ -1835,16 +1832,12 @@ function (_Entity) {
     };
 
     _this.wallJump = function () {
-      console.log("outside");
-
       if (_this.isWalledRight && _this.isJumping) {
-        console.log("right");
         _this.isWalled = false;
         _this.speed.y = -_this.jumpHeight;
         _this.speed.x = -_this.maxSpeed;
         _this.facing = "left";
       } else if (_this.isWalledLeft && _this.isJumping) {
-        console.log("leftk");
         _this.isWalled = false;
         _this.speed.y = -_this.jumpHeight;
         _this.speed.x = _this.maxSpeed;
@@ -1869,10 +1862,8 @@ function (_Entity) {
       enemies.forEach(function (enemy) {
         if (_this.getDistance(enemy) < 30 && _this.lastHit <= 0) {
           if (_this.isDashing) {
-            console.log("hit");
             enemy.health--;
           } else {
-            console.log("ouch");
             _this.lastHit = 100;
             _this.health--;
           }
@@ -1882,7 +1873,7 @@ function (_Entity) {
             _this.speed.x = enemy.speed.x;
           } else {
             _this.speed.x = -_this.speed.x * 0.3;
-            _this.speed.y = -_this.speed.y * 0.7;
+            _this.speed.y = -100;
           }
 
           setTimeout(_this.stop, 200);

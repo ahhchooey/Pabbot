@@ -12,7 +12,7 @@ export default class Collision {
   isCollide = (ent, dead, gameOver) => {
     //if (ent.getTop() < 0) ent.setTop(0);
     if (ent.getLeft() < 0) ent.setLeft(0);
-    if (ent.getBottom() > this.gameHeight) {
+    if (ent.getTop() > this.gameHeight) {
       gameOver();
     };
     if (ent.getRight() > this.gameWidth) ent.setRight(this.gameWidth);

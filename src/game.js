@@ -62,6 +62,8 @@ export default class Game {
     );
   }
 
+  maps = [testMap]
+
   renderMenu = () => {
     this.display.drawMenu();
   }
@@ -104,7 +106,7 @@ export default class Game {
       this.context.fillStyle = "#FFF";
       this.context.fillText(
         "Game Over", 
-        this.context.canvas.width/2 - 75, 
+        this.context.canvas.width/2 - 100, 
         this.context.canvas.height/2 - 100
       );
     }
@@ -168,7 +170,7 @@ export default class Game {
     if (this.pabbot.health <= 0) {
       if (!this.deadJump) {
         this.deadJump = true
-        this.pabbot.speed.y += -200;
+        this.pabbot.speed.y = -100;
         this.pabbot.speed.x = this.pabbot.speed.x || 50;
         this.inputHandler.destroy();
       };
@@ -176,9 +178,6 @@ export default class Game {
     }
     return false;
   }
-
-  mapReset = [testMap]
-  maps = [testMap]
 
   nextLevel = () => {
     if (this.maps.length === 0) return;
