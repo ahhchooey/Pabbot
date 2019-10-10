@@ -13,7 +13,7 @@ export default class Collision {
     //if (ent.getTop() < 0) ent.setTop(0);
     if (ent.getLeft() < 0) ent.setLeft(0);
     if (ent.getTop() > this.gameHeight) {
-      gameOver();
+      if (gameOver) gameOver();
     };
     if (ent.getRight() > this.gameWidth) ent.setRight(this.gameWidth);
 
@@ -146,7 +146,7 @@ export default class Collision {
   collidePlatformBottom = (ent, tileBottom) => {
     if (ent.getTop() < tileBottom && ent.getPastTop() >= tileBottom) {
       ent.setTop(tileBottom + 0.01);
-      ent.speed.y = 100;
+      ent.speed.y = 50;
       return true;
     }
     return false;

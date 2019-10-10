@@ -7,31 +7,6 @@ const gameMap = {
   "height":10,
   "width":100,
   "enemies": [
-    {
-      type: "potato",
-      x: 500,
-      y: 100,
-    },
-    {
-      type: "potato",
-      x: 800,
-      y: 100,
-    },
-    {
-      type: "potato",
-      x: 1200,
-      y: 100,
-    },
-    {
-      type: "potato",
-      x: 2600,
-      y: 100
-    },
-    {
-      type: "potato",
-      x: 2800,
-      y: 100,
-    },
   ]
 };
 

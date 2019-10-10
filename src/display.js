@@ -40,18 +40,21 @@ export default class Display {
         this.drawMenu();
         break;
       case "Enter":
-      case "j":
         this.menuSelect();
         this.drawMenu();
         break;
     }
   }
 
+  destroyHandle = () => {
+    document.removeEventListener("keydown", this.handleMenu)
+  }
+
   menuSelect = () => {
     switch(this.menu.currentPointer()) {
       case "start":
+        this.destroyHandle();
         this.menu.startGame(this.run);
-        document.removeEventListener("keydown", this.handleMenu)
         break;
       case "controls":
         this.menu.showControls();

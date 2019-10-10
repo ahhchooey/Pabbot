@@ -201,6 +201,7 @@ export default class Game {
       this.context.canvas.height,
       this.pabbot
     );
+
     this.collision = new Collision(
       GAME_WIDTH, 
       GAME_HEIGHT, 
@@ -223,6 +224,7 @@ export default class Game {
       this.run,
       currentMap
     );
+    this.display.destroyHandle();
     this.resize();
   }
 }
