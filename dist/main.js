@@ -2045,6 +2045,8 @@ var Menu = function Menu(dH, dW, context, _buffer) {
       case "main":
         buffer.font = "50px serif";
         buffer.fillText("Pabbot", 150, 120);
+        buffer.font = "12px serif";
+        buffer.fillText("ArrowKeys and Enter to Navigate the Menu", 5, 315);
         break;
 
       case "controls":
@@ -2064,7 +2066,7 @@ var Menu = function Menu(dH, dW, context, _buffer) {
         buffer.font = "20px serif";
         buffer.fillText("About Me", 100, 100);
         buffer.fillText("Hi, I'm Alex, a software developer.", 100, 130);
-        buffer.fillText("This is pabbot, a game where you play as Pabbot.", 100, 150);
+        buffer.fillText("This is Pabbot, a game where you play as Pabbot.", 100, 150);
         buffer.fillText("The goal of the game is simply to make it to the", 100, 170);
         buffer.fillText("end. There are monsters on the path to victory.", 100, 190);
         buffer.fillText("Make sure you spin to win.", 100, 210);
