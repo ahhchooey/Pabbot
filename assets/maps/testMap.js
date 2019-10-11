@@ -7,6 +7,7 @@ const gameMap = {
   "height":10,
   "width":100,
   "enemies": [
+
   ]
 };
 

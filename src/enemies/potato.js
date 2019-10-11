@@ -9,7 +9,7 @@ export default class Potato extends Entity {
     this.tileSheet = new TileSheet(32, 6);
     this.tileSheet.image.src = "../assets/CharliePotato.png";
 
-    this.moveSet = ["left", "left", "stand", "right", "right", "stand"] || moveSet;
+    this.moveSet = moveSet || ["left", "left", "stand", "right", "right", "stand"];
   }
 
   speed = {
