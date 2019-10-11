@@ -15,12 +15,13 @@ Pabbot is a platforming game where you play as Pabbot. Pabbot is creature that i
 
 ------
 
-![Screenshot of Pabbot]()
+![Screenshot of Pabbot](https://github.com/ahhchooey/Pabbot/blob/master/images/pabbot_screenshot.png)
+Pabbot. Pabbot. Pabbot.
 
-![Screenshot of Pabbot Spinning]()
+![Screenshot of Pabbot Spinning](https://github.com/ahhchooey/Pabbot/blob/master/images/pabbot_spinning.png)
 Pabbot can spin to eliminate enemies.
 
-![Screenshot of Pabbot Wall Hopping]()
+![Screenshot of Pabbot Wall Hopping](https://github.com/ahhchooey/Pabbot/blob/master/images/pabbot_wallhopping.png)
 Pabbot can hop off of walls to get to difficult to reach terrain.
 
 
