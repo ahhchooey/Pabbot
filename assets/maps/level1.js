@@ -8,7 +8,45 @@ const gameMap = {
   "width":100,
   "height": 10,
   "enemies": [
-
+    {
+      type: "potato",
+      x: 800,
+      y: 64,
+      moveSet: ["left", "stand", "right", "stand"]
+    },
+    {
+      type: "potato",
+      x: 948,
+      y: 64,
+      moveSet: ["left", "left", "stand", "right", "right", "stand"]
+    },
+    {
+      type: "potato",
+      x: 1280,
+      y: 64
+    },
+    {
+      type: "potato",
+      x: 2464,
+      y: 64
+    },
+    {
+      type: "potato",
+      x: 2750,
+      y: 150,
+      moveSet: ["right", "right", "stand", "left", "left", "stand"]
+    },
+    {
+      type: "potato",
+      x: 2912,
+      y: 128
+    },
+    {
+      type: "potato",
+      x: 3008,
+      y: 32,
+      moveSet: ["right", "left"]
+    }
   ]
 };
 

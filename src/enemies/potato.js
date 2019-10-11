@@ -9,7 +9,8 @@ export default class Potato extends Entity {
     this.tileSheet = new TileSheet(32, 6);
     this.tileSheet.image.src = "../assets/CharliePotato.png";
 
-    this.moveSet = moveSet || ["left", "left", "stand", "right", "right", "stand"];
+    this.moveSet = moveSet 
+      || ["left", "left", "left", "stand", "right", "right", "right", "stand"];
   }
 
   speed = {
@@ -66,7 +67,7 @@ export default class Potato extends Entity {
   move = (timeDelta) => {
     this.stepCount--;
     if (this.stepCount <= 0) {
-      this.stepCount = 50;
+      this.stepCount = 25;
       this.moveSet.push(this.moveSet.shift());
     }
     switch(this.moveSet[0]) {

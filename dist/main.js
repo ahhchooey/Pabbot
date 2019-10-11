@@ -86,30 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/maps/level1.js":
-/*!*******************************!*\
-  !*** ./assets/maps/level1.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util.js */ "./assets/maps/util.js");
-
-var gameMap = {
-  "mapArray": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 9, 0, 0, 0, 0, 12, 12, 11, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 18, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 31, 8, 8, 9, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 17, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 6, 0, 0, 10, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 31, 8, 9, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 1, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 11, 0, 0, 0, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 15, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 8, 8, 26, 3, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 16, 17, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 16, 17, 17, 17, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 26, 2, 2, 2, 2, 2, 2, 3, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 7, 8, 26, 3, 12, 12, 12, 11, 12, 1, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 1, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 7, 8, 8, 26, 2, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-  "tileheight": 32,
-  "tilewidth": 32,
-  "width": 100,
-  "height": 10,
-  "enemies": []
-};
-gameMap.collisionMap = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["collisionMapGenerator"])(gameMap.mapArray);
-/* harmony default export */ __webpack_exports__["default"] = (gameMap);
-
-/***/ }),
-
 /***/ "./assets/maps/level2.js":
 /*!*******************************!*\
   !*** ./assets/maps/level2.js ***!
@@ -122,12 +98,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util.js */ "./assets/maps/util.js");
 
 var gameMap = {
-  "mapArray": [8, 32, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 31, 32, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 31, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 9, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 7, 8, 9, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 1, 2, 2, 3, 0, 0, 0, 0, 7, 8, 9, 0, 0, 1, 25, 8, 32, 14, 14, 14, 14, 14, 14, 31, 26, 3, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 7, 9, 0, 0, 0, 0, 7, 8, 8, 26, 3, 0, 0, 0, 7, 8, 9, 0, 0, 7, 8, 32, 15, 0, 0, 0, 0, 0, 0, 13, 14, 26, 2, 2, 3, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 35, 0, 0, 0, 24, 7, 9, 0, 0, 0, 0, 7, 8, 32, 14, 15, 0, 0, 0, 7, 8, 9, 0, 0, 7, 32, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 14, 26, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 25, 15, 0, 0, 0, 0, 7, 32, 15, 0, 0, 0, 0, 0, 7, 8, 9, 0, 0, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 0, 35, 7, 8, 9, 0, 0, 13, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 1, 2, 25, 8, 9, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 7, 9, 0, 0, 0, 4, 25, 8, 8, 8, 9, 0, 0, 0, 35, 0, 1, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 9, 35, 0, 0, 0, 13, 14, 31, 8, 9, 0, 35, 1, 2, 2, 14, 14, 14, 14, 14, 14, 14, 26, 3, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 3, 0, 0, 0, 0, 0, 7, 8, 26, 2, 2, 25, 14, 15, 0, 0, 0, 0, 0, 0, 0, 13, 26, 2, 2, 3, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 1, 25, 8, 8, 8, 26, 6, 0, 0, 0, 0, 7, 8, 8, 8, 32, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 31, 8, 26, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 25, 8, 8, 32, 14, 15, 0, 0, 0, 0, 0, 7, 14, 14, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 14, 14, 14, 31, 8, 32, 14, 14, 14, 31, 8, 32, 14, 14, 14, 31, 8, 32, 14, 14, 14, 14, 14, 15, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 15, 0, 0, 0, 13, 14, 15, 0, 0, 0, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 1, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 25, 8, 0, 0, 0, 0, 0, 0, 0, 1, 2, 25, 8, 26, 2, 3, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 1, 2, 25, 8, 8, 8, 0, 0, 0, 35, 0, 1, 2, 25, 8, 8, 8, 8, 8, 26, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 1, 2, 2, 25, 8, 8, 8, 8, 8, 2, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 26, 2, 27, 27, 2, 2, 2, 27, 27, 2, 2, 2, 2, 27, 27, 2, 27, 27, 2, 27, 27, 27, 2, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8],
+  "mapArray": [8, 32, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 31, 32, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 31, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 9, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 7, 8, 9, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 1, 2, 2, 3, 0, 0, 0, 0, 7, 8, 9, 0, 0, 1, 25, 8, 32, 14, 14, 14, 14, 14, 14, 31, 26, 3, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 7, 9, 0, 0, 0, 0, 7, 8, 8, 26, 3, 0, 0, 0, 7, 8, 9, 0, 0, 7, 8, 32, 15, 0, 0, 0, 0, 0, 0, 13, 14, 26, 2, 2, 3, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 35, 0, 0, 0, 24, 7, 9, 0, 0, 0, 0, 7, 8, 32, 14, 15, 0, 0, 0, 7, 8, 9, 0, 0, 7, 32, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 14, 26, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 25, 15, 0, 0, 0, 0, 7, 32, 15, 0, 0, 0, 0, 0, 7, 8, 9, 0, 0, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 0, 35, 7, 8, 9, 0, 0, 13, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 9, 0, 0, 0, 0, 1, 2, 25, 8, 9, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 7, 9, 0, 0, 0, 4, 25, 8, 8, 8, 9, 0, 0, 0, 35, 0, 1, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 9, 35, 0, 0, 0, 13, 14, 31, 8, 9, 0, 35, 1, 2, 2, 14, 14, 14, 14, 14, 14, 14, 26, 3, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 3, 0, 0, 0, 0, 0, 7, 8, 26, 2, 2, 25, 14, 15, 0, 0, 0, 0, 0, 0, 0, 13, 26, 2, 2, 3, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 1, 25, 8, 8, 8, 26, 6, 0, 0, 0, 0, 7, 8, 8, 8, 32, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 31, 8, 26, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 25, 8, 8, 32, 14, 15, 0, 0, 0, 0, 0, 7, 14, 14, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 14, 14, 14, 31, 8, 32, 14, 14, 14, 31, 8, 32, 14, 14, 14, 31, 8, 32, 14, 14, 14, 14, 14, 15, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 15, 0, 0, 0, 13, 14, 15, 0, 0, 0, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 1, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 25, 8, 0, 0, 0, 0, 0, 0, 0, 1, 2, 25, 8, 26, 2, 3, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 1, 2, 25, 8, 8, 8, 0, 0, 0, 35, 0, 1, 2, 25, 8, 8, 8, 8, 8, 26, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 1, 2, 2, 25, 8, 8, 8, 8, 8, 2, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 26, 3, 0, 0, 4, 5, 6, 0, 0, 4, 5, 5, 6, 0, 0, 10, 0, 0, 10, 0, 0, 0, 1, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8],
   "tileheight": 32,
   "tilewidth": 32,
   "width": 50,
   "height": 20,
-  "enemies": []
+  "enemies": [{
+    type: "potato",
+    x: 9.25 * 32,
+    y: 15 * 32,
+    moveSet: ["left", "right"]
+  }, {
+    type: "potato",
+    x: 18 * 32,
+    y: 18 * 32,
+    moveSet: ["left", "stand", "right", "stand"]
+  }, {
+    type: "potato",
+    x: 36 * 32,
+    y: 12 * 32
+  }, {
+    type: "potato",
+    x: 26 * 32,
+    y: 12 * 32
+  }, {
+    type: "potato",
+    x: 10 * 32,
+    y: 9 * 32,
+    moveSet: ["left", "stand", "right", "stand"]
+  }, {
+    type: "potato",
+    x: 10 * 32,
+    y: 2 * 32
+  }]
 };
 gameMap.collisionMap = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["collisionMapGenerator"])(gameMap.mapArray);
 /* harmony default export */ __webpack_exports__["default"] = (gameMap);
@@ -929,7 +932,7 @@ function (_Entity) {
       _this.stepCount--;
 
       if (_this.stepCount <= 0) {
-        _this.stepCount = 50;
+        _this.stepCount = 25;
 
         _this.moveSet.push(_this.moveSet.shift());
       }
@@ -978,7 +981,7 @@ function (_Entity) {
     _this.health = 1;
     _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](32, 6);
     _this.tileSheet.image.src = "../assets/CharliePotato.png";
-    _this.moveSet = moveSet || ["left", "left", "stand", "right", "right", "stand"];
+    _this.moveSet = moveSet || ["left", "left", "left", "stand", "right", "right", "right", "stand"];
     return _this;
   }
 
@@ -1109,9 +1112,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./map.js */ "./src/map.js");
 /* harmony import */ var _collision_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./collision.js */ "./src/collision.js");
 /* harmony import */ var _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./enemies/enemies.js */ "./src/enemies/enemies.js");
-/* harmony import */ var _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../assets/maps/level1.js */ "./assets/maps/level1.js");
-/* harmony import */ var _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../assets/maps/level2.js */ "./assets/maps/level2.js");
-/* harmony import */ var _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../assets/maps/level3.js */ "./assets/maps/level3.js");
+/* harmony import */ var _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../assets/maps/level2.js */ "./assets/maps/level2.js");
+/* harmony import */ var _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../assets/maps/level3.js */ "./assets/maps/level3.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
@@ -1124,15 +1126,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
-var GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
+var GAME_HEIGHT = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
+var GAME_WIDTH = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
 
 var Game = function Game(context, reset) {
   var _this = this;
 
   _classCallCheck(this, Game);
 
-  this.maps = [_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"], _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_9__["default"]];
+  this.maps = [_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"], _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_8__["default"]];
   this.backgrounds = ["../assets/pixel_forest2.png", "../assets/pixel_forest2.png"];
 
   this.renderMenu = function () {
@@ -1289,20 +1291,20 @@ var Game = function Game(context, reset) {
   this.reset = reset;
   this.context.canvas.width = 640;
   this.context.canvas.height = 320;
-  GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
-  GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
+  GAME_HEIGHT = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
+  GAME_WIDTH = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
   this.playId;
   this.timeStart = 0;
   this.run = this.run.bind(this);
   this.gameOver = this.gameOver.bind(this);
   this.handlePause();
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](64, GAME_HEIGHT - 64, 32, 32);
-  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].enemies, this.pabbot);
+  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].enemies, this.pabbot);
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
-  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
-  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].collisionMap, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.nextLevel);
-  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"]);
+  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
+  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].collisionMap, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.nextLevel);
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"]);
 };
 
 
