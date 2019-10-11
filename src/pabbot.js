@@ -5,7 +5,7 @@ import TileSheet from "./tileSheet.js";
 export default class Pabbot extends Entity {
   constructor(x, y, width, height) {
     super(x, y, width, height)
-    this.tileSheet = new TileSheet(32, 20);
+    this.tileSheet = new TileSheet(32, 25);
     this.tileSheet.image.src = "../assets/Pabbot.png";
   }
 
@@ -40,10 +40,10 @@ export default class Pabbot extends Entity {
   fallingRight = 256;
   jumpingLeft = 224;
   fallingLeft = 288;
-  dashingRight = [480, 480, 480, 480, 512, 512, 512, 512, 544, 544, 544, 544, 576, 576, 576, 576];
-  dashingLeft = [576, 576, 576, 576, 544, 544, 544, 544, 512, 512, 512, 512, 488, 488, 488, 488];
+  dashingRight = [640, 640, 640, 640, 672, 672, 672, 672, 704, 704, 704, 704, 736, 736, 736, 736];
+  dashingLeft = [736, 736, 736, 736, 704, 704, 704, 704, 672, 672, 672, 672, 640, 640, 640, 640];
 
-  healthBall = 640;
+  healthBall = 0;
 
   render = (buffer) => {
     let sprite;
@@ -51,11 +51,13 @@ export default class Pabbot extends Entity {
     switch(true) {
       case (this.facing === "right" && !this.isJumping && this.speed.x === 0):
         sprite = this.standRight;
+        if (this.lastHit > 0) sprite += 320;
         break;
       case (this.facing === "right" && !this.isJumping && this.speed.x !== 0): 
         hold = this.runningRight.shift();
         this.runningRight.push(hold);
         sprite = hold;
+        if (this.lastHit > 0) sprite += 320;
         break;
       case (this.facing === "right" && this.isDashing):
         hold = this.dashingRight.shift();
@@ -64,18 +66,22 @@ export default class Pabbot extends Entity {
         break;
       case (this.facing === "right" && this.isJumping  && this.speed.y < 0):
         sprite = this.jumpingRight;
+        if (this.lastHit > 0) sprite += 320;
         break;
       case (this.facing === "right" && this.isJumping && this.speed.y > 0):
         sprite = this.fallingRight;
+        if (this.lastHit > 0) sprite += 320;
         break;
 
       case (this.facing === "left" && !this.isJumping && this.speed.x === 0):
         sprite = this.standLeft;
+        if (this.lastHit > 0) sprite += 320;
         break;
       case (this.facing ==="left" && !this.isJumping && this.speed.x !== 0):
         hold = this.runningLeft.shift();
         this.runningLeft.push(hold);
         sprite = hold;
+        if (this.lastHit > 0) sprite += 320;
         break;
       case (this.facing === "left" && this.isDashing):
         hold = this.dashingLeft.shift();
@@ -84,11 +90,14 @@ export default class Pabbot extends Entity {
         break;
       case (this.facing === "left" && this.isJumping && this.speed.y < 0):
         sprite = this.jumpingLeft;
+        if (this.lastHit > 0) sprite += 320;
         break;
       case (this.facing === "left" && this.isJumping && this.speed.y > 0):
         sprite = this.fallingLeft;
+        if (this.lastHit > 0) sprite += 320;
         break;
     }
+
 
     buffer.drawImage(
       this.tileSheet.image,
@@ -103,16 +112,16 @@ export default class Pabbot extends Entity {
     )
   }
 
-  renderHealth = (buffer, x) => {
+  renderHealth = (buffer, x, y) => {
     for (let i = 0; i < this.health; i++) {
       buffer.drawImage(
         this.tileSheet.image,
-        608,
+        this.healthBall,
         0,
         this.width,
         this.height,
         (20 + 23 * i) + x,
-        20,
+        20 + y,
         this.width - 10,
         this.height - 10
       )
@@ -186,11 +195,11 @@ export default class Pabbot extends Entity {
   danger = (enemies) => {
     this.lastHit--;
     enemies.forEach(enemy => {
-      if (this.getDistance(enemy) < 30 && this.lastHit <= 0) {
+      if (this.getDistance(enemy) < 30 && this.lastHit <= 0 && enemy.health > 0) {
         if (this.isDashing) {
           enemy.health--;
         } else {
-          this.lastHit = 100;
+          this.lastHit = 50;
           this.health--;
         }
         if (this.speed.x === 0) {

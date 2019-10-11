@@ -88,7 +88,7 @@ export default class Display {
 
   drawMap = () => {
     this.map.render(this.gameMap.mapArray, this.mapWidth, this.buffer);
-    this.pabbot.renderHealth(this.buffer, Math.floor(this.camera.x));
+    this.pabbot.renderHealth(this.buffer, Math.floor(this.camera.x), Math.floor(this.camera.y));
   }
 
   drawEnemies = () => {

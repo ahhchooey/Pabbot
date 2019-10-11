@@ -25,7 +25,9 @@ export default class Enemies {
   checkDeath = () => {
     let newEn = []
     this.enemies.forEach((enemy, i) => {
-      if (enemy.health > 0) {
+      if (enemy.health <= 0 && enemy.deathCounter === undefined) enemy.deathCounter = 100;
+      if (enemy.deathCounter) enemy.deathCounter--;
+      if (enemy.health > 0 || enemy.deathCounter > 0) {
         newEn.push(enemy);
       }
     })

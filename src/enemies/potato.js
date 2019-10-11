@@ -29,10 +29,15 @@ export default class Potato extends Entity {
   runningRight = [64, 64, 64, 64, 64, 64, 128, 128, 128, 128, 128, 128];
   runningLeft = [96, 96, 96, 96, 96, 96, 160, 160, 160, 160, 160, 160];
 
+  death = 192;
+
   render = (buffer) => {
     let sprite;
     let hold;
     switch(true) {
+      case (this.health <= 0):
+        sprite = this.death;
+        break;
       case (this.facing === "right" && this.speed.x === 0):
         sprite = this.standRight;
         break;
@@ -81,14 +86,16 @@ export default class Potato extends Entity {
         this.moveRight();
         break;
     }
+    
+    if (this.health > 0) {
+      this.pastPos.x = this.position.x;
+      this.pastPos.y = this.position.y;
 
-    this.pastPos.x = this.position.x;
-    this.pastPos.y = this.position.y;
-
-    this.position.x += this.speed.x / timeDelta;
-    this.position.y += this.speed.y / timeDelta;
-    if (this.speed.y <= this.terminalVelocity) {
-      this.speed.y += this.gravity / timeDelta
+      this.position.x += this.speed.x / timeDelta;
+      this.position.y += this.speed.y / timeDelta;
+      if (this.speed.y <= this.terminalVelocity) {
+        this.speed.y += this.gravity / timeDelta
+      }
     }
   }
 
