@@ -12,7 +12,7 @@ export default class FirePlant extends Entity {
 
     this.pabbot = pabbot;
 
-    this.moveSet = moveSet || ["fire", "stand", "stand", "stand"];
+    this.moveSet = moveSet || ["stand", "fire", "stand", "stand"];
 
     this.fireballs = [];
   }

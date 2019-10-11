@@ -1179,7 +1179,7 @@ function (_Entity) {
     _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_2__["default"](32, 12);
     _this.tileSheet.image.src = "../assets/FirePlant.png";
     _this.pabbot = pabbot;
-    _this.moveSet = moveSet || ["fire", "stand", "stand", "stand"];
+    _this.moveSet = moveSet || ["stand", "fire", "stand", "stand"];
     _this.fireballs = [];
     return _this;
   }
