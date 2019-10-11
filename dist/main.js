@@ -2044,34 +2044,38 @@ var Menu = function Menu(dH, dW, context, _buffer) {
     switch (_this.currentScreen) {
       case "main":
         buffer.font = "50px serif";
-        buffer.fillText("Pabbot", 150, 120);
+        buffer.fillText("Pabbot", 100, 100);
         buffer.font = "12px serif";
         buffer.fillText("ArrowKeys and Enter to Navigate the Menu", 5, 315);
         break;
 
       case "controls":
+        buffer.font = "25px serif";
+        buffer.fillText("Controls", 80, 80);
         buffer.font = "20px serif";
-        buffer.fillText("Controls", 100, 100);
-        buffer.fillText("ArrowKeys/WASD - Up, Down, Left, Right", 100, 130);
-        buffer.fillText("Enter - Menu Select", 100, 150);
-        buffer.fillText("J/Space - Jump (when on ground)", 100, 170);
-        buffer.fillText("K/Shift - Spin (when jumping)", 100, 190);
-        buffer.fillText("ESC - Pause/Resume", 100, 210);
-        buffer.fillText("Spin on Enemies to eliminate them", 100, 240);
-        buffer.fillText("Jump on Walls to wall jump", 100, 260);
-        buffer.fillText("Make it to the end of each level", 100, 280);
+        buffer.fillText("ArrowKeys/WASD - Up, Down, Left, Right", 80, 110);
+        buffer.fillText("Enter - Menu Select", 80, 130);
+        buffer.fillText("J/Space - Jump (when on ground)", 80, 150);
+        buffer.fillText("K/Shift - Spin (when jumping)", 80, 170);
+        buffer.fillText("ESC - Pause/Resume", 80, 190);
+        buffer.fillText("Spin on Enemies to eliminate them", 80, 220);
+        buffer.fillText("Jump on Walls to wall jump", 80, 240);
+        buffer.fillText("Make it to the end of each level", 80, 260);
         break;
 
       case "about":
+        buffer.font = "25px serif";
+        buffer.fillText("About Me", 80, 80);
         buffer.font = "20px serif";
-        buffer.fillText("About Me", 100, 100);
-        buffer.fillText("Hi, I'm Alex, a software developer.", 100, 130);
-        buffer.fillText("This is Pabbot, a game where you play as Pabbot.", 100, 150);
-        buffer.fillText("The goal of the game is simply to make it to the", 100, 170);
-        buffer.fillText("end. There are monsters on the path to victory.", 100, 190);
-        buffer.fillText("Make sure you spin to win.", 100, 210);
-        buffer.fillText("If you want, check out my other work.", 100, 250);
+        buffer.fillText("Hi, I'm Alex, a software developer.", 80, 110);
+        buffer.fillText("This is Pabbot, a game where you play as Pabbot.", 80, 130);
+        buffer.fillText("The goal of the game is simply to make it to the", 80, 150);
+        buffer.fillText("end. There are monsters on the path to victory.", 80, 170);
+        buffer.fillText("Make sure you spin to win.", 80, 190);
+        buffer.fillText("If you want, check out my other work.", 80, 230);
+        buffer.fillStyle = "#0FF";
         buffer.fillText("GitHub     LinkedIn     Portfolio", 100, 270);
+        buffer.fillStyle = "#FFF";
         break;
     }
 
