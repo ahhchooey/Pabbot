@@ -202,6 +202,7 @@ export default class Pabbot extends Entity {
           this.lastHit = 50;
           this.health--;
         }
+
         if (this.speed.x === 0) {
           this.speed.y -= 100;
           this.speed.x = enemy.speed.x;

@@ -804,7 +804,7 @@ var Fireball =
 function (_Entity) {
   _inherits(Fireball, _Entity);
 
-  function Fireball(x, y, width, height, moveSet, speedX, speedY) {
+  function Fireball(x, y, width, height, moveSet, speedX, speedY, pabbot) {
     var _this;
 
     _classCallCheck(this, Fireball);
@@ -821,7 +821,34 @@ function (_Entity) {
       buffer.drawImage(_this.tileSheet.image, sprite, 0, _this.width, _this.height, Math.round(_this.position.x), Math.round(_this.position.y), _this.width, _this.height);
     };
 
-    _this.move = function () {};
+    _this.move = function () {
+      _this.position.x += _this.speed.x;
+      _this.position.y += _this.speed.y;
+    };
+
+    _this.hit = function () {
+      console.log("hit ouside");
+
+      if (_this.getDistance(_this.pabbot) < 17 && _this.pabbot.lastHit <= 0) {
+        console.log("hit inside");
+
+        if (!_this.pabbot.isDashing) {
+          _this.pabbot.health--;
+          _this.pabbot.lastHit = 50;
+
+          if (_this.pabbot.speed.x === 0) {
+            _this.pabbot.speed.y -= 100;
+            _this.pabbot.speed.x = _this.speed.x * 0.5;
+          } else {
+            _this.pabbot.speed.y = -100;
+            _this.pabbot.speed.x = -_this.pabbot.speed.x * 0.3;
+          }
+
+          setTimeout(_this.pabbot.stop, 200);
+          _this.active = false;
+        }
+      }
+    };
 
     _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](8, 4);
     _this.tileSheet.image.src = "../assets/FireBall.png";
@@ -829,6 +856,8 @@ function (_Entity) {
       x: speedX,
       y: speedY
     };
+    _this.pabbot = pabbot;
+    _this.active = true;
     return _this;
   }
 
@@ -942,6 +971,22 @@ function (_Entity) {
           break;
       }
 
+      _this.fireballs.forEach(function (fb) {
+        return fb.move();
+      });
+
+      _this.fireballs.forEach(function (fb) {
+        return fb.hit();
+      });
+
+      _this.fireballs = _this.fireballs.filter(function (fb) {
+        return fb.active;
+      });
+
+      _this.fireballs.forEach(function (fb) {
+        return fb.render(buffer);
+      });
+
       buffer.drawImage(_this.tileSheet.image, sprite, 0, _this.width, _this.height, Math.round(_this.position.x), Math.round(_this.position.y), _this.width, _this.height);
     };
 
@@ -980,13 +1025,17 @@ function (_Entity) {
           _this.firingLeft = true;
 
           if (_this.fireLeft[0] === 128 && _this.fireLeft[_this.fireLeft.length - 1] === 96) {
-            console.log("fireLeft");
+            var fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x, _this.position.y + 10, 8, 8, null, -5, 0, _this.pabbot);
+
+            _this.fireballs.push(fb);
           }
         } else if (_this.facing === "right") {
           _this.firingRight = true;
 
-          if (_this.fireRight[0] === 288 && _this.fireRight[_this.fireRight.length - 1] === 256) {
-            console.log("fireRight");
+          if (_this.fireRight[0] === 320 && _this.fireRight[_this.fireRight.length - 1] === 288) {
+            var _fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x + 32, _this.position.y + 10, 8, 8, null, 5, 0, _this.pabbot);
+
+            _this.fireballs.push(_fb);
           }
         }
       } else {
@@ -1010,6 +1059,7 @@ function (_Entity) {
     _this.tileSheet.image.src = "../assets/FirePlant.png";
     _this.pabbot = pabbot;
     _this.moveSet = moveSet || ["fire", "stand", "stand", "stand"];
+    _this.fireballs = [];
     return _this;
   }
 

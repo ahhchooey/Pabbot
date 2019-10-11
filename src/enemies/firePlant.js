@@ -13,6 +13,8 @@ export default class FirePlant extends Entity {
     this.pabbot = pabbot;
 
     this.moveSet = moveSet || ["fire", "stand", "stand", "stand"];
+
+    this.fireballs = [];
   }
 
   speed = {
@@ -74,6 +76,11 @@ export default class FirePlant extends Entity {
         break;
     }
 
+    this.fireballs.forEach(fb => fb.move());
+    this.fireballs.forEach(fb => fb.hit());
+    this.fireballs = this.fireballs.filter(fb => fb.active);
+    this.fireballs.forEach(fb => fb.render(buffer));
+
     buffer.drawImage(
       this.tileSheet.image,
       sprite,
@@ -119,13 +126,33 @@ export default class FirePlant extends Entity {
         this.firingLeft = true;
         if (this.fireLeft[0] === 128
           && this.fireLeft[this.fireLeft.length - 1] === 96) {
-          console.log("fireLeft")
+          let fb = new Fireball(
+            this.position.x, 
+            this.position.y + 10, 
+            8, 
+            8, 
+            null, 
+            -5, 
+            0, 
+            this.pabbot
+          );
+          this.fireballs.push(fb);
         }
       } else if (this.facing === "right") {
         this.firingRight = true;
-        if (this.fireRight[0] === 288
-          && this.fireRight[this.fireRight.length - 1] === 256) {
-          console.log("fireRight")
+        if (this.fireRight[0] === 320
+          && this.fireRight[this.fireRight.length - 1] === 288) {
+          let fb = new Fireball(
+            this.position.x + 32, 
+            this.position.y + 10, 
+            8, 
+            8, 
+            null, 
+            5, 
+            0, 
+            this.pabbot
+          );
+          this.fireballs.push(fb);
         }
       }
 
