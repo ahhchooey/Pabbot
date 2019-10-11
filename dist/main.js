@@ -86,62 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/maps/level1.js":
-/*!*******************************!*\
-  !*** ./assets/maps/level1.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util.js */ "./assets/maps/util.js");
-
-var gameMap = {
-  "mapArray": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 9, 0, 0, 0, 0, 12, 12, 11, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 18, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 31, 8, 8, 9, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 17, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 6, 0, 0, 10, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 31, 8, 9, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 1, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 11, 0, 0, 0, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 15, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 8, 8, 26, 3, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 16, 17, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 16, 17, 17, 17, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 26, 2, 2, 2, 2, 2, 2, 3, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 7, 8, 26, 3, 12, 12, 12, 11, 12, 1, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 1, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 7, 8, 8, 26, 2, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-  "tileheight": 32,
-  "tilewidth": 32,
-  "width": 100,
-  "height": 10,
-  "enemies": [{
-    type: "potato",
-    x: 800,
-    y: 64,
-    moveSet: ["left", "stand", "right", "stand"]
-  }, {
-    type: "potato",
-    x: 948,
-    y: 64,
-    moveSet: ["left", "left", "stand", "right", "right", "stand"]
-  }, {
-    type: "potato",
-    x: 1280,
-    y: 64
-  }, {
-    type: "potato",
-    x: 2464,
-    y: 64
-  }, {
-    type: "potato",
-    x: 2750,
-    y: 150,
-    moveSet: ["right", "right", "stand", "left", "left", "stand"]
-  }, {
-    type: "potato",
-    x: 2912,
-    y: 128
-  }, {
-    type: "potato",
-    x: 3008,
-    y: 32,
-    moveSet: ["right", "left"]
-  }]
-};
-gameMap.collisionMap = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["collisionMapGenerator"])(gameMap.mapArray);
-/* harmony default export */ __webpack_exports__["default"] = (gameMap);
-
-/***/ }),
-
 /***/ "./assets/maps/level2.js":
 /*!*******************************!*\
   !*** ./assets/maps/level2.js ***!
@@ -185,6 +129,26 @@ var gameMap = {
   }, {
     type: "potato",
     x: 10 * 32,
+    y: 2 * 32
+  }, {
+    type: "firePlant",
+    x: 7 * 32,
+    y: 16 * 32
+  }, {
+    type: "firePlant",
+    x: 41 * 32,
+    y: 17 * 32
+  }, {
+    type: "firePlant",
+    x: 18 * 32,
+    y: 11 * 32
+  }, {
+    type: "firePlant",
+    x: 14 * 32,
+    y: 9 * 32
+  }, {
+    type: "firePlant",
+    x: 15 * 32,
     y: 2 * 32
   }]
 };
@@ -806,16 +770,16 @@ var Enemies = function Enemies(enemies, pabbot) {
 
 /***/ }),
 
-/***/ "./src/enemies/firePlant.js":
-/*!**********************************!*\
-  !*** ./src/enemies/firePlant.js ***!
-  \**********************************/
+/***/ "./src/enemies/fireBall.js":
+/*!*********************************!*\
+  !*** ./src/enemies/fireBall.js ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FirePlant; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Fireball; });
 /* harmony import */ var _entity_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entity.js */ "./src/entity.js");
 /* harmony import */ var _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../tileSheet.js */ "./src/tileSheet.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -831,6 +795,77 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Fireball =
+/*#__PURE__*/
+function (_Entity) {
+  _inherits(Fireball, _Entity);
+
+  function Fireball(x, y, width, height, moveSet, speedX, speedY) {
+    var _this;
+
+    _classCallCheck(this, Fireball);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Fireball).call(this, x, y, width, height, moveSet));
+    _this.rotate = [0, 0, 0, 0, 8, 8, 8, 8, 16, 16, 16, 16, 24, 24, 24, 24];
+
+    _this.render = function (buffer) {
+      var sprite;
+      sprite = _this.rotate.shift();
+
+      _this.rotate.push(sprite);
+
+      buffer.drawImage(_this.tileSheet.image, sprite, 0, _this.width, _this.height, Math.round(_this.position.x), Math.round(_this.position.y), _this.width, _this.height);
+    };
+
+    _this.move = function () {};
+
+    _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](8, 4);
+    _this.tileSheet.image.src = "../assets/FireBall.png";
+    _this.speed = {
+      x: speedX,
+      y: speedY
+    };
+    return _this;
+  }
+
+  return Fireball;
+}(_entity_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./src/enemies/firePlant.js":
+/*!**********************************!*\
+  !*** ./src/enemies/firePlant.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FirePlant; });
+/* harmony import */ var _entity_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entity.js */ "./src/entity.js");
+/* harmony import */ var _fireBall_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fireBall.js */ "./src/enemies/fireBall.js");
+/* harmony import */ var _tileSheet_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tileSheet.js */ "./src/tileSheet.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -855,41 +890,126 @@ function (_Entity) {
     _this.terminalVelocity = 1000;
     _this.facing = "left";
     _this.stepCount = 0;
-    _this.standRight = 0;
-    _this.standLeft = 32;
+    _this.firingRight = false;
+    _this.firingLeft = false;
+    _this.standLeft = [0, 0, 0, 0, 0, 0, 0, 0, 32, 32, 32, 32, 32, 32, 32, 32];
+    _this.standRight = [192, 192, 192, 192, 192, 192, 192, 192, 224, 224, 224, 224, 224, 224, 224, 224];
+    _this.fireLeftReset = [64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128];
+    _this.fireLeft = [64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128];
+    _this.fireRightReset = [256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320];
+    _this.fireRight = [256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 288, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320, 320];
+    _this.death = 160;
 
     _this.render = function (buffer) {
-      _this.facePabbot(_this.pabbot.position.x);
-
       var sprite;
       var hold;
 
       switch (true) {
+        case _this.health <= 0:
+          sprite = _this.death;
+          break;
+
+        case _this.firingRight:
+          hold = _this.fireRight.shift();
+
+          _this.fireRight.push(hold);
+
+          sprite = hold;
+          break;
+
+        case _this.firingLeft:
+          hold = _this.fireLeft.shift();
+
+          _this.fireLeft.push(hold);
+
+          sprite = hold;
+          break;
+
         case _this.facing === "right":
-          sprite = _this.standRight;
+          hold = _this.standRight.shift();
+
+          _this.standRight.push(hold);
+
+          sprite = hold;
           break;
 
         case _this.facing === "left":
-          sprite = _this.standLeft;
+          hold = _this.standLeft.shift();
+
+          _this.standLeft.push(hold);
+
+          sprite = hold;
           break;
       }
 
       buffer.drawImage(_this.tileSheet.image, sprite, 0, _this.width, _this.height, Math.round(_this.position.x), Math.round(_this.position.y), _this.width, _this.height);
     };
 
+    _this.move = function () {
+      _this.facePabbot(_this.pabbot.position.x);
+
+      _this.stepCount--;
+
+      if (_this.stepCount <= 0) {
+        _this.stepCount = 45;
+
+        _this.moveSet.push(_this.moveSet.shift());
+      }
+
+      switch (_this.moveSet[0]) {
+        case "fire":
+          _this.fire();
+
+          break;
+
+        case "stand":
+          _this.firingLeft = false;
+          _this.firingRight = false;
+          _this.fireLeft = _this.fireLeftReset;
+          _this.fireRight = _this.fireRightReset;
+          return;
+      }
+    };
+
+    _this.fire = function () {
+      var pabbotX = _this.pabbot.position.x;
+      var pabbotY = _this.pabbot.position.y;
+
+      if (_this.health > 0 && Math.abs(_this.pabbot.position.x - _this.position.x) < 350 && Math.abs(_this.pabbot.position.y - _this.position.y) < 100) {
+        if (_this.facing === "left") {
+          _this.firingLeft = true;
+
+          if (_this.fireLeft[0] === 128 && _this.fireLeft[_this.fireLeft.length - 1] === 96) {
+            console.log("fireLeft");
+          }
+        } else if (_this.facing === "right") {
+          _this.firingRight = true;
+
+          if (_this.fireRight[0] === 288 && _this.fireRight[_this.fireRight.length - 1] === 256) {
+            console.log("fireRight");
+          }
+        }
+      } else {
+        _this.firingRight = false;
+        _this.firingLeft = false;
+        _this.fireLeft = _this.fireLeftReset;
+        _this.fireRight = _this.fireRightReset;
+      }
+    };
+
     _this.facePabbot = function (pabbotX) {
       if (pabbotX < _this.position.x) {
-        _this.facing === "left";
+        _this.facing = "left";
       } else {
-        _this.facing === "right";
+        _this.facing = "right";
       }
     };
 
     _this.health = 1;
-    _this.tileSheet = newTileSheet(32, 6);
-    _this.tileSheet.image.src = "../assets/CharliePotato.png";
+    _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_2__["default"](32, 12);
+    _this.tileSheet.image.src = "../assets/FirePlant.png";
     _this.pabbot = pabbot;
-    _this.moveSet = moveSet || ["fire", "fire", "stand", "stand"];
+    _this.moveSet = moveSet || ["fire", "stand", "stand", "stand"];
     return _this;
   }
 
@@ -1045,7 +1165,7 @@ function (_Entity) {
     };
 
     _this.health = 1;
-    _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](32, 6);
+    _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](32, 8);
     _this.tileSheet.image.src = "../assets/CharliePotato.png";
     _this.moveSet = moveSet || ["left", "left", "left", "stand", "right", "right", "right", "stand"];
     return _this;
@@ -1178,9 +1298,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./map.js */ "./src/map.js");
 /* harmony import */ var _collision_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./collision.js */ "./src/collision.js");
 /* harmony import */ var _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./enemies/enemies.js */ "./src/enemies/enemies.js");
-/* harmony import */ var _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../assets/maps/level1.js */ "./assets/maps/level1.js");
-/* harmony import */ var _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../assets/maps/level2.js */ "./assets/maps/level2.js");
-/* harmony import */ var _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../assets/maps/level3.js */ "./assets/maps/level3.js");
+/* harmony import */ var _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../assets/maps/level2.js */ "./assets/maps/level2.js");
+/* harmony import */ var _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../assets/maps/level3.js */ "./assets/maps/level3.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
@@ -1193,15 +1312,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
-var GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
+var GAME_HEIGHT = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
+var GAME_WIDTH = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
 
 var Game = function Game(context, reset) {
   var _this = this;
 
   _classCallCheck(this, Game);
 
-  this.maps = [_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"], _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_9__["default"]];
+  this.maps = [_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"], _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_8__["default"]];
   this.backgrounds = ["../assets/pixel_forest2.png", "../assets/pixel_forest2.png"];
 
   this.renderMenu = function () {
@@ -1358,20 +1477,20 @@ var Game = function Game(context, reset) {
   this.reset = reset;
   this.context.canvas.width = 640;
   this.context.canvas.height = 320;
-  GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
-  GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
+  GAME_HEIGHT = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
+  GAME_WIDTH = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
   this.playId;
   this.timeStart = 0;
   this.run = this.run.bind(this);
   this.gameOver = this.gameOver.bind(this);
   this.handlePause();
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](64, GAME_HEIGHT - 64, 32, 32);
-  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].enemies, this.pabbot);
+  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].enemies, this.pabbot);
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
-  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
-  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].collisionMap, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.nextLevel);
-  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"]);
+  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
+  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].collisionMap, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.nextLevel);
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_7__["default"]);
 };
 
 

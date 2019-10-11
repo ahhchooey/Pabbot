@@ -6,7 +6,7 @@ export default class Potato extends Entity {
   constructor(x, y, width, height, moveSet) {
     super(x, y, width, height);
     this.health = 1;
-    this.tileSheet = new TileSheet(32, 6);
+    this.tileSheet = new TileSheet(32, 8);
     this.tileSheet.image.src = "../assets/CharliePotato.png";
 
     this.moveSet = moveSet 

@@ -41,6 +41,31 @@ const gameMap = {
       x: 10 * 32,
       y: 2 * 32,
     },
+    {
+      type: "firePlant",
+      x: 7 * 32,
+      y: 16 * 32,
+    },
+    {
+      type: "firePlant",
+      x: 41 * 32,
+      y: 17 * 32,
+    },
+    {
+      type: "firePlant",
+      x: 18 * 32,
+      y: 11 * 32,
+    },
+    {
+      type: "firePlant",
+      x: 14 * 32,
+      y: 9 * 32,
+    },
+    {
+      type: "firePlant",
+      x: 15 * 32,
+      y: 2 * 32,
+    },
   ]
 };
 
