@@ -824,14 +824,12 @@ function (_Entity) {
     _this.move = function () {
       _this.position.x += _this.speed.x;
       _this.position.y += _this.speed.y;
+      _this.timer--;
+      if (_this.timer <= 0) _this.active = false;
     };
 
     _this.hit = function () {
-      console.log("hit ouside");
-
       if (_this.getDistance(_this.pabbot) < 17 && _this.pabbot.lastHit <= 0) {
-        console.log("hit inside");
-
         if (!_this.pabbot.isDashing) {
           _this.pabbot.health--;
           _this.pabbot.lastHit = 50;
@@ -858,6 +856,7 @@ function (_Entity) {
     };
     _this.pabbot = pabbot;
     _this.active = true;
+    _this.timer = 125;
     return _this;
   }
 
@@ -1021,11 +1020,13 @@ function (_Entity) {
       var pabbotY = _this.pabbot.position.y;
 
       if (_this.health > 0 && Math.abs(_this.pabbot.position.x - _this.position.x) < 350 && Math.abs(_this.pabbot.position.y - _this.position.y) < 100) {
+        var vertFactor = _this.pabbot.position.y >= _this.position.y ? 5 : -5;
+
         if (_this.facing === "left") {
           _this.firingLeft = true;
 
           if (_this.fireLeft[0] === 128 && _this.fireLeft[_this.fireLeft.length - 1] === 96) {
-            var fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x, _this.position.y + 10, 8, 8, null, -5, 0, _this.pabbot);
+            var fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x, _this.position.y + 10, 8, 8, null, -5 * (Math.abs(_this.position.x - _this.pabbot.position.x) / _this.getDistance(_this.pabbot)), vertFactor * (Math.abs(_this.position.y - _this.pabbot.position.y) / _this.getDistance(_this.pabbot)), _this.pabbot);
 
             _this.fireballs.push(fb);
           }
@@ -1033,7 +1034,7 @@ function (_Entity) {
           _this.firingRight = true;
 
           if (_this.fireRight[0] === 320 && _this.fireRight[_this.fireRight.length - 1] === 288) {
-            var _fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x + 32, _this.position.y + 10, 8, 8, null, 5, 0, _this.pabbot);
+            var _fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x + 32, _this.position.y + 10, 8, 8, null, 5 * (Math.abs(_this.position.x - _this.pabbot.position.x) / _this.getDistance(_this.pabbot)), vertFactor * (Math.abs(_this.position.y - _this.pabbot.position.y) / _this.getDistance(_this.pabbot)), _this.pabbot);
 
             _this.fireballs.push(_fb);
           }

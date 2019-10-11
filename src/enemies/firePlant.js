@@ -121,6 +121,7 @@ export default class FirePlant extends Entity {
     if (this.health > 0 
       && Math.abs(this.pabbot.position.x - this.position.x) < 350
       && Math.abs(this.pabbot.position.y - this.position.y) < 100) {
+      let vertFactor = (this.pabbot.position.y >= this.position.y) ? 5 : -5;
       
       if (this.facing === "left") {
         this.firingLeft = true;
@@ -132,8 +133,10 @@ export default class FirePlant extends Entity {
             8, 
             8, 
             null, 
-            -5, 
-            0, 
+            -5*(Math.abs(this.position.x - this.pabbot.position.x) 
+              / this.getDistance(this.pabbot)), 
+            vertFactor*(Math.abs(this.position.y - this.pabbot.position.y) 
+              / this.getDistance(this.pabbot)), 
             this.pabbot
           );
           this.fireballs.push(fb);
@@ -148,8 +151,10 @@ export default class FirePlant extends Entity {
             8, 
             8, 
             null, 
-            5, 
-            0, 
+            5*(Math.abs(this.position.x - this.pabbot.position.x) 
+              / this.getDistance(this.pabbot)), 
+            vertFactor*(Math.abs(this.position.y - this.pabbot.position.y) 
+              / this.getDistance(this.pabbot)), 
             this.pabbot
           );
           this.fireballs.push(fb);

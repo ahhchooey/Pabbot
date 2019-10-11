@@ -16,6 +16,7 @@ export default class Fireball extends Entity {
 
     this.pabbot = pabbot;
     this.active = true;
+    this.timer = 125;
   }
 
   rotate = [0, 0, 0, 0, 8, 8, 8, 8, 16, 16, 16, 16, 24, 24, 24, 24];
@@ -42,12 +43,12 @@ export default class Fireball extends Entity {
   move = () => {
     this.position.x += this.speed.x;
     this.position.y += this.speed.y;
+    this.timer--;
+    if (this.timer <= 0) this.active = false;
   }
 
   hit = () => {
-    console.log("hit ouside")
     if (this.getDistance(this.pabbot) < 17 && this.pabbot.lastHit <= 0) {
-      console.log("hit inside")
       if (!this.pabbot.isDashing) {
         this.pabbot.health--;
         this.pabbot.lastHit = 50;
