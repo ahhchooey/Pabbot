@@ -37,6 +37,14 @@ export const collisionMapGenerator = (array) => {
       case 23:
       case 24:
         return 14;
+      case 27:
+      case 28:
+        return 13;
+      case 29:
+        return 4;
+      case 33: 
+      case 34:
+        return 13;
       default:
         return 0;
     }

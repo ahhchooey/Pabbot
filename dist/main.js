@@ -222,6 +222,17 @@ var collisionMapGenerator = function collisionMapGenerator(array) {
       case 24:
         return 14;
 
+      case 27:
+      case 28:
+        return 13;
+
+      case 29:
+        return 4;
+
+      case 33:
+      case 34:
+        return 13;
+
       default:
         return 0;
     }
@@ -424,7 +435,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
         break;
 
       case 14:
-        _this.collideNextLevel(ent, tileX);
+        _this.collideNextLevel(ent, tileX, tileY);
 
         break;
     }
@@ -503,8 +514,8 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
     return false;
   };
 
-  this.collideNextLevel = function (ent, tileLeft) {
-    if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) {
+  this.collideNextLevel = function (ent, tileLeft, tileTop) {
+    if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft || ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
       _this.nextLevel();
 
       return true;

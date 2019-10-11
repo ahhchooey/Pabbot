@@ -97,7 +97,7 @@ export default class Collision {
         this.collideInstantDeath(ent, tileY);
         break;
       case 14:
-        this.collideNextLevel(ent, tileX);
+        this.collideNextLevel(ent, tileX, tileY);
         break;
     }
   }
@@ -160,8 +160,9 @@ export default class Collision {
     return false;
   }
 
-  collideNextLevel = (ent, tileLeft) => {
-    if (ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft) { 
+  collideNextLevel = (ent, tileLeft, tileTop) => {
+    if ((ent.getRight() > tileLeft && ent.getPastRight() <= tileLeft)
+      || (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop)) { 
       this.nextLevel();
       return true;
     }
