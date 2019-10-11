@@ -38,12 +38,10 @@ A thing to pay attention to is the terrain. Pabbot cannot fly, cannot swim, cann
 
 ------
 
-* Note is built from the MERN (MongoDB, Express, React, Node.js) stack.
-* MongoDB holds our node graph. Each node hold information about the other nodes they are connected to, as well as the cost it requires to traverse to these adjacent nodes. Each node also holds coordinates and some crime information about the area.
-* Mongoose allows for communication between Express and Mongo. We use Mongoose to create a reachable api route. When the route is called it uses the node graph in the database and Dijkstra's algorithm to find the shortest path when taking into account distance between two nodes and the amount of dangerous crime at each node.
-* The user interface is built with React and Redux, so that we only render components that we need. Redux is used in our case to control our UI elements, as SafeWalk does not use front end routing.
-* The map is rendered with Mapbox. The routes are generated with a node list created from the backend and the Mapbox API.
-* The heatmap and crime information are generated through Mapbox layers.
+* Pabbot is built with vanilla Javascript in order to have a full package that doesn't rely on external dependencies.
+* The entire game and menu is build with HTML's Canvas API. Canvas and RequestAnimationFrame build the engine that the entire game runs on.
+* The map and the collision system is built upon a grid of tiles. This grid is represented by a numbered array, where specific tiles render specific sprites and specific tiles hold a certain collision property. This system allows for the modular and quick building of maps.
+* Every unit in Pabbot is built off of the Entity prototype. Allowing for modular and succinct interaction between the player and all enemies.
 
 ------
 
