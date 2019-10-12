@@ -11,7 +11,7 @@
 
 This is Pabbot.
 
-Pabbot is a platforming game where you play as Pabbot. Pabbot is creature that is just trying to get home. Play as Pabbot to help him traverse the dangerous terrains to make to home. Pabbot can jump, wall hop, and spin to attack enemies. He has three health to make it all the way through. Make sure Pabbot gets home safe.
+Pabbot is a platforming game where you play as Pabbot. Pabbot is creature that is just trying to get home. Play as Pabbot to help him traverse the dangerous terrains. Pabbot can jump, wall hop, and spin to attack enemies. He has three health to make it all the way through. Make sure Pabbot gets home safe.
 
 ------
 
@@ -29,7 +29,7 @@ Pabbot can hop off of walls to get to difficult to reach terrain.
 
 ------
 
-Playing Pabbot is easy. You can use WASD or the Arrow Keys to move Pabbot around. Spacebar or J is used for jumping. When Pabbot is jumping he can spin by pressing K or Shift, and he will continue to spin until he touches the ground again. While spinning, Pabbot is invulnerable and he is able to eliminate enemies. Pabbot can also jump off of walls, but pressing J or Spacebar when he jumps at a wall.
+Playing Pabbot is easy. You can use WASD or the Arrow Keys to move Pabbot around. Spacebar or J is used for jumping. When Pabbot is jumping he can spin by pressing K or Shift, and he will continue to spin until he touches the ground again. While spinning, Pabbot is invulnerable and he is able to eliminate enemies. Pabbot can also jump off of walls by pressing J or Spacebar when he jumps at a wall.
 
 A thing to pay attention to is the terrain. Pabbot cannot fly, cannot swim, cannot survive falling on spikes, and cannot handle lava.
 
