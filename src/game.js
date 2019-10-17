@@ -10,6 +10,7 @@ import gameMap from "../assets/maps/level1.js";
 import level2 from "../assets/maps/level2.js";
 import level3 from "../assets/maps/level3.js";
 import level4 from "../assets/maps/level4.js";
+import endMap from "../assets/maps/levelEnd.js";
 
 let GAME_HEIGHT = gameMap.height * 32;
 let GAME_WIDTH = gameMap.width * 32;
@@ -65,8 +66,8 @@ export default class Game {
     );
   }
 
-  maps = [level2, level3, level4]
-  backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png"]
+  maps = [level2, level3, level4, endMap]
+  backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png", "../assets/pixel_dark.png", "../assets/pixel_forest2.png", "../assets/pixel_field.png"];
 
   renderMenu = () => {
     this.display.drawMenu();

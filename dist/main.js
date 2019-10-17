@@ -232,10 +232,6 @@ var gameMap = {
   "height": 100,
   "enemies": [{
     type: "firePlant",
-    x: 16 * 32,
-    y: 19 * 32
-  }, {
-    type: "firePlant",
     x: 3 * 32,
     y: 89 * 32
   }, {
@@ -439,6 +435,29 @@ var gameMap = {
     x: 45 * 32,
     y: 3 * 32
   }]
+};
+gameMap.collisionMap = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["collisionMapGenerator"])(gameMap.mapArray);
+/* harmony default export */ __webpack_exports__["default"] = (gameMap);
+
+/***/ }),
+
+/***/ "./assets/maps/levelEnd.js":
+/*!*********************************!*\
+  !*** ./assets/maps/levelEnd.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util.js */ "./assets/maps/util.js");
+
+var gameMap = {
+  "mapArray": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 0, 0, 8, 8, 8, 0, 0, 8, 0, 0, 8, 8, 8, 0, 0, 8, 8, 0, 0, 0, 0, 8, 0, 0, 8, 8, 8, 0, 8, 8, 0, 0, 0, 0, 8, 8, 8, 0, 8, 0, 8, 0, 0, 8, 0, 0, 8, 8, 8, 0, 8, 0, 8, 0, 0, 8, 8, 0, 0, 8, 0, 8, 0, 8, 0, 0, 0, 8, 8, 8, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0, 0, 8, 8, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 0, 0, 0, 8, 0, 0, 8, 8, 8, 0, 8, 8, 8, 0, 8, 0, 8, 0, 8, 8, 0, 0, 0, 8, 0, 0, 0, 8, 8, 8, 0, 8, 0, 0, 0, 8, 0, 8, 0, 0, 8, 0, 0, 8, 8, 0, 0, 0, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 8, 0, 0, 0, 0, 0, 8, 0, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 22],
+  "tileheight": 32,
+  "tilewidth": 32,
+  "width": 61,
+  "height": 10
 };
 gameMap.collisionMap = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["collisionMapGenerator"])(gameMap.mapArray);
 /* harmony default export */ __webpack_exports__["default"] = (gameMap);
@@ -1617,7 +1636,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../assets/maps/level2.js */ "./assets/maps/level2.js");
 /* harmony import */ var _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../assets/maps/level3.js */ "./assets/maps/level3.js");
 /* harmony import */ var _assets_maps_level4_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../assets/maps/level4.js */ "./assets/maps/level4.js");
+/* harmony import */ var _assets_maps_levelEnd_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../assets/maps/levelEnd.js */ "./assets/maps/levelEnd.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 
 
@@ -1638,8 +1659,8 @@ var Game = function Game(context, reset) {
 
   _classCallCheck(this, Game);
 
-  this.maps = [_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"], _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_9__["default"], _assets_maps_level4_js__WEBPACK_IMPORTED_MODULE_10__["default"]];
-  this.backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png"];
+  this.maps = [_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"], _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_9__["default"], _assets_maps_level4_js__WEBPACK_IMPORTED_MODULE_10__["default"], _assets_maps_levelEnd_js__WEBPACK_IMPORTED_MODULE_11__["default"]];
+  this.backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png", "../assets/pixel_dark.png", "../assets/pixel_forest2.png", "../assets/pixel_field.png"];
 
   this.renderMenu = function () {
     _this.display.drawMenu();
@@ -2354,7 +2375,7 @@ function (_Entity) {
       switch (true) {
         case _this.facing === "right" && !_this.isJumping && _this.speed.x === 0:
           sprite = _this.standRight;
-          if (_this.lastHit > 0) sprite += 320;
+          if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
           break;
 
         case _this.facing === "right" && !_this.isJumping && _this.speed.x !== 0:
@@ -2363,7 +2384,7 @@ function (_Entity) {
           _this.runningRight.push(hold);
 
           sprite = hold;
-          if (_this.lastHit > 0) sprite += 320;
+          if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
           break;
 
         case _this.facing === "right" && _this.isDashing:
@@ -2376,17 +2397,17 @@ function (_Entity) {
 
         case _this.facing === "right" && _this.isJumping && _this.speed.y < 0:
           sprite = _this.jumpingRight;
-          if (_this.lastHit > 0) sprite += 320;
+          if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
           break;
 
         case _this.facing === "right" && _this.isJumping && _this.speed.y > 0:
           sprite = _this.fallingRight;
-          if (_this.lastHit > 0) sprite += 320;
+          if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
           break;
 
         case _this.facing === "left" && !_this.isJumping && _this.speed.x === 0:
           sprite = _this.standLeft;
-          if (_this.lastHit > 0) sprite += 320;
+          if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
           break;
 
         case _this.facing === "left" && !_this.isJumping && _this.speed.x !== 0:
@@ -2395,7 +2416,7 @@ function (_Entity) {
           _this.runningLeft.push(hold);
 
           sprite = hold;
-          if (_this.lastHit > 0) sprite += 320;
+          if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
           break;
 
         case _this.facing === "left" && _this.isDashing:
@@ -2408,12 +2429,12 @@ function (_Entity) {
 
         case _this.facing === "left" && _this.isJumping && _this.speed.y < 0:
           sprite = _this.jumpingLeft;
-          if (_this.lastHit > 0) sprite += 320;
+          if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
           break;
 
         case _this.facing === "left" && _this.isJumping && _this.speed.y > 0:
           sprite = _this.fallingLeft;
-          if (_this.lastHit > 0) sprite += 320;
+          if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
           break;
       }
 

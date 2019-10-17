@@ -51,13 +51,13 @@ export default class Pabbot extends Entity {
     switch(true) {
       case (this.facing === "right" && !this.isJumping && this.speed.x === 0):
         sprite = this.standRight;
-        if (this.lastHit > 0) sprite += 320;
+        if (this.lastHit > 0 || this.health <= 0) sprite += 320;
         break;
       case (this.facing === "right" && !this.isJumping && this.speed.x !== 0): 
         hold = this.runningRight.shift();
         this.runningRight.push(hold);
         sprite = hold;
-        if (this.lastHit > 0) sprite += 320;
+        if (this.lastHit > 0 || this.health <= 0) sprite += 320;
         break;
       case (this.facing === "right" && this.isDashing):
         hold = this.dashingRight.shift();
@@ -66,22 +66,22 @@ export default class Pabbot extends Entity {
         break;
       case (this.facing === "right" && this.isJumping  && this.speed.y < 0):
         sprite = this.jumpingRight;
-        if (this.lastHit > 0) sprite += 320;
+        if (this.lastHit > 0 || this.health <= 0) sprite += 320;
         break;
       case (this.facing === "right" && this.isJumping && this.speed.y > 0):
         sprite = this.fallingRight;
-        if (this.lastHit > 0) sprite += 320;
+        if (this.lastHit > 0 || this.health <= 0) sprite += 320;
         break;
 
       case (this.facing === "left" && !this.isJumping && this.speed.x === 0):
         sprite = this.standLeft;
-        if (this.lastHit > 0) sprite += 320;
+        if (this.lastHit > 0 || this.health <= 0) sprite += 320;
         break;
       case (this.facing ==="left" && !this.isJumping && this.speed.x !== 0):
         hold = this.runningLeft.shift();
         this.runningLeft.push(hold);
         sprite = hold;
-        if (this.lastHit > 0) sprite += 320;
+        if (this.lastHit > 0 || this.health <= 0) sprite += 320;
         break;
       case (this.facing === "left" && this.isDashing):
         hold = this.dashingLeft.shift();
@@ -90,11 +90,11 @@ export default class Pabbot extends Entity {
         break;
       case (this.facing === "left" && this.isJumping && this.speed.y < 0):
         sprite = this.jumpingLeft;
-        if (this.lastHit > 0) sprite += 320;
+        if (this.lastHit > 0 || this.health <= 0) sprite += 320;
         break;
       case (this.facing === "left" && this.isJumping && this.speed.y > 0):
         sprite = this.fallingLeft;
-        if (this.lastHit > 0) sprite += 320;
+        if (this.lastHit > 0 || this.health <= 0) sprite += 320;
         break;
     }
 

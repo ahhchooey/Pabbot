@@ -10,11 +10,6 @@ const gameMap = {
   "enemies": [
     {
       type: "firePlant",
-      x: 16 * 32,
-      y: 19 * 32
-    },
-    {
-      type: "firePlant",
       x: 3 * 32,
       y: 89 * 32
     },
