@@ -9,6 +9,7 @@ import Enemies from "./enemies/enemies.js";
 import gameMap from "../assets/maps/level1.js";
 import level2 from "../assets/maps/level2.js";
 import level3 from "../assets/maps/level3.js";
+import level4 from "../assets/maps/level4.js";
 
 let GAME_HEIGHT = gameMap.height * 32;
 let GAME_WIDTH = gameMap.width * 32;
@@ -64,7 +65,7 @@ export default class Game {
     );
   }
 
-  maps = [level2, level3]
+  maps = [level2, level3, level4]
   backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png"]
 
   renderMenu = () => {
@@ -198,6 +199,7 @@ export default class Game {
       x: 64,
       y: GAME_HEIGHT - 64
     }
+    this.pabbot.health++;
 
     this.map = new Map();
     this.camera = new Camera(
