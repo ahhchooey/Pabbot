@@ -5,8 +5,9 @@ import Camera from "./camera.js";
 import Map from "./map.js";
 import Collision from "./collision.js";
 import Enemies from "./enemies/enemies.js";
+import Sound from "./sound.js";
 
-import gameMap from "../assets/maps/level1.js";
+import gameMap from "../assets/maps/level2.js";
 import level2 from "../assets/maps/level2.js";
 import level3 from "../assets/maps/level3.js";
 import level4 from "../assets/maps/level4.js";
@@ -64,6 +65,9 @@ export default class Game {
       this.run,
       gameMap
     );
+
+    this.bgm = new Sound("../assets/sound/pabbotSafari.m4a", 0.2);
+    this.deadm = new Sound("../assets/sound/pabbotEnd.mp3", 1.0)
   }
 
   maps = [level2, level3, level4, endMap]
@@ -124,13 +128,18 @@ export default class Game {
     if (this.playId) {
 
       window.cancelAnimationFrame(this.playId);
+
+      this.bgm.stop();
+      this.deadm.play();
       setTimeout(this.reset, 2000);
       this.end = true;
     }
   }
 
   run = () => {
-      this.playId = window.requestAnimationFrame(this.frame);
+    this.bgm.loop = true;
+    this.bgm.play();
+    this.playId = window.requestAnimationFrame(this.frame);
   };
 
   pause = () => {

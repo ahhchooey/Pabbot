@@ -86,62 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/maps/level1.js":
-/*!*******************************!*\
-  !*** ./assets/maps/level1.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util.js */ "./assets/maps/util.js");
-
-var gameMap = {
-  "mapArray": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 9, 0, 0, 0, 0, 12, 12, 11, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 18, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 31, 8, 8, 9, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 17, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 6, 0, 0, 10, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 31, 8, 9, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 1, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 11, 0, 0, 0, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 14, 15, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 8, 8, 26, 3, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0, 0, 16, 17, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 16, 17, 17, 17, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 26, 2, 2, 2, 2, 2, 2, 3, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 7, 8, 26, 3, 12, 12, 12, 11, 12, 1, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 1, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 7, 8, 8, 26, 2, 2, 2, 2, 2, 25, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-  "tileheight": 32,
-  "tilewidth": 32,
-  "width": 100,
-  "height": 10,
-  "enemies": [{
-    type: "potato",
-    x: 800,
-    y: 64,
-    moveSet: ["left", "stand", "right", "stand"]
-  }, {
-    type: "potato",
-    x: 948,
-    y: 64,
-    moveSet: ["left", "left", "stand", "right", "right", "stand"]
-  }, {
-    type: "potato",
-    x: 1280,
-    y: 64
-  }, {
-    type: "potato",
-    x: 2464,
-    y: 64
-  }, {
-    type: "potato",
-    x: 2750,
-    y: 150,
-    moveSet: ["right", "right", "stand", "left", "left", "stand"]
-  }, {
-    type: "potato",
-    x: 2912,
-    y: 128
-  }, {
-    type: "potato",
-    x: 3008,
-    y: 32,
-    moveSet: ["right", "left"]
-  }]
-};
-gameMap.collisionMap = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["collisionMapGenerator"])(gameMap.mapArray);
-/* harmony default export */ __webpack_exports__["default"] = (gameMap);
-
-/***/ }),
-
 /***/ "./assets/maps/level2.js":
 /*!*******************************!*\
   !*** ./assets/maps/level2.js ***!
@@ -1066,6 +1010,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Fireball; });
 /* harmony import */ var _entity_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entity.js */ "./src/entity.js");
 /* harmony import */ var _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../tileSheet.js */ "./src/tileSheet.js");
+/* harmony import */ var _sound_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sound.js */ "./src/sound.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1079,6 +1024,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1115,6 +1061,8 @@ function (_Entity) {
     _this.hit = function () {
       if (_this.getDistance(_this.pabbot) < 17 && _this.pabbot.lastHit <= 0) {
         if (!_this.pabbot.isDashing) {
+          _this.fireHit.sound.cloneNode(true).play();
+
           _this.pabbot.health--;
           _this.pabbot.lastHit = 50;
 
@@ -1141,6 +1089,7 @@ function (_Entity) {
     _this.pabbot = pabbot;
     _this.active = true;
     _this.timer = 125;
+    _this.fireHit = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/fireHit.mp3", 1.0);
     return _this;
   }
 
@@ -1164,6 +1113,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _entity_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entity.js */ "./src/entity.js");
 /* harmony import */ var _fireBall_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fireBall.js */ "./src/enemies/fireBall.js");
 /* harmony import */ var _tileSheet_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tileSheet.js */ "./src/tileSheet.js");
+/* harmony import */ var _sound_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../sound.js */ "./src/sound.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1177,6 +1127,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1312,6 +1263,8 @@ function (_Entity) {
           if (_this.fireLeft[0] === 128 && _this.fireLeft[_this.fireLeft.length - 1] === 96) {
             var fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x, _this.position.y + 10, 8, 8, null, -5 * (Math.abs(_this.position.x - _this.pabbot.position.x) / _this.getDistance(_this.pabbot)), vertFactor * (Math.abs(_this.position.y - _this.pabbot.position.y) / _this.getDistance(_this.pabbot)), _this.pabbot);
 
+            _this.fireSound.sound.cloneNode(true).play();
+
             _this.fireballs.push(fb);
           }
         } else if (_this.facing === "right") {
@@ -1319,6 +1272,8 @@ function (_Entity) {
 
           if (_this.fireRight[0] === 320 && _this.fireRight[_this.fireRight.length - 1] === 288) {
             var _fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x + 32, _this.position.y + 10, 8, 8, null, 5 * (Math.abs(_this.position.x - _this.pabbot.position.x) / _this.getDistance(_this.pabbot)), vertFactor * (Math.abs(_this.position.y - _this.pabbot.position.y) / _this.getDistance(_this.pabbot)), _this.pabbot);
+
+            _this.fireSound.sound.cloneNode(true).play();
 
             _this.fireballs.push(_fb);
           }
@@ -1345,6 +1300,7 @@ function (_Entity) {
     _this.pabbot = pabbot;
     _this.moveSet = moveSet || ["stand", "fire", "stand", "stand"];
     _this.fireballs = [];
+    _this.fireSound = new _sound_js__WEBPACK_IMPORTED_MODULE_3__["default"]("../assets/sound/fireShot.mp3", 1.0);
     return _this;
   }
 
@@ -1633,7 +1589,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./map.js */ "./src/map.js");
 /* harmony import */ var _collision_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./collision.js */ "./src/collision.js");
 /* harmony import */ var _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./enemies/enemies.js */ "./src/enemies/enemies.js");
-/* harmony import */ var _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../assets/maps/level1.js */ "./assets/maps/level1.js");
+/* harmony import */ var _sound_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./sound.js */ "./src/sound.js");
 /* harmony import */ var _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../assets/maps/level2.js */ "./assets/maps/level2.js");
 /* harmony import */ var _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../assets/maps/level3.js */ "./assets/maps/level3.js");
 /* harmony import */ var _assets_maps_level4_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../assets/maps/level4.js */ "./assets/maps/level4.js");
@@ -1652,8 +1608,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
-var GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
+
+var GAME_HEIGHT = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"].height * 32;
+var GAME_WIDTH = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"].width * 32;
 
 var Game = function Game(context, reset) {
   var _this = this;
@@ -1726,12 +1683,21 @@ var Game = function Game(context, reset) {
 
     if (_this.playId) {
       window.cancelAnimationFrame(_this.playId);
+
+      _this.bgm.stop();
+
+      _this.deadm.play();
+
       setTimeout(_this.reset, 2000);
       _this.end = true;
     }
   };
 
   this.run = function () {
+    _this.bgm.loop = true;
+
+    _this.bgm.play();
+
     _this.playId = window.requestAnimationFrame(_this.frame);
   };
 
@@ -1818,20 +1784,22 @@ var Game = function Game(context, reset) {
   this.reset = reset;
   this.context.canvas.width = 640;
   this.context.canvas.height = 320;
-  GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].height * 32;
-  GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width * 32;
+  GAME_HEIGHT = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"].height * 32;
+  GAME_WIDTH = _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"].width * 32;
   this.playId;
   this.timeStart = 0;
   this.run = this.run.bind(this);
   this.gameOver = this.gameOver.bind(this);
   this.handlePause();
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](64, GAME_HEIGHT - 64, 32, 32);
-  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].enemies, this.pabbot);
+  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"].enemies, this.pabbot);
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
-  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
-  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].collisionMap, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.nextLevel);
-  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_7__["default"]);
+  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
+  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"].collisionMap, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"].width, this.nextLevel);
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_8__["default"]);
+  this.bgm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotSafari.m4a", 0.2);
+  this.deadm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotEnd.mp3", 1.0);
 };
 
 
@@ -2309,6 +2277,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Pabbot; });
 /* harmony import */ var _entity_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./entity.js */ "./src/entity.js");
 /* harmony import */ var _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tileSheet.js */ "./src/tileSheet.js");
+/* harmony import */ var _sound_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sound.js */ "./src/sound.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2322,6 +2291,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2502,6 +2472,8 @@ function (_Entity) {
 
     _this.dash = function () {
       if (_this.isJumping && !_this.isDashing) {
+        _this.dashSound.sound.cloneNode(true).play();
+
         _this.isDashing = true;
         _this.speed.x = 0;
         _this.speed.y = 0;
@@ -2517,8 +2489,12 @@ function (_Entity) {
       enemies.forEach(function (enemy) {
         if (_this.getDistance(enemy) < 30 && _this.lastHit <= 0 && enemy.health > 0) {
           if (_this.isDashing) {
+            _this.tackleSound.sound.cloneNode(true).play();
+
             enemy.health--;
           } else {
+            _this.hitSound.sound.cloneNode(true).play();
+
             _this.lastHit = 50;
             _this.health--;
           }
@@ -2538,6 +2514,9 @@ function (_Entity) {
 
     _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](32, 25);
     _this.tileSheet.image.src = "../assets/Pabbot.png";
+    _this.dashSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/spin.mp3", 1.0);
+    _this.hitSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/hit.mp3", 1.0);
+    _this.tackleSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/tackle.mp3", 1.0);
     return _this;
   }
 
@@ -2545,6 +2524,46 @@ function (_Entity) {
 }(_entity_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
+
+/***/ }),
+
+/***/ "./src/sound.js":
+/*!**********************!*\
+  !*** ./src/sound.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function Sound(src, vol) {
+  var _this = this;
+
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+
+  this.play = function () {
+    _this.prom = _this.sound.play();
+
+    if (_this.prom !== undefined) {
+      _this.prom.then(function () {})["catch"](function (err) {
+        return console.log("Audio failed to load.");
+      });
+    }
+  };
+
+  this.stop = function () {
+    _this.sound.pause();
+  };
+
+  this.sound.volume = parseFloat(vol);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Sound);
 
 /***/ }),
 

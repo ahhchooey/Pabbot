@@ -1,5 +1,6 @@
 import Entity from "../entity.js";
 import TileSheet from "../tileSheet.js";
+import Sound from "../sound.js";
 
 
 export default class Fireball extends Entity {
@@ -17,6 +18,8 @@ export default class Fireball extends Entity {
     this.pabbot = pabbot;
     this.active = true;
     this.timer = 125;
+
+    this.fireHit = new Sound("../assets/sound/fireHit.mp3", 1.0);
   }
 
   rotate = [0, 0, 0, 0, 8, 8, 8, 8, 16, 16, 16, 16, 24, 24, 24, 24];
@@ -50,6 +53,7 @@ export default class Fireball extends Entity {
   hit = () => {
     if (this.getDistance(this.pabbot) < 17 && this.pabbot.lastHit <= 0) {
       if (!this.pabbot.isDashing) {
+        this.fireHit.sound.cloneNode(true).play();
         this.pabbot.health--;
         this.pabbot.lastHit = 50;
 

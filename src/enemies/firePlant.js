@@ -1,6 +1,7 @@
 import Entity from "../entity.js";
 import Fireball from "./fireBall.js";
 import TileSheet from "../tileSheet.js";
+import Sound from "../sound.js";
 
 
 export default class FirePlant extends Entity {
@@ -15,6 +16,8 @@ export default class FirePlant extends Entity {
     this.moveSet = moveSet || ["stand", "fire", "stand", "stand"];
 
     this.fireballs = [];
+
+    this.fireSound = new Sound("../assets/sound/fireShot.mp3", 1.0);
   }
 
   speed = {
@@ -139,6 +142,7 @@ export default class FirePlant extends Entity {
               / this.getDistance(this.pabbot)), 
             this.pabbot
           );
+          this.fireSound.sound.cloneNode(true).play();
           this.fireballs.push(fb);
         }
       } else if (this.facing === "right") {
@@ -157,6 +161,7 @@ export default class FirePlant extends Entity {
               / this.getDistance(this.pabbot)), 
             this.pabbot
           );
+          this.fireSound.sound.cloneNode(true).play();
           this.fireballs.push(fb);
         }
       }

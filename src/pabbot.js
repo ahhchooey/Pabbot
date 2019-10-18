@@ -1,5 +1,6 @@
 import Entity from "./entity.js";
 import TileSheet from "./tileSheet.js";
+import Sound from "./sound.js";
 
 
 export default class Pabbot extends Entity {
@@ -7,6 +8,10 @@ export default class Pabbot extends Entity {
     super(x, y, width, height)
     this.tileSheet = new TileSheet(32, 25);
     this.tileSheet.image.src = "../assets/Pabbot.png";
+
+    this.dashSound = new Sound("../assets/sound/spin.mp3", 1.0);
+    this.hitSound = new Sound("../assets/sound/hit.mp3", 1.0);
+    this.tackleSound = new Sound("../assets/sound/tackle.mp3", 1.0);
   }
 
   health = 3;
@@ -182,6 +187,7 @@ export default class Pabbot extends Entity {
 
   dash = () => {
     if (this.isJumping && !this.isDashing) {
+      this.dashSound.sound.cloneNode(true).play();
       this.isDashing = true;
       this.speed.x = 0;
       this.speed.y = 0;
@@ -197,8 +203,10 @@ export default class Pabbot extends Entity {
     enemies.forEach(enemy => {
       if (this.getDistance(enemy) < 30 && this.lastHit <= 0 && enemy.health > 0) {
         if (this.isDashing) {
+          this.tackleSound.sound.cloneNode(true).play();
           enemy.health--;
         } else {
+          this.hitSound.sound.cloneNode(true).play();
           this.lastHit = 50;
           this.health--;
         }
