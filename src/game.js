@@ -7,7 +7,7 @@ import Collision from "./collision.js";
 import Enemies from "./enemies/enemies.js";
 import Sound from "./sound.js";
 
-import gameMap from "../assets/maps/level2.js";
+import gameMap from "../assets/maps/level1.js";
 import level2 from "../assets/maps/level2.js";
 import level3 from "../assets/maps/level3.js";
 import level4 from "../assets/maps/level4.js";
