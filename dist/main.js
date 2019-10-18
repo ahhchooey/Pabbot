@@ -530,8 +530,10 @@ var collisionMapGenerator = function collisionMapGenerator(array) {
         return 14;
 
       case 27:
-      case 28:
         return 13;
+
+      case 28:
+        return 15;
 
       case 29:
         return 4;
@@ -745,6 +747,11 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
         _this.collideNextLevel(ent, tileX, tileY);
 
         break;
+
+      case 15:
+        _this.collideTopSpike(ent, tileY + 32);
+
+        break;
     }
   };
 
@@ -814,7 +821,19 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
 
   this.collideInstantDeath = function (ent, tileTop) {
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
+      ent.hitSound.sound.cloneNode(true).play();
       ent.health -= 3;
+      return true;
+    }
+
+    return false;
+  };
+
+  this.collideTopSpike = function (ent, tileBottom) {
+    if (ent.getTop() < tileBottom && ent.getPastTop() >= tileBottom) {
+      ent.hitSound.sound.cloneNode(true).play();
+      ent.health -= 1;
+      ent.lastHit = 100;
       return true;
     }
 
@@ -2401,6 +2420,22 @@ function (_Entity) {
       var hold;
 
       switch (true) {
+        case _this.facing === "left" && _this.isDashing:
+          hold = _this.dashingLeft.shift();
+
+          _this.dashingLeft.push(hold);
+
+          sprite = hold;
+          break;
+
+        case _this.facing === "right" && _this.isDashing:
+          hold = _this.dashingRight.shift();
+
+          _this.dashingRight.push(hold);
+
+          sprite = hold;
+          break;
+
         case _this.facing === "right" && !_this.isJumping && _this.speed.x === 0:
           sprite = _this.standRight;
           if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
@@ -2413,14 +2448,6 @@ function (_Entity) {
 
           sprite = hold;
           if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
-          break;
-
-        case _this.facing === "right" && _this.isDashing:
-          hold = _this.dashingRight.shift();
-
-          _this.dashingRight.push(hold);
-
-          sprite = hold;
           break;
 
         case _this.facing === "right" && _this.isJumping && _this.speed.y < 0:
@@ -2445,14 +2472,6 @@ function (_Entity) {
 
           sprite = hold;
           if (_this.lastHit > 0 || _this.health <= 0) sprite += 320;
-          break;
-
-        case _this.facing === "left" && _this.isDashing:
-          hold = _this.dashingLeft.shift();
-
-          _this.dashingLeft.push(hold);
-
-          sprite = hold;
           break;
 
         case _this.facing === "left" && _this.isJumping && _this.speed.y < 0:
@@ -2528,12 +2547,12 @@ function (_Entity) {
     };
 
     _this.dash = function () {
-      if (_this.isJumping && !_this.isDashing) {
+      if (_this.isJumping && !_this.isDashing || !_this.isDashing && _this.speed.y > 50) {
         _this.dashSound.sound.cloneNode(true).play();
 
         _this.isDashing = true;
         _this.speed.x = 0;
-        _this.speed.y = 0;
+        _this.speed.y = -1;
         if (_this.upActive) _this.speed.y -= _this.dashSpeed;
         if (_this.leftActive) _this.speed.x -= _this.dashSpeed;
         if (_this.downActive) _this.speed.y += _this.dashSpeed;
@@ -2544,6 +2563,15 @@ function (_Entity) {
     _this.danger = function (enemies) {
       _this.lastHit--;
       enemies.forEach(function (enemy) {
+        if (_this.isDashing && _this.getDistance(enemy) < 30 && enemy.health > 0) {
+          _this.tackleSound.sound.cloneNode(true).play();
+
+          enemy.health--;
+          _this.speed.x = -_this.speed.x * 0.3;
+          _this.speed.y = -100;
+          return;
+        }
+
         if (_this.getDistance(enemy) < 30 && _this.lastHit <= 0 && enemy.health > 0) {
           if (_this.isDashing) {
             _this.tackleSound.sound.cloneNode(true).play();
@@ -2552,7 +2580,7 @@ function (_Entity) {
           } else {
             _this.hitSound.sound.cloneNode(true).play();
 
-            _this.lastHit = 50;
+            _this.lastHit = 100;
             _this.health--;
           }
 
@@ -2563,8 +2591,6 @@ function (_Entity) {
             _this.speed.x = -_this.speed.x * 0.3;
             _this.speed.y = -100;
           }
-
-          setTimeout(_this.stop, 200);
         }
       });
     };

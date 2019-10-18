@@ -54,6 +54,17 @@ export default class Pabbot extends Entity {
     let sprite;
     let hold;
     switch(true) {
+      case (this.facing === "left" && this.isDashing):
+        hold = this.dashingLeft.shift();
+        this.dashingLeft.push(hold);
+        sprite = hold;
+        break;
+      case (this.facing === "right" && this.isDashing):
+        hold = this.dashingRight.shift();
+        this.dashingRight.push(hold);
+        sprite = hold;
+        break;
+
       case (this.facing === "right" && !this.isJumping && this.speed.x === 0):
         sprite = this.standRight;
         if (this.lastHit > 0 || this.health <= 0) sprite += 320;
@@ -63,11 +74,6 @@ export default class Pabbot extends Entity {
         this.runningRight.push(hold);
         sprite = hold;
         if (this.lastHit > 0 || this.health <= 0) sprite += 320;
-        break;
-      case (this.facing === "right" && this.isDashing):
-        hold = this.dashingRight.shift();
-        this.dashingRight.push(hold);
-        sprite = hold;
         break;
       case (this.facing === "right" && this.isJumping  && this.speed.y < 0):
         sprite = this.jumpingRight;
@@ -87,11 +93,6 @@ export default class Pabbot extends Entity {
         this.runningLeft.push(hold);
         sprite = hold;
         if (this.lastHit > 0 || this.health <= 0) sprite += 320;
-        break;
-      case (this.facing === "left" && this.isDashing):
-        hold = this.dashingLeft.shift();
-        this.dashingLeft.push(hold);
-        sprite = hold;
         break;
       case (this.facing === "left" && this.isJumping && this.speed.y < 0):
         sprite = this.jumpingLeft;
@@ -186,11 +187,11 @@ export default class Pabbot extends Entity {
   }
 
   dash = () => {
-    if (this.isJumping && !this.isDashing) {
+    if ((this.isJumping && !this.isDashing) || (!this.isDashing && this.speed.y > 50)) {
       this.dashSound.sound.cloneNode(true).play();
       this.isDashing = true;
       this.speed.x = 0;
-      this.speed.y = 0;
+      this.speed.y = -1;
       if (this.upActive) this.speed.y -= this.dashSpeed;
       if (this.leftActive) this.speed.x -= this.dashSpeed;
       if (this.downActive) this.speed.y += this.dashSpeed;
@@ -201,13 +202,20 @@ export default class Pabbot extends Entity {
   danger = (enemies) => {
     this.lastHit--;
     enemies.forEach(enemy => {
+      if (this.isDashing && this.getDistance(enemy) < 30 && enemy.health > 0) {
+        this.tackleSound.sound.cloneNode(true).play();
+        enemy.health--;
+        this.speed.x = -this.speed.x * 0.3;
+        this.speed.y = -100;
+        return;
+      }
       if (this.getDistance(enemy) < 30 && this.lastHit <= 0 && enemy.health > 0) {
         if (this.isDashing) {
           this.tackleSound.sound.cloneNode(true).play();
           enemy.health--;
         } else {
           this.hitSound.sound.cloneNode(true).play();
-          this.lastHit = 50;
+          this.lastHit = 100;
           this.health--;
         }
 
@@ -218,7 +226,6 @@ export default class Pabbot extends Entity {
           this.speed.x = -this.speed.x * 0.3;
           this.speed.y = -100;
         }
-        setTimeout(this.stop, 200);
       }
     })
   }

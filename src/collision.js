@@ -99,6 +99,9 @@ export default class Collision {
       case 14:
         this.collideNextLevel(ent, tileX, tileY);
         break;
+      case 15:
+        this.collideTopSpike(ent, tileY + 32);
+        break;
     }
   }
 
@@ -154,7 +157,18 @@ export default class Collision {
 
   collideInstantDeath = (ent, tileTop) => {
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
+      ent.hitSound.sound.cloneNode(true).play();
       ent.health -= 3;
+      return true;
+    }
+    return false;
+  }
+  
+  collideTopSpike = (ent, tileBottom) => {
+    if (ent.getTop() < tileBottom && ent.getPastTop() >= tileBottom) {
+      ent.hitSound.sound.cloneNode(true).play();
+      ent.health -= 1;
+      ent.lastHit = 100;
       return true;
     }
     return false;
