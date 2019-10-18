@@ -4,14 +4,16 @@ import Sound from "./sound.js";
 
 
 export default class Pabbot extends Entity {
-  constructor(x, y, width, height) {
+  constructor(x, y, width, height, mute) {
     super(x, y, width, height)
     this.tileSheet = new TileSheet(32, 25);
     this.tileSheet.image.src = "../assets/Pabbot.png";
 
-    this.dashSound = new Sound("../assets/sound/spin.mp3", 1.0);
-    this.hitSound = new Sound("../assets/sound/hit.mp3", 1.0);
-    this.tackleSound = new Sound("../assets/sound/tackle.mp3", 1.0);
+    this.dashSound = new Sound("../assets/sound/spin.mp3", 0.0);
+    this.hitSound = new Sound("../assets/sound/hit.mp3", 0.0);
+    this.tackleSound = new Sound("../assets/sound/tackle.mp3", 0.0);
+
+    this.checkMute = mute;
   }
 
   health = 3;
@@ -188,7 +190,7 @@ export default class Pabbot extends Entity {
 
   dash = () => {
     if ((this.isJumping && !this.isDashing) || (!this.isDashing && this.speed.y > 50)) {
-      this.dashSound.sound.cloneNode(true).play();
+      if (!this.checkMute()) this.dashSound.sound.cloneNode(true).play();
       this.isDashing = true;
       this.speed.x = 0;
       this.speed.y = -1;
@@ -203,7 +205,7 @@ export default class Pabbot extends Entity {
     this.lastHit--;
     enemies.forEach(enemy => {
       if (this.isDashing && this.getDistance(enemy) < 30 && enemy.health > 0) {
-        this.tackleSound.sound.cloneNode(true).play();
+        if (!this.checkMute()) this.tackleSound.sound.cloneNode(true).play();
         enemy.health--;
         this.speed.x = -this.speed.x * 0.3;
         this.speed.y = -100;
@@ -211,10 +213,10 @@ export default class Pabbot extends Entity {
       }
       if (this.getDistance(enemy) < 30 && this.lastHit <= 0 && enemy.health > 0) {
         if (this.isDashing) {
-          this.tackleSound.sound.cloneNode(true).play();
+          if (!this.checkMute()) this.tackleSound.sound.cloneNode(true).play();
           enemy.health--;
         } else {
-          this.hitSound.sound.cloneNode(true).play();
+          if (!this.checkMute()) this.hitSound.sound.cloneNode(true).play();
           this.lastHit = 100;
           this.health--;
         }

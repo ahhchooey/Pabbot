@@ -5,7 +5,7 @@ import Sound from "../sound.js";
 
 
 export default class FirePlant extends Entity {
-  constructor(x, y, width, height, moveSet, pabbot) {
+  constructor(x, y, width, height, moveSet, pabbot, checkMute) {
     super(x, y, width, height, moveSet);
     this.health = 1;
     this.tileSheet = new TileSheet(32, 12);
@@ -18,6 +18,8 @@ export default class FirePlant extends Entity {
     this.fireballs = [];
 
     this.fireSound = new Sound("../assets/sound/fireShot.mp3", 1.0);
+
+    this.checkMute = checkMute;
   }
 
   speed = {
@@ -140,9 +142,10 @@ export default class FirePlant extends Entity {
               / this.getDistance(this.pabbot)), 
             vertFactor*(Math.abs(this.position.y - this.pabbot.position.y) 
               / this.getDistance(this.pabbot)), 
-            this.pabbot
+            this.pabbot,
+            this.checkMute
           );
-          this.fireSound.sound.cloneNode(true).play();
+          if (!this.checkMute()) this.fireSound.sound.cloneNode(true).play();
           this.fireballs.push(fb);
         }
       } else if (this.facing === "right") {
@@ -159,9 +162,10 @@ export default class FirePlant extends Entity {
               / this.getDistance(this.pabbot)), 
             vertFactor*(Math.abs(this.position.y - this.pabbot.position.y) 
               / this.getDistance(this.pabbot)), 
-            this.pabbot
+            this.pabbot,
+            this.checkMute
           );
-          this.fireSound.sound.cloneNode(true).play();
+          if (!this.checkMute()) this.fireSound.sound.cloneNode(true).play();
           this.fireballs.push(fb);
         }
       }

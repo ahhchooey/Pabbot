@@ -1026,7 +1026,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var Enemies = function Enemies(enemies, pabbot) {
+var Enemies = function Enemies(enemies, pabbot, checkMute) {
   var _this = this;
 
   _classCallCheck(this, Enemies);
@@ -1064,7 +1064,7 @@ var Enemies = function Enemies(enemies, pabbot) {
         return new _potato_js__WEBPACK_IMPORTED_MODULE_0__["default"](enemy.x, enemy.y, 32, 32, enemy.moveSet);
 
       case "firePlant":
-        return new _firePlant_js__WEBPACK_IMPORTED_MODULE_1__["default"](enemy.x, enemy.y, 32, 32, enemy.moveSet, pabbot);
+        return new _firePlant_js__WEBPACK_IMPORTED_MODULE_1__["default"](enemy.x, enemy.y, 32, 32, enemy.moveSet, pabbot, checkMute);
     }
   });
 };
@@ -1109,7 +1109,7 @@ var Fireball =
 function (_Entity) {
   _inherits(Fireball, _Entity);
 
-  function Fireball(x, y, width, height, moveSet, speedX, speedY, pabbot) {
+  function Fireball(x, y, width, height, moveSet, speedX, speedY, pabbot, checkMute) {
     var _this;
 
     _classCallCheck(this, Fireball);
@@ -1136,8 +1136,7 @@ function (_Entity) {
     _this.hit = function () {
       if (_this.getDistance(_this.pabbot) < 17 && _this.pabbot.lastHit <= 0) {
         if (!_this.pabbot.isDashing) {
-          _this.fireHit.sound.cloneNode(true).play();
-
+          if (!_this.checkMute()) _this.fireHit.sound.cloneNode(true).play();
           _this.pabbot.health--;
           _this.pabbot.lastHit = 50;
 
@@ -1165,6 +1164,7 @@ function (_Entity) {
     _this.active = true;
     _this.timer = 125;
     _this.fireHit = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/fireHit.mp3", 1.0);
+    _this.checkMute = checkMute;
     return _this;
   }
 
@@ -1213,7 +1213,7 @@ var FirePlant =
 function (_Entity) {
   _inherits(FirePlant, _Entity);
 
-  function FirePlant(x, y, width, height, moveSet, pabbot) {
+  function FirePlant(x, y, width, height, moveSet, pabbot, checkMute) {
     var _this;
 
     _classCallCheck(this, FirePlant);
@@ -1336,9 +1336,8 @@ function (_Entity) {
           _this.firingLeft = true;
 
           if (_this.fireLeft[0] === 128 && _this.fireLeft[_this.fireLeft.length - 1] === 96) {
-            var fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x, _this.position.y + 10, 8, 8, null, -5 * (Math.abs(_this.position.x - _this.pabbot.position.x) / _this.getDistance(_this.pabbot)), vertFactor * (Math.abs(_this.position.y - _this.pabbot.position.y) / _this.getDistance(_this.pabbot)), _this.pabbot);
-
-            _this.fireSound.sound.cloneNode(true).play();
+            var fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x, _this.position.y + 10, 8, 8, null, -5 * (Math.abs(_this.position.x - _this.pabbot.position.x) / _this.getDistance(_this.pabbot)), vertFactor * (Math.abs(_this.position.y - _this.pabbot.position.y) / _this.getDistance(_this.pabbot)), _this.pabbot, _this.checkMute);
+            if (!_this.checkMute()) _this.fireSound.sound.cloneNode(true).play();
 
             _this.fireballs.push(fb);
           }
@@ -1346,9 +1345,9 @@ function (_Entity) {
           _this.firingRight = true;
 
           if (_this.fireRight[0] === 320 && _this.fireRight[_this.fireRight.length - 1] === 288) {
-            var _fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x + 32, _this.position.y + 10, 8, 8, null, 5 * (Math.abs(_this.position.x - _this.pabbot.position.x) / _this.getDistance(_this.pabbot)), vertFactor * (Math.abs(_this.position.y - _this.pabbot.position.y) / _this.getDistance(_this.pabbot)), _this.pabbot);
+            var _fb = new _fireBall_js__WEBPACK_IMPORTED_MODULE_1__["default"](_this.position.x + 32, _this.position.y + 10, 8, 8, null, 5 * (Math.abs(_this.position.x - _this.pabbot.position.x) / _this.getDistance(_this.pabbot)), vertFactor * (Math.abs(_this.position.y - _this.pabbot.position.y) / _this.getDistance(_this.pabbot)), _this.pabbot, _this.checkMute);
 
-            _this.fireSound.sound.cloneNode(true).play();
+            if (!_this.checkMute()) _this.fireSound.sound.cloneNode(true).play();
 
             _this.fireballs.push(_fb);
           }
@@ -1376,6 +1375,7 @@ function (_Entity) {
     _this.moveSet = moveSet || ["stand", "fire", "stand", "stand"];
     _this.fireballs = [];
     _this.fireSound = new _sound_js__WEBPACK_IMPORTED_MODULE_3__["default"]("../assets/sound/fireShot.mp3", 1.0);
+    _this.checkMute = checkMute;
     return _this;
   }
 
@@ -1712,6 +1712,37 @@ var Game = function Game(context, reset) {
     _this.display.render();
   };
 
+  this.checkMute = function () {
+    return _this.mute;
+  };
+
+  this.soundControl = function () {
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "m") {
+        var audios = document.querySelectorAll("audio");
+
+        if (!_this.mute) {
+          _this.mute = true;
+
+          for (var i = 0; i < audios.length; i++) {
+            audios[i].volume = parseFloat(0.0);
+          }
+
+          document.querySelector(".background").style.opacity = 0.15;
+        } else {
+          _this.mute = false;
+
+          for (var _i = 0; _i < audios.length; _i++) {
+            audios[_i].volume = parseFloat(1.0);
+          }
+
+          _this.bgm.sound.volume = 0.2;
+          document.querySelector(".background").style.opacity = 0.3;
+        }
+      }
+    });
+  };
+
   this.frame = function (timeStamp) {
     var timeDelta = timeStamp - _this.timeStart;
     _this.timeStart = timeStamp;
@@ -1806,6 +1837,8 @@ var Game = function Game(context, reset) {
 
   this.resize = function () {
     _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight, _this.context.canvas.height / _this.context.canvas.width);
+
+    _this.renderMenu();
   };
 
   this.deadJump = false;
@@ -1839,7 +1872,7 @@ var Game = function Game(context, reset) {
     _this.context.canvas.height = 320;
     GAME_HEIGHT = currentMap.height * 32;
     GAME_WIDTH = currentMap.width * 32;
-    _this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](currentMap.enemies, _this.pabbot);
+    _this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](currentMap.enemies, _this.pabbot, _this.checkMute);
     _this.pabbot.position = {
       x: 64,
       y: GAME_HEIGHT - 64
@@ -1867,8 +1900,8 @@ var Game = function Game(context, reset) {
   this.run = this.run.bind(this);
   this.gameOver = this.gameOver.bind(this);
   this.handlePause();
-  this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](64, GAME_HEIGHT - 64, 32, 32);
-  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].enemies, this.pabbot);
+  this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](64, GAME_HEIGHT - 64, 32, 32, this.checkMute);
+  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].enemies, this.pabbot, this.checkMute);
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
   this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
@@ -1876,6 +1909,8 @@ var Game = function Game(context, reset) {
   this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"]);
   this.bgm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotSafari.m4a", 0.2);
   this.deadm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotEnd.mp3", 1.0);
+  this.mute = false;
+  this.soundControl();
 };
 
 
@@ -2259,7 +2294,7 @@ var Menu = function Menu(dH, dW, context, _buffer) {
         buffer.font = "50px serif";
         buffer.fillText("Pabbot", 100, 100);
         buffer.font = "12px serif";
-        buffer.fillText("ArrowKeys and Enter to Navigate the Menu", 5, 315);
+        buffer.fillText("ArrowKeys and Enter to Navigate the Menu, M to mute", 5, 315);
         break;
 
       case "controls":
@@ -2377,7 +2412,7 @@ var Pabbot =
 function (_Entity) {
   _inherits(Pabbot, _Entity);
 
-  function Pabbot(_x, _y, width, height) {
+  function Pabbot(_x, _y, width, height, mute) {
     var _this;
 
     _classCallCheck(this, Pabbot);
@@ -2548,8 +2583,7 @@ function (_Entity) {
 
     _this.dash = function () {
       if (_this.isJumping && !_this.isDashing || !_this.isDashing && _this.speed.y > 50) {
-        _this.dashSound.sound.cloneNode(true).play();
-
+        if (!_this.checkMute()) _this.dashSound.sound.cloneNode(true).play();
         _this.isDashing = true;
         _this.speed.x = 0;
         _this.speed.y = -1;
@@ -2564,8 +2598,7 @@ function (_Entity) {
       _this.lastHit--;
       enemies.forEach(function (enemy) {
         if (_this.isDashing && _this.getDistance(enemy) < 30 && enemy.health > 0) {
-          _this.tackleSound.sound.cloneNode(true).play();
-
+          if (!_this.checkMute()) _this.tackleSound.sound.cloneNode(true).play();
           enemy.health--;
           _this.speed.x = -_this.speed.x * 0.3;
           _this.speed.y = -100;
@@ -2574,12 +2607,10 @@ function (_Entity) {
 
         if (_this.getDistance(enemy) < 30 && _this.lastHit <= 0 && enemy.health > 0) {
           if (_this.isDashing) {
-            _this.tackleSound.sound.cloneNode(true).play();
-
+            if (!_this.checkMute()) _this.tackleSound.sound.cloneNode(true).play();
             enemy.health--;
           } else {
-            _this.hitSound.sound.cloneNode(true).play();
-
+            if (!_this.checkMute()) _this.hitSound.sound.cloneNode(true).play();
             _this.lastHit = 100;
             _this.health--;
           }
@@ -2597,9 +2628,10 @@ function (_Entity) {
 
     _this.tileSheet = new _tileSheet_js__WEBPACK_IMPORTED_MODULE_1__["default"](32, 25);
     _this.tileSheet.image.src = "../assets/Pabbot.png";
-    _this.dashSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/spin.mp3", 1.0);
-    _this.hitSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/hit.mp3", 1.0);
-    _this.tackleSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/tackle.mp3", 1.0);
+    _this.dashSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/spin.mp3", 0.0);
+    _this.hitSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/hit.mp3", 0.0);
+    _this.tackleSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/tackle.mp3", 0.0);
+    _this.checkMute = mute;
     return _this;
   }
 

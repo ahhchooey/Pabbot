@@ -32,8 +32,8 @@ export default class Game {
     this.gameOver = this.gameOver.bind(this);
     this.handlePause();
 
-    this.pabbot = new Pabbot(64, GAME_HEIGHT - 64, 32, 32);
-    this.enemies = new Enemies(gameMap.enemies, this.pabbot);
+    this.pabbot = new Pabbot(64, GAME_HEIGHT - 64, 32, 32, this.checkMute);
+    this.enemies = new Enemies(gameMap.enemies, this.pabbot, this.checkMute);
 
     this.map = new Map();
     this.inputHandler = new InputHandler(this.pabbot);
@@ -68,6 +68,9 @@ export default class Game {
 
     this.bgm = new Sound("../assets/sound/pabbotSafari.m4a", 0.2);
     this.deadm = new Sound("../assets/sound/pabbotEnd.mp3", 1.0)
+
+    this.mute = false;
+    this.soundControl();
   }
 
   maps = [level2, level3, level4, endMap]
@@ -83,6 +86,34 @@ export default class Game {
     this.display.drawEnemies();
     this.display.drawPabbot();
     this.display.render();
+  }
+
+  checkMute = () => {
+    return this.mute;
+  }
+
+  soundControl = () => {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "m") {
+        let audios = document.querySelectorAll("audio");
+
+        if (!this.mute) {
+          this.mute = true;
+          for (let i = 0; i < audios.length; i++) {
+            audios[i].volume = parseFloat(0.0);
+          }
+          document.querySelector(".background").style.opacity = 0.15;
+        } else {
+          this.mute = false;
+          for (let i = 0; i < audios.length; i++) {
+            audios[i].volume = parseFloat(1.0);
+          }
+          this.bgm.sound.volume = 0.2;
+          document.querySelector(".background").style.opacity = 0.3;
+        }
+
+      }
+    })
   }
 
   frame = (timeStamp) => {
@@ -176,6 +207,7 @@ export default class Game {
       document.documentElement.clientHeight,
       this.context.canvas.height/this.context.canvas.width 
     )
+    this.renderMenu();
   }
 
   deadJump = false;
@@ -204,7 +236,7 @@ export default class Game {
     GAME_HEIGHT = currentMap.height * 32;
     GAME_WIDTH = currentMap.width * 32;
 
-    this.enemies = new Enemies(currentMap.enemies, this.pabbot);
+    this.enemies = new Enemies(currentMap.enemies, this.pabbot, this.checkMute);
     this.pabbot.position = {
       x: 64,
       y: GAME_HEIGHT - 64

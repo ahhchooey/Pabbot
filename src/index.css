@@ -9,6 +9,7 @@
 }
 
 body {
+  position: relative;
   height: 100vh;
   width: 100vw;
   background-color: rgb(24, 38, 48);
@@ -20,9 +21,18 @@ body {
   align-items: center;
 }
 
+.background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url("../images/background.jpg");
+  opacity: 0.3;
+}
+
 #game {
   border: 0px;
   background-size: 100% 100%;
+  z-index: 99;
 }
 
 .links {

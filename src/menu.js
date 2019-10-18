@@ -137,7 +137,7 @@ export default class Menu {
         buffer.font = "50px serif";
         buffer.fillText("Pabbot", 100, 100)
         buffer.font = "12px serif";
-        buffer.fillText("ArrowKeys and Enter to Navigate the Menu", 5, 315)
+        buffer.fillText("ArrowKeys and Enter to Navigate the Menu, M to mute", 5, 315)
         break;
       case "controls":
         buffer.font = "25px serif";
