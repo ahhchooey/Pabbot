@@ -35,6 +35,12 @@ body {
   z-index: 99;
 }
 
+.game-background {
+  position: absolute;
+  z-index: 98;
+  box-shadow: 0 0 5px 10px rgb(32, 36 57);
+}
+
 .links {
   position: relative;
 }

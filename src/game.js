@@ -81,7 +81,6 @@ export default class Game {
   }
 
   render = () => {
-    this.display.drawBackground();
     this.display.drawMap();
     this.display.drawEnemies();
     this.display.drawPabbot();
@@ -176,6 +175,7 @@ export default class Game {
   pause = () => {
     if (this.playId) {
       window.cancelAnimationFrame(this.playId);
+      this.bgm.stop();
       this.playId = undefined;
       this.context.globalAlpha = 0.3;
       this.context.fillStyle = "#000";
@@ -208,6 +208,7 @@ export default class Game {
       this.context.canvas.height/this.context.canvas.width 
     )
     this.renderMenu();
+    this.display.drawBackground(this.context.canvas.width, this.context.canvas.height);
   }
 
   deadJump = false;

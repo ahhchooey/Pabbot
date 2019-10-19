@@ -148,9 +148,10 @@ export default class Menu {
         buffer.fillText("J/Space - Jump (when on ground)", 80, 150)
         buffer.fillText("K/Shift - Spin (when jumping)", 80, 170)
         buffer.fillText("ESC - Pause/Resume", 80, 190)
-        buffer.fillText("Spin on Enemies to eliminate them", 80, 220)
-        buffer.fillText("Jump on Walls to wall jump", 80, 240)
-        buffer.fillText("Make it to the end of each level", 80, 260)
+        buffer.fillText("M - Mute", 80, 210)
+        buffer.fillText("Spin on Enemies to eliminate them", 80, 240)
+        buffer.fillText("Jump on Walls to wall jump", 80, 260)
+        buffer.fillText("Make it to the end of each level", 80, 280)
         break;
       case "about":
         buffer.font = "25px serif";

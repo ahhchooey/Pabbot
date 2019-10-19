@@ -25,6 +25,7 @@ export default class Display {
 
     this.background = new Image();
     this.background.src = "../assets/pixel_forest.png";
+
   }
 
   handleMenu = (e) => {
@@ -87,6 +88,7 @@ export default class Display {
   }
 
   drawMap = () => {
+    this.buffer.clearRect(0, 0, this.width, this.height)
     this.map.render(this.gameMap.mapArray, this.mapWidth, this.buffer);
     this.pabbot.renderHealth(this.buffer, Math.floor(this.camera.x), Math.floor(this.camera.y));
   }
@@ -100,18 +102,12 @@ export default class Display {
     this.buffer.fillRect(0, 0, this.width, this.height)
   };
 
-  drawBackground = () => {
-    this.buffer.drawImage(
-      this.background, 
-      0, 
-      0,
-      this.displayWidth,
-      this.displayHeight,
-      this.camera.x,
-      this.camera.y,
-      this.context.canvas.width,
-      this.context.canvas.height
-    )
+  drawBackground = (width, height) => {
+    let gbg = document.querySelector(".game-background");
+    gbg.style.width = `${width}px`;
+    gbg.style.height = `${height}px`;
+    gbg.style.backgroundImage = `url(${this.background.src})`;
+    gbg.style.backgroundSize = `${width}px ${height}px`;
   }
 
   render = () => {

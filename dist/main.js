@@ -946,6 +946,8 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
   };
 
   this.drawMap = function () {
+    _this.buffer.clearRect(0, 0, _this.width, _this.height);
+
     _this.map.render(_this.gameMap.mapArray, _this.mapWidth, _this.buffer);
 
     _this.pabbot.renderHealth(_this.buffer, Math.floor(_this.camera.x), Math.floor(_this.camera.y));
@@ -961,8 +963,12 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
     _this.buffer.fillRect(0, 0, _this.width, _this.height);
   };
 
-  this.drawBackground = function () {
-    _this.buffer.drawImage(_this.background, 0, 0, _this.displayWidth, _this.displayHeight, _this.camera.x, _this.camera.y, _this.context.canvas.width, _this.context.canvas.height);
+  this.drawBackground = function (width, height) {
+    var gbg = document.querySelector(".game-background");
+    gbg.style.width = "".concat(width, "px");
+    gbg.style.height = "".concat(height, "px");
+    gbg.style.backgroundImage = "url(".concat(_this.background.src, ")");
+    gbg.style.backgroundSize = "".concat(width, "px ").concat(height, "px");
   };
 
   this.render = function () {
@@ -1701,8 +1707,6 @@ var Game = function Game(context, reset) {
   };
 
   this.render = function () {
-    _this.display.drawBackground();
-
     _this.display.drawMap();
 
     _this.display.drawEnemies();
@@ -1811,6 +1815,9 @@ var Game = function Game(context, reset) {
   this.pause = function () {
     if (_this.playId) {
       window.cancelAnimationFrame(_this.playId);
+
+      _this.bgm.stop();
+
       _this.playId = undefined;
       _this.context.globalAlpha = 0.3;
       _this.context.fillStyle = "#000";
@@ -1839,6 +1846,8 @@ var Game = function Game(context, reset) {
     _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight, _this.context.canvas.height / _this.context.canvas.width);
 
     _this.renderMenu();
+
+    _this.display.drawBackground(_this.context.canvas.width, _this.context.canvas.height);
   };
 
   this.deadJump = false;
@@ -2306,9 +2315,10 @@ var Menu = function Menu(dH, dW, context, _buffer) {
         buffer.fillText("J/Space - Jump (when on ground)", 80, 150);
         buffer.fillText("K/Shift - Spin (when jumping)", 80, 170);
         buffer.fillText("ESC - Pause/Resume", 80, 190);
-        buffer.fillText("Spin on Enemies to eliminate them", 80, 220);
-        buffer.fillText("Jump on Walls to wall jump", 80, 240);
-        buffer.fillText("Make it to the end of each level", 80, 260);
+        buffer.fillText("M - Mute", 80, 210);
+        buffer.fillText("Spin on Enemies to eliminate them", 80, 240);
+        buffer.fillText("Jump on Walls to wall jump", 80, 260);
+        buffer.fillText("Make it to the end of each level", 80, 280);
         break;
 
       case "about":
