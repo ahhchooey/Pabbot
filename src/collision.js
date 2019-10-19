@@ -119,7 +119,7 @@ export default class Collision {
       };
       if (!ent.rightActive && !ent.leftActive) ent.stop();
       ent.isJumping = false;
-      ent.isDashing = false;
+      setTimeout(() => ent.isDashing = false, 50);
       ent.isWalled = false;
       return true;
     }

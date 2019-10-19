@@ -775,7 +775,9 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
       ;
       if (!ent.rightActive && !ent.leftActive) ent.stop();
       ent.isJumping = false;
-      ent.isDashing = false;
+      setTimeout(function () {
+        return ent.isDashing = false;
+      }, 50);
       ent.isWalled = false;
       return true;
     }
