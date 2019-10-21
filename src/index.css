@@ -49,7 +49,7 @@ body {
   display: none;
 }
 
-@media (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
   .touch-controls {
     position: absolute;
     bottom: 300px;
