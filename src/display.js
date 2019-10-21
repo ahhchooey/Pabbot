@@ -2,7 +2,7 @@ import Menu from "./menu.js";
 
 
 export default class Display {
-  constructor(context, width, height, pabbot, map, mapWidth, camera, dW, dH, enemies, run, gM) {
+  constructor(context, width, height, pabbot, map, mapWidth, camera, dW, dH, enemies, run, gM, tC) {
     this.context = context;
     this.width = width;
     this.height = height;
@@ -15,6 +15,7 @@ export default class Display {
     this.enemies = enemies;
     this.run = run;
     this.gameMap = gM;
+    this.touchControl = tC;
 
     this.buffer = document.createElement("canvas").getContext("2d");
     this.buffer.canvas.width = width;
@@ -55,7 +56,7 @@ export default class Display {
     switch(this.menu.currentPointer()) {
       case "start":
         this.destroyHandle();
-        this.menu.startGame(this.run);
+        this.menu.startGame(this.run, this.touchControl);
         break;
       case "controls":
         this.menu.showControls();

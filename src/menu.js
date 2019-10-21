@@ -99,8 +99,9 @@ export default class Menu {
     this.pointerPositions.unshift(this.pointerPositions.pop())
   }
 
-  startGame = (run) => {
+  startGame = (run, touchControl) => {
     run();
+    touchControl();
   }
 
   showControls = () => {

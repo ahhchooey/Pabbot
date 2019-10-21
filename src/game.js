@@ -6,6 +6,7 @@ import Map from "./map.js";
 import Collision from "./collision.js";
 import Enemies from "./enemies/enemies.js";
 import Sound from "./sound.js";
+import TouchHandler from "./touchHandler.js";
 
 import gameMap from "../assets/maps/level1.js";
 import level2 from "../assets/maps/level2.js";
@@ -63,7 +64,8 @@ export default class Game {
       this.context.canvas.height,
       this.enemies,
       this.run,
-      gameMap
+      gameMap,
+      this.touchControl
     );
 
     this.bgm = new Sound("../assets/sound/pabbotSafari.m4a", 0.2);
@@ -71,10 +73,18 @@ export default class Game {
 
     this.mute = false;
     this.soundControl();
+
+    this.touchHandler = new TouchHandler(this.pabbot, this.display.menu, this.display);
   }
 
   maps = [level2, level3, level4, endMap]
   backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png", "../assets/pixel_dark.png", "../assets/pixel_forest2.png", "../assets/pixel_field.png"];
+
+  touchControl = () => {
+    this.touchHandler.destroyTouchMenu();
+    this.touchHandler.createTouchStart();
+    this.touchHandler.createTouchEnd();
+  }
 
   renderMenu = () => {
     this.display.drawMenu();

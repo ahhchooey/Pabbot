@@ -878,7 +878,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var Display = function Display(context, _width, _height, pabbot, map, mapWidth, camera, dW, dH, enemies, run, gM) {
+var Display = function Display(context, _width, _height, pabbot, map, mapWidth, camera, dW, dH, enemies, run, gM, tC) {
   var _this = this;
 
   _classCallCheck(this, Display);
@@ -919,7 +919,7 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
       case "start":
         _this.destroyHandle();
 
-        _this.menu.startGame(_this.run);
+        _this.menu.startGame(_this.run, _this.touchControl);
 
         break;
 
@@ -1004,6 +1004,7 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
   this.enemies = enemies;
   this.run = run;
   this.gameMap = gM;
+  this.touchControl = tC;
   this.buffer = document.createElement("canvas").getContext("2d");
   this.buffer.canvas.width = _width;
   this.buffer.canvas.height = _height;
@@ -1673,11 +1674,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _collision_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./collision.js */ "./src/collision.js");
 /* harmony import */ var _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./enemies/enemies.js */ "./src/enemies/enemies.js");
 /* harmony import */ var _sound_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./sound.js */ "./src/sound.js");
-/* harmony import */ var _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../assets/maps/level1.js */ "./assets/maps/level1.js");
-/* harmony import */ var _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../assets/maps/level2.js */ "./assets/maps/level2.js");
-/* harmony import */ var _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../assets/maps/level3.js */ "./assets/maps/level3.js");
-/* harmony import */ var _assets_maps_level4_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../assets/maps/level4.js */ "./assets/maps/level4.js");
-/* harmony import */ var _assets_maps_levelEnd_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../assets/maps/levelEnd.js */ "./assets/maps/levelEnd.js");
+/* harmony import */ var _touchHandler_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./touchHandler.js */ "./src/touchHandler.js");
+/* harmony import */ var _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../assets/maps/level1.js */ "./assets/maps/level1.js");
+/* harmony import */ var _assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../assets/maps/level2.js */ "./assets/maps/level2.js");
+/* harmony import */ var _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../assets/maps/level3.js */ "./assets/maps/level3.js");
+/* harmony import */ var _assets_maps_level4_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../assets/maps/level4.js */ "./assets/maps/level4.js");
+/* harmony import */ var _assets_maps_levelEnd_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../assets/maps/levelEnd.js */ "./assets/maps/levelEnd.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
@@ -1693,16 +1695,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].height * 32;
-var GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].width * 32;
+
+var GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].height * 32;
+var GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].width * 32;
 
 var Game = function Game(context, reset) {
   var _this = this;
 
   _classCallCheck(this, Game);
 
-  this.maps = [_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_9__["default"], _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_10__["default"], _assets_maps_level4_js__WEBPACK_IMPORTED_MODULE_11__["default"], _assets_maps_levelEnd_js__WEBPACK_IMPORTED_MODULE_12__["default"]];
+  this.maps = [_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_10__["default"], _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_11__["default"], _assets_maps_level4_js__WEBPACK_IMPORTED_MODULE_12__["default"], _assets_maps_levelEnd_js__WEBPACK_IMPORTED_MODULE_13__["default"]];
   this.backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png", "../assets/pixel_dark.png", "../assets/pixel_forest2.png", "../assets/pixel_field.png"];
+
+  this.touchControl = function () {
+    _this.touchHandler.destroyTouchMenu();
+
+    _this.touchHandler.createTouchStart();
+
+    _this.touchHandler.createTouchEnd();
+  };
 
   this.renderMenu = function () {
     _this.display.drawMenu();
@@ -1904,24 +1915,25 @@ var Game = function Game(context, reset) {
   this.reset = reset;
   this.context.canvas.width = 640;
   this.context.canvas.height = 320;
-  GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].height * 32;
-  GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].width * 32;
+  GAME_HEIGHT = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].height * 32;
+  GAME_WIDTH = _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].width * 32;
   this.playId;
   this.timeStart = 0;
   this.run = this.run.bind(this);
   this.gameOver = this.gameOver.bind(this);
   this.handlePause();
   this.pabbot = new _pabbot_js__WEBPACK_IMPORTED_MODULE_1__["default"](64, GAME_HEIGHT - 64, 32, 32, this.checkMute);
-  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].enemies, this.pabbot, this.checkMute);
+  this.enemies = new _enemies_enemies_js__WEBPACK_IMPORTED_MODULE_6__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].enemies, this.pabbot, this.checkMute);
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
-  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
-  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].collisionMap, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].width, this.nextLevel);
-  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_8__["default"]);
+  this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
+  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].collisionMap, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].width, this.nextLevel);
+  this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"], this.touchControl);
   this.bgm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotSafari.m4a", 0.2);
   this.deadm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotEnd.mp3", 1.0);
   this.mute = false;
   this.soundControl();
+  this.touchHandler = new _touchHandler_js__WEBPACK_IMPORTED_MODULE_8__["default"](this.pabbot, this.display.menu, this.display);
 };
 
 
@@ -2266,8 +2278,9 @@ var Menu = function Menu(dH, dW, context, _buffer) {
     _this.pointerPositions.unshift(_this.pointerPositions.pop());
   };
 
-  this.startGame = function (run) {
+  this.startGame = function (run, touchControl) {
     run();
+    touchControl();
   };
 
   this.showControls = function () {
@@ -2712,6 +2725,178 @@ var TileSheet = function TileSheet(tileSize, colCount) {
   this.image = new Image();
   this.tileSize = tileSize;
   this.colCount = colCount;
+};
+
+
+
+/***/ }),
+
+/***/ "./src/touchHandler.js":
+/*!*****************************!*\
+  !*** ./src/touchHandler.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TouchHandler; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TouchHandler = function TouchHandler(pabbot, menu, display) {
+  var _this = this;
+
+  _classCallCheck(this, TouchHandler);
+
+  this.createTouchStart = function () {
+    _this.up.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+      _this.pabbot.upActive = true;
+    });
+
+    _this.left.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+      _this.pabbot.leftActive = true;
+      _this.pabbot.facing = "left";
+
+      _this.pabbot.moveLeft();
+    });
+
+    _this.right.addEventListener("touchstart", function (e) {
+      _this.pabbot.rightActive = true;
+      _this.pabbot.facing = "right";
+
+      _this.pabbot.moveRight();
+
+      e.preventDefault();
+    });
+
+    _this.down.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+      _this.pabbot.downActive = true;
+    });
+
+    _this.jump.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+
+      if (!_this.jumped && !_this.pabbot.isJumping) {
+        _this.jumped = true;
+
+        _this.pabbot.jump();
+      } else {
+        _this.pabbot.wallJump();
+      }
+    });
+
+    _this.dash.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+
+      if (!_this.dashed) {
+        _this.dashed = true;
+
+        _this.pabbot.dash();
+      }
+    });
+  };
+
+  this.createTouchEnd = function () {
+    _this.up.addEventListener("touchend", function (e) {
+      e.preventDefault();
+      _this.pabbot.upActive = false;
+    });
+
+    _this.left.addEventListener("touchend", function (e) {
+      e.preventDefault();
+      _this.pabbot.leftActive = false;
+      if (_this.pabbot.speed.x < 0) _this.pabbot.stop();
+    });
+
+    _this.right.addEventListener("touchend", function (e) {
+      e.preventDefault();
+      _this.pabbot.rightActive = false;
+      if (_this.pabbot.speed.x > 0) _this.pabbot.stop();
+    });
+
+    _this.down.addEventListener("touchend", function (e) {
+      e.preventDefault();
+      _this.pabbot.downActive = false;
+    });
+
+    _this.jump.addEventListener("touchend", function (e) {
+      e.preventDefault();
+
+      if (_this.jumped) {
+        _this.jumped = false;
+
+        _this.pabbot.cancelJump();
+      }
+    });
+
+    _this.dash.addEventListener("touchend", function (e) {
+      e.preventDefault();
+
+      if (_this.dashed) {
+        _this.dashed = false;
+      }
+    });
+  };
+
+  this.createTouchMenu = function () {
+    _this.up.addEventListener("touchstart", _this.menuUp);
+
+    _this.down.addEventListener("touchstart", _this.menuDown);
+
+    _this.jump.addEventListener("touchstart", _this.select);
+
+    _this.dash.addEventListener("touchstart", _this.select);
+  };
+
+  this.menuUp = function (e) {
+    e.preventDefault();
+
+    _this.menu.movePointerUp();
+
+    _this.display.drawMenu();
+  };
+
+  this.menuDown = function (e) {
+    e.preventDefault();
+
+    _this.menu.movePointerDown();
+
+    _this.display.drawMenu();
+  };
+
+  this.select = function (e) {
+    e.preventDefault();
+
+    _this.display.menuSelect();
+
+    _this.display.drawMenu();
+  };
+
+  this.destroyTouchMenu = function () {
+    _this.up.removeEventListener("touchstart", _this.menuUp);
+
+    _this.down.removeEventListener("touchstart", _this.menuDown);
+
+    _this.jump.removeEventListener("touchstart", _this.select);
+
+    _this.dash.removeEventListener("touchstart", _this.select);
+  };
+
+  this.pabbot = pabbot;
+  this.menu = menu;
+  this.display = display;
+  this.up = document.querySelector(".up");
+  this.left = document.querySelector(".left");
+  this.right = document.querySelector(".right");
+  this.down = document.querySelector(".down");
+  this.jump = document.querySelector(".jump");
+  this.dash = document.querySelector(".dash");
+  this.jumped = false;
+  this.dashed = false;
+  this.createTouchMenu();
 };
 
 
