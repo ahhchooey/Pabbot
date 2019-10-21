@@ -45,8 +45,11 @@ body {
   display: none;
 }
 
+.pad, .butt {
+  display: none;
+}
 
-@media only screen and (max-width: 1px) {
+@media (max-width: 1024px) {
   .touch-controls {
     position: absolute;
     bottom: 300px;
