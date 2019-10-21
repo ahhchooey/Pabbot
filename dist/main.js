@@ -1844,14 +1844,6 @@ var Game = function Game(context, reset) {
     }
   };
 
-  this.resize = function () {
-    _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight, _this.context.canvas.height / _this.context.canvas.width);
-
-    _this.renderMenu();
-
-    _this.display.drawBackground(_this.context.canvas.width, _this.context.canvas.height);
-  };
-
   this.deadJump = false;
 
   this.dead = function () {
@@ -1898,6 +1890,14 @@ var Game = function Game(context, reset) {
     _this.display.destroyHandle();
 
     _this.resize();
+  };
+
+  this.resize = function () {
+    _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight, _this.context.canvas.height / _this.context.canvas.width);
+
+    _this.renderMenu();
+
+    _this.display.drawBackground(_this.context.canvas.width, _this.context.canvas.height);
   };
 
   this.context = context;

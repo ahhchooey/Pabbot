@@ -201,16 +201,6 @@ export default class Game {
     }
   }
 
-  resize = () => {
-    this.display.resize(
-      document.documentElement.clientWidth - 50,
-      document.documentElement.clientHeight,
-      this.context.canvas.height/this.context.canvas.width 
-    )
-    this.renderMenu();
-    this.display.drawBackground(this.context.canvas.width, this.context.canvas.height);
-  }
-
   deadJump = false;
 
   dead = () => {
@@ -277,6 +267,16 @@ export default class Game {
     this.display.background.src = currentBackground;
     this.display.destroyHandle();
     this.resize();
+  }
+
+  resize = () => {
+    this.display.resize(
+      document.documentElement.clientWidth - 50,
+      document.documentElement.clientHeight,
+      this.context.canvas.height/this.context.canvas.width 
+    )
+    this.renderMenu();
+    this.display.drawBackground(this.context.canvas.width, this.context.canvas.height);
   }
 }
 
