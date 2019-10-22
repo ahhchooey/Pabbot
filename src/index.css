@@ -45,11 +45,24 @@ body {
   display: none;
 }
 
-.pad, .butt {
+.pad {
   display: none;
 }
 
-@media only screen and (max-width: 1024px) {
+.butt {
+  display: none;
+}
+
+@media (max-width: 415px) {
+  * {
+    font-size: 8px;
+  }
+
+  #game {
+    position: absolute;
+    top: 150px;
+  }
+
   .touch-controls {
     position: absolute;
     bottom: 300px;
@@ -62,9 +75,9 @@ body {
   }
 
   .pad {
-    height: 125px;
-    width: 125px;
-    border: 5px solid white;
+    height: 8vw;
+    width: 8vw;
+    border: 2px solid white;
     border-radius: 5px;
 
     display: flex;
@@ -73,9 +86,9 @@ body {
   }
 
   .butt {
-    height: 150px;
-    width: 150px;
-    border: 5px solid white;
+    height: 10vw;
+    width: 10vw;
+    border: 2px solid white;
     border-radius: 50%;
 
     display: flex;
@@ -85,7 +98,7 @@ body {
 
   .touch-move {
     width: 40%;
-    height: 500px;
+    height: 50vh;
 
     display: flex;
     flex-direction: column;
@@ -94,17 +107,17 @@ body {
   }
 
   .left {
-    transform: translateX(-125px);
+    transform: translateX(-8vw);
   }
   
   .right {
     position: absolute;
-    transform: translateX(125px);
+    transform: translateX(8vw);
   }
 
   .touch-action {
     width: 45%;
-    height: 250px;
+    height: 50vh;
 
     display: flex;
     justify-content: space-between;
@@ -112,12 +125,8 @@ body {
   }
 
   body {
+    position: relative;
     height: 100vh;
-  }
-
-  #game {
-    position: absolute;
-    top: 150px;
   }
 
   .game-background {
