@@ -60,12 +60,16 @@ body {
 
   #game {
     position: absolute;
-    top: 150px;
+    top: 50px;
+  }
+
+  .game-background {
+    top: 50px;
   }
 
   .touch-controls {
     position: absolute;
-    bottom: 300px;
+    bottom: 100px;
     width: 80vw;
     height: 30vh;
 
@@ -129,7 +133,4 @@ body {
     height: 100vh;
   }
 
-  .game-background {
-    top: 150px;
-  }
 }
