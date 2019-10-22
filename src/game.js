@@ -69,10 +69,10 @@ export default class Game {
       this.touchControl
     );
 
-    this.bgm = new Sound("../assets/sound/pabbotSafari.m4a", 0.2);
+    this.bgm = new Sound("../assets/sound/pabbotSafari.m4a", 0.0);
     this.deadm = new Sound("../assets/sound/pabbotEnd.mp3", 1.0)
 
-    this.mute = false;
+    this.mute = true;
     this.soundControl();
 
     this.touchHandler = new TouchHandler(this.pabbot, this.display.menu, this.display);

@@ -1935,9 +1935,9 @@ var Game = function Game(context, reset) {
   this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
   this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].collisionMap, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].width, this.nextLevel);
   this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"], this.touchControl);
-  this.bgm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotSafari.m4a", 0.2);
+  this.bgm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotSafari.m4a", 0.0);
   this.deadm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotEnd.mp3", 1.0);
-  this.mute = false;
+  this.mute = true;
   this.soundControl();
   this.touchHandler = new _touchHandler_js__WEBPACK_IMPORTED_MODULE_8__["default"](this.pabbot, this.display.menu, this.display);
 };
@@ -2542,6 +2542,9 @@ function (_Entity) {
           buffer.drawImage(_this.tileSheet.image, _this.healthBall, 0, _this.width, _this.height, 20 + 23 * i + x, 20 + y, _this.width - 10, _this.height - 10);
         }
       }
+
+      var moot = _this.checkMute() ? "M: Sound Off" : "M: Sound On";
+      buffer.fillText(moot, 578 + x, 10 + y);
     };
 
     _this.toggleInvincible = function () {

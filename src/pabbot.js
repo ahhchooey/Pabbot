@@ -123,6 +123,7 @@ export default class Pabbot extends Entity {
       this.width,
       this.height
     )
+
   }
 
   renderHealth = (buffer, x, y) => {
@@ -143,6 +144,8 @@ export default class Pabbot extends Entity {
         )
       }
     }
+    let moot = (this.checkMute()) ? "M: Sound Off" : "M: Sound On"
+    buffer.fillText(moot, 578 + x, 10 + y)
   }
 
   toggleInvincible = () => {
