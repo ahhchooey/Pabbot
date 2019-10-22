@@ -120,8 +120,9 @@ body {
   }
 
   .touch-action {
-    width: 45%;
+    width: 42%;
     height: 50vh;
+    transform: translateX(5vw);
 
     display: flex;
     justify-content: space-between;
