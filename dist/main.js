@@ -982,6 +982,9 @@ var Display = function Display(context, _width, _height, pabbot, map, mapWidth, 
   };
 
   this.resize = function (width, height, ratio) {
+    if (width > 1000) width = 1000;
+    if (height > 500) height = 500;
+
     if (height / width > ratio) {
       _this.context.canvas.width = width;
       _this.context.canvas.height = width * ratio;
@@ -1906,7 +1909,7 @@ var Game = function Game(context, reset) {
   };
 
   this.resize = function () {
-    _this.display.resize(document.documentElement.clientWidth - 50, document.documentElement.clientHeight, _this.context.canvas.height / _this.context.canvas.width);
+    _this.display.resize(document.documentElement.clientWidth - 30, document.documentElement.clientHeight, _this.context.canvas.height / _this.context.canvas.width);
 
     _this.renderMenu();
 

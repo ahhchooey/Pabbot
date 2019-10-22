@@ -129,6 +129,9 @@ export default class Display {
   };
 
   resize = (width, height, ratio) => {
+    if (width > 1000) width = 1000;
+    if (height > 500) height = 500;
+
     if (height / width > ratio) {
       this.context.canvas.width = width;
       this.context.canvas.height = width * ratio;

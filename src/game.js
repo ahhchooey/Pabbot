@@ -282,7 +282,7 @@ export default class Game {
 
   resize = () => {
     this.display.resize(
-      document.documentElement.clientWidth - 50,
+      document.documentElement.clientWidth - 30,
       document.documentElement.clientHeight,
       this.context.canvas.height/this.context.canvas.width 
     )
