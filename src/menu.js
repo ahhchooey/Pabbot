@@ -144,6 +144,7 @@ export default class Menu {
         buffer.font = "25px serif";
         buffer.fillText("Controls", 80, 80)
         buffer.font = "20px serif";
+        buffer.fillText("I - Invicibility Mode", 20, 40)
         buffer.fillText("ArrowKeys/WASD - Up, Down, Left, Right", 80, 110)
         buffer.fillText("Enter - Menu Select", 80, 130)
         buffer.fillText("J/Space - Jump (when on ground)", 80, 150)

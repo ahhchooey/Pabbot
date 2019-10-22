@@ -824,7 +824,8 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
   this.collideInstantDeath = function (ent, tileTop) {
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
       ent.hitSound.sound.cloneNode(true).play();
-      ent.health -= 3;
+      if (!ent.invincible) ent.health -= 3;
+      ent.lastHit = 100;
       return true;
     }
 
@@ -834,7 +835,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
   this.collideTopSpike = function (ent, tileBottom) {
     if (ent.getTop() < tileBottom && ent.getPastTop() >= tileBottom) {
       ent.hitSound.sound.cloneNode(true).play();
-      ent.health -= 1;
+      if (!ent.invincible) ent.health -= 1;
       ent.lastHit = 100;
       return true;
     }
@@ -1146,7 +1147,7 @@ function (_Entity) {
       if (_this.getDistance(_this.pabbot) < 17 && _this.pabbot.lastHit <= 0) {
         if (!_this.pabbot.isDashing) {
           if (!_this.checkMute()) _this.fireHit.sound.cloneNode(true).play();
-          _this.pabbot.health--;
+          if (!_this.pabbot.invincible) _this.pabbot.health--;
           _this.pabbot.lastHit = 50;
 
           if (_this.pabbot.speed.x === 0) {
@@ -2325,6 +2326,7 @@ var Menu = function Menu(dH, dW, context, _buffer) {
         buffer.font = "25px serif";
         buffer.fillText("Controls", 80, 80);
         buffer.font = "20px serif";
+        buffer.fillText("I - Invicibility Mode", 20, 40);
         buffer.fillText("ArrowKeys/WASD - Up, Down, Left, Right", 80, 110);
         buffer.fillText("Enter - Menu Select", 80, 130);
         buffer.fillText("J/Space - Jump (when on ground)", 80, 150);
@@ -2549,8 +2551,20 @@ function (_Entity) {
     };
 
     _this.renderHealth = function (buffer, x, y) {
-      for (var i = 0; i < _this.health; i++) {
-        buffer.drawImage(_this.tileSheet.image, _this.healthBall, 0, _this.width, _this.height, 20 + 23 * i + x, 20 + y, _this.width - 10, _this.height - 10);
+      if (_this.invincible) {
+        buffer.fillText("INVINCIBLE", 20 + x, 40 + y);
+      } else {
+        for (var i = 0; i < _this.health; i++) {
+          buffer.drawImage(_this.tileSheet.image, _this.healthBall, 0, _this.width, _this.height, 20 + 23 * i + x, 20 + y, _this.width - 10, _this.height - 10);
+        }
+      }
+    };
+
+    _this.toggleInvincible = function () {
+      if (_this.invincible) {
+        _this.invincible = false;
+      } else {
+        _this.invincible = true;
       }
     };
 
@@ -2637,7 +2651,7 @@ function (_Entity) {
           } else {
             if (!_this.checkMute()) _this.hitSound.sound.cloneNode(true).play();
             _this.lastHit = 100;
-            _this.health--;
+            if (!_this.invincible) _this.health--;
           }
 
           if (_this.speed.x === 0) {
@@ -2657,6 +2671,10 @@ function (_Entity) {
     _this.hitSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/hit.mp3", 0.0);
     _this.tackleSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/tackle.mp3", 0.0);
     _this.checkMute = mute;
+    _this.invincible = false;
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "i") _this.toggleInvincible();
+    });
     return _this;
   }
 

@@ -14,6 +14,11 @@ export default class Pabbot extends Entity {
     this.tackleSound = new Sound("../assets/sound/tackle.mp3", 0.0);
 
     this.checkMute = mute;
+    this.invincible = false;
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "i") this.toggleInvincible();
+    })
   }
 
   health = 3;
@@ -121,18 +126,30 @@ export default class Pabbot extends Entity {
   }
 
   renderHealth = (buffer, x, y) => {
-    for (let i = 0; i < this.health; i++) {
-      buffer.drawImage(
-        this.tileSheet.image,
-        this.healthBall,
-        0,
-        this.width,
-        this.height,
-        (20 + 23 * i) + x,
-        20 + y,
-        this.width - 10,
-        this.height - 10
-      )
+    if (this.invincible) {
+      buffer.fillText("INVINCIBLE", 20 + x, 40 + y)
+    } else {
+      for (let i = 0; i < this.health; i++) {
+        buffer.drawImage(
+          this.tileSheet.image,
+          this.healthBall,
+          0,
+          this.width,
+          this.height,
+          (20 + 23 * i) + x,
+          20 + y,
+          this.width - 10,
+          this.height - 10
+        )
+      }
+    }
+  }
+
+  toggleInvincible = () => {
+    if (this.invincible) {
+      this.invincible = false;
+    } else {
+      this.invincible = true;
     }
   }
 
@@ -218,7 +235,7 @@ export default class Pabbot extends Entity {
         } else {
           if (!this.checkMute()) this.hitSound.sound.cloneNode(true).play();
           this.lastHit = 100;
-          this.health--;
+          if (!this.invincible) this.health--;
         }
 
         if (this.speed.x === 0) {

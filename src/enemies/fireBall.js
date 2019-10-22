@@ -56,7 +56,7 @@ export default class Fireball extends Entity {
     if (this.getDistance(this.pabbot) < 17 && this.pabbot.lastHit <= 0) {
       if (!this.pabbot.isDashing) {
         if (!this.checkMute()) this.fireHit.sound.cloneNode(true).play();
-        this.pabbot.health--;
+        if (!this.pabbot.invincible) this.pabbot.health--;
         this.pabbot.lastHit = 50;
 
         if (this.pabbot.speed.x === 0) {
