@@ -171,7 +171,7 @@ export default class Game {
       window.cancelAnimationFrame(this.playId);
 
       this.bgm.stop();
-      this.deadm.play();
+      if (!this.mute) this.deadm.play();
       setTimeout(this.reset, 2000);
       this.end = true;
     }

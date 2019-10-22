@@ -1815,8 +1815,7 @@ var Game = function Game(context, reset) {
 
       _this.bgm.stop();
 
-      _this.deadm.play();
-
+      if (!_this.mute) _this.deadm.play();
       setTimeout(_this.reset, 2000);
       _this.end = true;
     }
