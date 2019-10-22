@@ -60,16 +60,16 @@ body {
 
   #game {
     position: absolute;
-    top: 50px;
+    top: 10vh;
   }
 
   .game-background {
-    top: 50px;
+    top: 10vh;
   }
 
   .touch-controls {
     position: absolute;
-    bottom: 100px;
+    bottom: 30vh;
     width: 80vw;
     height: 30vh;
 
@@ -79,8 +79,8 @@ body {
   }
 
   .pad {
-    height: 8vw;
-    width: 8vw;
+    height: 12vw;
+    width: 12vw;
     border: 2px solid white;
     border-radius: 5px;
 
@@ -90,8 +90,8 @@ body {
   }
 
   .butt {
-    height: 10vw;
-    width: 10vw;
+    height: 15vw;
+    width: 15vw;
     border: 2px solid white;
     border-radius: 50%;
 
@@ -111,12 +111,12 @@ body {
   }
 
   .left {
-    transform: translateX(-8vw);
+    transform: translateX(-13vw);
   }
   
   .right {
     position: absolute;
-    transform: translateX(8vw);
+    transform: translateX(13vw);
   }
 
   .touch-action {
