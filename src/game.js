@@ -23,6 +23,7 @@ export default class Game {
     this.reset = reset;
     this.context.canvas.width = 640;
     this.context.canvas.height = 320;
+    this.context.imageSmoothingEnabled = false;
 
     GAME_HEIGHT = gameMap.height * 32;
     GAME_WIDTH = gameMap.width * 32;

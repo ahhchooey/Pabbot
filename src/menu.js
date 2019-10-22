@@ -13,6 +13,15 @@ export default class Menu {
     this.isDown = false;
     
     this.hexes = [];
+
+    this.startScreen = new Image();
+    this.startScreen.src = "../assets/menu/pabbot_start.png";
+
+    this.controlsScreen = new Image();
+    this.controlsScreen.src = "../assets/menu/pabbot_controls.png";
+
+    this.aboutScreen = new Image();
+    this.aboutScreen.src = "../assets/menu/pabbot_about.png";
   }
 
   hexPush = () => {
@@ -21,30 +30,30 @@ export default class Menu {
     this.hexes.push(
       {
         points: [
-          {x: 0.14*cw, y: 0.79*ch}, 
-          {x: 0.23*cw, y: 0.79*ch}, 
-          {x: 0.23*cw, y: 0.85*ch},
-          {x: 0.14*cw, y: 0.85*ch} 
+          {x: 0.074*cw, y: 0.78*ch}, 
+          {x: 0.20*cw, y: 0.78*ch}, 
+          {x: 0.20*cw, y: 0.89*ch},
+          {x: 0.074*cw, y: 0.89*ch} 
+        ],
+        url: "http://alexchui.dev"
+      },
+      {
+        points: [
+          {x: 0.26*cw, y: 0.78*ch},
+          {x: 0.37*cw, y: 0.78*ch},
+          {x: 0.37*cw, y: 0.89*ch},
+          {x: 0.26*cw, y: 0.89*ch}
         ],
         url: "http://www.github.com/ahhchooey"
       },
       {
         points: [
-          {x: 0.26*cw, y: 0.79*ch},
-          {x: 0.37*cw, y: 0.79*ch},
-          {x: 0.37*cw, y: 0.85*ch},
-          {x: 0.26*cw, y: 0.85*ch}
+          {x: 0.43*cw, y: 0.78*ch},
+          {x: 0.56*cw, y: 0.78*ch},
+          {x: 0.56*cw, y: 0.89*ch},
+          {x: 0.43*cw, y: 0.89*ch}
         ],
         url: "https://www.linkedin.com/in/alex-chui-075785117/"
-      },
-      {
-        points: [
-          {x: 0.40*cw, y: 0.79*ch},
-          {x: 0.50*cw, y: 0.79*ch},
-          {x: 0.50*cw, y: 0.85*ch},
-          {x: 0.40*cw, y: 0.85*ch}
-        ],
-        url: "http://www.github.com/ahhchooey"
       }
     )
   }
@@ -83,6 +92,8 @@ export default class Menu {
         window.location = hex.url
       }
     }
+
+    //console.log(mouseX/this.context.canvas.width, mouseY/this.context.canvas.height);
   }
 
   pointerPositions = ["start", "controls", "about"];
@@ -114,8 +125,11 @@ export default class Menu {
   }
 
   reOffset = () => {
-    this.offsetX = 25;
-    this.offsetY = (document.documentElement.clientHeight - this.context.canvas.height)/2;
+    let game = document.getElementById("game");
+    let rect = game.getBoundingClientRect();
+
+    this.offsetX = rect.left;
+    this.offsetY = rect.top;
   }
 
   clickGithub = () => {
@@ -135,49 +149,48 @@ export default class Menu {
 
     switch(this.currentScreen) {
       case "main":
-        buffer.font = "50px serif";
-        buffer.fillText("Pabbot", 100, 100)
-        buffer.font = "12px serif";
-        buffer.fillText("ArrowKeys and Enter to Navigate the Menu, M to mute", 5, 315)
+        buffer.drawImage(
+          this.startScreen,
+          0,
+          0,
+          640,
+          320,
+          0,
+          0,
+          640,
+          320
+        )
         break;
       case "controls":
-        buffer.font = "25px serif";
-        buffer.fillText("Controls", 80, 80)
-        buffer.font = "20px serif";
-        buffer.fillText("I - Invicibility Mode", 20, 40)
-        buffer.fillText("ArrowKeys/WASD - Up, Down, Left, Right", 80, 110)
-        buffer.fillText("Enter - Menu Select", 80, 130)
-        buffer.fillText("J/Space - Jump (when on ground)", 80, 150)
-        buffer.fillText("K/Shift - Spin (when jumping)", 80, 170)
-        buffer.fillText("ESC - Pause/Resume", 80, 190)
-        buffer.fillText("M - Mute", 80, 210)
-        buffer.fillText("Spin on Enemies to eliminate them", 80, 240)
-        buffer.fillText("Jump on Walls to wall jump", 80, 260)
-        buffer.fillText("Make it to the end of each level", 80, 280)
+        buffer.drawImage(
+          this.controlsScreen,
+          0,
+          0,
+          640,
+          320,
+          0,
+          0,
+          640,
+          320
+        )
         break;
       case "about":
-        buffer.font = "25px serif";
-        buffer.fillText("About Me", 80, 80)
-        buffer.font = "20px serif";
-        buffer.fillText("Hi, I'm Alex, a software developer.", 80, 110)
-        buffer.fillText("This is Pabbot, a game where you play as Pabbot.", 80, 130)
-        buffer.fillText("The goal of the game is simply to make it to the", 80, 150)
-        buffer.fillText("end. There are monsters on the path to victory.", 80, 170)
-        buffer.fillText("Make sure you spin to win.", 80, 190)
-
-        buffer.fillText("If you want, check out my other work.", 80, 230)
-        buffer.fillStyle = "#0FF";
-        buffer.fillText("GitHub     LinkedIn     Portfolio", 100, 270)
-        buffer.fillStyle = "#FFF";
+        buffer.drawImage(
+          this.aboutScreen,
+          0,
+          0,
+          640,
+          320,
+          0,
+          0,
+          640,
+          320
+        )
         break;
     }
 
-    buffer.font = "20px serif";
-    let wordLeft = this.dW/2 + 200;
-    let wordTop = this.dH/2 + 20;
-    buffer.fillText("Start", wordLeft, wordTop);
-    buffer.fillText("Controls", wordLeft, wordTop + 25);
-    buffer.fillText("About", wordLeft, wordTop + 50);
+    let wordLeft = this.dW/2 + 195;
+    let wordTop = this.dH/2 + 31;
 
     let locus = [wordLeft,wordLeft];
     switch(this.currentPointer()) {
@@ -188,7 +201,7 @@ export default class Menu {
         locus = [wordLeft - 10, wordTop + 20];
         break;
       case "about":
-        locus = [wordLeft - 10, wordTop + 45];
+        locus = [wordLeft - 10, wordTop + 47];
         break;
     }
 

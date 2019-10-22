@@ -20,13 +20,13 @@ export default class Display {
     this.buffer = document.createElement("canvas").getContext("2d");
     this.buffer.canvas.width = width;
     this.buffer.canvas.height = height;
+    this.buffer.imageSmoothingEnabled = false;
 
     this.menu = new Menu(this.displayHeight, this.displayWidth, this.context, this.buffer);
     document.addEventListener("keydown", this.handleMenu)
 
     this.background = new Image();
     this.background.src = "../assets/pixel_forest.png";
-
   }
 
   handleMenu = (e) => {
