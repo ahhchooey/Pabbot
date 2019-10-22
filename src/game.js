@@ -79,7 +79,7 @@ export default class Game {
   }
 
   maps = [level2, level3, level4, endMap]
-  backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png", "../assets/pixel_dark.png", "../assets/pixel_forest2.png", "../assets/pixel_field.png"];
+  backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png", "../assets/pixel_dark.png", "../assets/pixel_field.png"];
 
   touchControl = () => {
     this.touchHandler.destroyTouchMenu();

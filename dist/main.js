@@ -1710,7 +1710,7 @@ var Game = function Game(context, reset) {
   _classCallCheck(this, Game);
 
   this.maps = [_assets_maps_level2_js__WEBPACK_IMPORTED_MODULE_10__["default"], _assets_maps_level3_js__WEBPACK_IMPORTED_MODULE_11__["default"], _assets_maps_level4_js__WEBPACK_IMPORTED_MODULE_12__["default"], _assets_maps_levelEnd_js__WEBPACK_IMPORTED_MODULE_13__["default"]];
-  this.backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png", "../assets/pixel_dark.png", "../assets/pixel_forest2.png", "../assets/pixel_field.png"];
+  this.backgrounds = ["../assets/pixel_cave.png", "../assets/pixel_forest2.png", "../assets/pixel_dark.png", "../assets/pixel_field.png"];
 
   this.touchControl = function () {
     _this.touchHandler.destroyTouchMenu();
@@ -2324,15 +2324,15 @@ var Menu = function Menu(dH, dW, context, _buffer) {
 
     switch (_this.currentScreen) {
       case "main":
-        buffer.drawImage(_this.startScreen, 0, 0, 640, 320, 0, 0, 640, 320);
+        buffer.drawImage(_this.startScreen, 0, 0, 2566, 1283, 0, 0, 640, 320);
         break;
 
       case "controls":
-        buffer.drawImage(_this.controlsScreen, 0, 0, 640, 320, 0, 0, 640, 320);
+        buffer.drawImage(_this.controlsScreen, 0, 0, 2566, 1283, 0, 0, 640, 320);
         break;
 
       case "about":
-        buffer.drawImage(_this.aboutScreen, 0, 0, 640, 320, 0, 0, 640, 320);
+        buffer.drawImage(_this.aboutScreen, 0, 0, 2566, 1283, 0, 0, 640, 320);
         break;
     }
 
