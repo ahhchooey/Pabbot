@@ -50,7 +50,8 @@ export default class Game {
       GAME_HEIGHT, 
       gameMap.collisionMap, 
       gameMap.width,
-      this.nextLevel
+      this.nextLevel,
+      this.checkMute
     );
 
     this.display = new Display(

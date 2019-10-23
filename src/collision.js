@@ -1,12 +1,14 @@
 
 
 export default class Collision {
-  constructor(width, height, collisionMap, mapWidth, nextLevel) {
+  constructor(width, height, collisionMap, mapWidth, nextLevel, checkMute) {
     this.gameWidth = width;
     this.gameHeight = height;
     this.collisionMap = collisionMap;
     this.mapWidth = mapWidth;
     this.nextLevel = nextLevel;
+
+    this.checkMute = checkMute;
   }
 
   isCollide = (ent, dead, gameOver) => {
@@ -157,7 +159,7 @@ export default class Collision {
 
   collideInstantDeath = (ent, tileTop) => {
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
-      ent.hitSound.sound.cloneNode(true).play();
+      if (!this.checkMute()) ent.hitSound.sound.cloneNode(true).play();
       if (!ent.invincible) ent.health -= 3;
       ent.lastHit = 100;
       return true;

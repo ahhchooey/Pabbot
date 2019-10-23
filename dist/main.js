@@ -599,7 +599,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Collision; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Collision = function Collision(width, height, collisionMap, mapWidth, nextLevel) {
+var Collision = function Collision(width, height, collisionMap, mapWidth, nextLevel, checkMute) {
   var _this = this;
 
   _classCallCheck(this, Collision);
@@ -823,7 +823,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
 
   this.collideInstantDeath = function (ent, tileTop) {
     if (ent.getBottom() > tileTop && ent.getPastBottom() <= tileTop) {
-      ent.hitSound.sound.cloneNode(true).play();
+      if (!_this.checkMute()) ent.hitSound.sound.cloneNode(true).play();
       if (!ent.invincible) ent.health -= 3;
       ent.lastHit = 100;
       return true;
@@ -858,6 +858,7 @@ var Collision = function Collision(width, height, collisionMap, mapWidth, nextLe
   this.collisionMap = collisionMap;
   this.mapWidth = mapWidth;
   this.nextLevel = nextLevel;
+  this.checkMute = checkMute;
 };
 
 
@@ -1928,7 +1929,7 @@ var Game = function Game(context, reset) {
   this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
   this.inputHandler = new _inputHandler_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.pabbot);
   this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](_assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"], this.context.canvas.width, this.context.canvas.height, this.pabbot);
-  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].collisionMap, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].width, this.nextLevel);
+  this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].collisionMap, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].width, this.nextLevel, this.checkMute);
   this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.context, GAME_WIDTH, GAME_HEIGHT, this.pabbot, this.map, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"].width, this.camera, this.context.canvas.width, this.context.canvas.height, this.enemies, this.run, _assets_maps_level1_js__WEBPACK_IMPORTED_MODULE_9__["default"], this.touchControl);
   this.bgm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotSafari.m4a", 0.0);
   this.deadm = new _sound_js__WEBPACK_IMPORTED_MODULE_7__["default"]("../assets/sound/pabbotEnd.mp3", 1.0);
