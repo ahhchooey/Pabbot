@@ -16,6 +16,15 @@ export default class Pabbot extends Entity {
     this.checkMute = mute;
     this.invincible = false;
 
+    this.invincibleImg = new Image();
+    this.invincibleImg.src = "../assets/menu/invincible.png";
+
+    this.muteImage = new Image();
+    this.muteImage.src = "../assets/menu/mute.png";
+
+    this.unmuteImage = new Image();
+    this.unmuteImage.src = "../assets/menu/unmute.png";
+
     document.addEventListener("keydown", (e) => {
       if (e.key === "i") this.toggleInvincible();
     })
@@ -128,7 +137,17 @@ export default class Pabbot extends Entity {
 
   renderHealth = (buffer, x, y) => {
     if (this.invincible) {
-      buffer.fillText("INVINCIBLE", 20 + x, 40 + y)
+      buffer.drawImage(
+        this.invincibleImg,
+        0,
+        0,
+        160,
+        32,
+        15 + x,
+        25 + y,
+        80,
+        16
+      )
     } else {
       for (let i = 0; i < this.health; i++) {
         buffer.drawImage(
@@ -144,8 +163,18 @@ export default class Pabbot extends Entity {
         )
       }
     }
-    let moot = (this.checkMute()) ? "M: Sound Off" : "M: Sound On"
-    buffer.fillText(moot, 578 + x, 10 + y)
+    let moot = (this.checkMute()) ? this.unmuteImage : this.muteImage;
+    buffer.drawImage(
+      moot,
+      0,
+      0,
+      160,
+      32,
+      550 + x,
+      5 + y,
+      80,
+      16
+    )
   }
 
   toggleInvincible = () => {

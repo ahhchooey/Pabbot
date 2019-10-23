@@ -1798,10 +1798,8 @@ var Game = function Game(context, reset) {
       _this.context.fillRect(0, 0, _this.context.canvas.width, _this.context.canvas.height);
 
       _this.context.globalAlpha = 1;
-      _this.context.font = "50px Georgia";
-      _this.context.fillStyle = "#FFF";
 
-      _this.context.fillText("Game Over", _this.context.canvas.width / 2 - 100, _this.context.canvas.height / 2 - 100);
+      _this.context.drawImage(_this.gameOverImg, 0, 0, 160, 32, _this.context.canvas.width / 2 - 80, _this.context.canvas.height / 2 - 16, 160, 32);
     }
   };
 
@@ -1842,10 +1840,8 @@ var Game = function Game(context, reset) {
       _this.context.fillRect(0, 0, _this.context.canvas.width, _this.context.canvas.height);
 
       _this.context.globalAlpha = 1;
-      _this.context.font = "50px Georgia";
-      _this.context.fillStyle = "#FFF";
 
-      _this.context.fillText("Paused", _this.context.canvas.width / 2 - 75, _this.context.canvas.height / 2 - 100);
+      _this.context.drawImage(_this.pausedImg, 0, 0, 160, 32, _this.context.canvas.width / 2 - 80, _this.context.canvas.height / 2 - 16, 160, 32);
     }
   };
 
@@ -1939,6 +1935,10 @@ var Game = function Game(context, reset) {
   this.mute = true;
   this.soundControl();
   this.touchHandler = new _touchHandler_js__WEBPACK_IMPORTED_MODULE_8__["default"](this.pabbot, this.display.menu, this.display);
+  this.pausedImg = new Image();
+  this.pausedImg.src = "../assets/menu/paused.png";
+  this.gameOverImg = new Image();
+  this.gameOverImg.src = "../assets/menu/game_over.png";
 };
 
 
@@ -2535,15 +2535,15 @@ function (_Entity) {
 
     _this.renderHealth = function (buffer, x, y) {
       if (_this.invincible) {
-        buffer.fillText("INVINCIBLE", 20 + x, 40 + y);
+        buffer.drawImage(_this.invincibleImg, 0, 0, 160, 32, 15 + x, 25 + y, 80, 16);
       } else {
         for (var i = 0; i < _this.health; i++) {
           buffer.drawImage(_this.tileSheet.image, _this.healthBall, 0, _this.width, _this.height, 20 + 23 * i + x, 20 + y, _this.width - 10, _this.height - 10);
         }
       }
 
-      var moot = _this.checkMute() ? "M: Sound Off" : "M: Sound On";
-      buffer.fillText(moot, 578 + x, 10 + y);
+      var moot = _this.checkMute() ? _this.unmuteImage : _this.muteImage;
+      buffer.drawImage(moot, 0, 0, 160, 32, 550 + x, 5 + y, 80, 16);
     };
 
     _this.toggleInvincible = function () {
@@ -2658,6 +2658,12 @@ function (_Entity) {
     _this.tackleSound = new _sound_js__WEBPACK_IMPORTED_MODULE_2__["default"]("../assets/sound/tackle.mp3", 0.0);
     _this.checkMute = mute;
     _this.invincible = false;
+    _this.invincibleImg = new Image();
+    _this.invincibleImg.src = "../assets/menu/invincible.png";
+    _this.muteImage = new Image();
+    _this.muteImage.src = "../assets/menu/mute.png";
+    _this.unmuteImage = new Image();
+    _this.unmuteImage.src = "../assets/menu/unmute.png";
     document.addEventListener("keydown", function (e) {
       if (e.key === "i") _this.toggleInvincible();
     });

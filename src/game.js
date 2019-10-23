@@ -76,6 +76,12 @@ export default class Game {
     this.soundControl();
 
     this.touchHandler = new TouchHandler(this.pabbot, this.display.menu, this.display);
+
+    this.pausedImg = new Image();
+    this.pausedImg.src = "../assets/menu/paused.png";
+
+    this.gameOverImg = new Image();
+    this.gameOverImg.src = "../assets/menu/game_over.png";
   }
 
   maps = [level2, level3, level4, endMap]
@@ -152,13 +158,18 @@ export default class Game {
       this.context.fillStyle = "#000";
       this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
       this.context.globalAlpha = 1;
-      this.context.font = "50px Georgia";
-      this.context.fillStyle = "#FFF";
-      this.context.fillText(
-        "Game Over", 
-        this.context.canvas.width/2 - 100, 
-        this.context.canvas.height/2 - 100
-      );
+
+      this.context.drawImage(
+        this.gameOverImg,
+        0,
+        0,
+        160,
+        32,
+        this.context.canvas.width/2 - 80,
+        this.context.canvas.height/2 - 16,
+        160,
+        32
+      )
     }
   };
 
@@ -192,13 +203,18 @@ export default class Game {
       this.context.fillStyle = "#000";
       this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
       this.context.globalAlpha = 1;
-      this.context.font = "50px Georgia";
-      this.context.fillStyle = "#FFF";
-      this.context.fillText(
-        "Paused", 
-        this.context.canvas.width/2 - 75, 
-        this.context.canvas.height/2 - 100
-      );
+
+      this.context.drawImage(
+        this.pausedImg,
+        0,
+        0,
+        160,
+        32,
+        this.context.canvas.width/2 - 80,
+        this.context.canvas.height/2 - 16,
+        160,
+        32
+      )
     }
   };
 
