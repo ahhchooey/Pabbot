@@ -275,7 +275,8 @@ export default class Game {
       GAME_HEIGHT, 
       currentMap.collisionMap, 
       currentMap.width,
-      this.nextLevel
+      this.nextLevel,
+      this.checkMute
     );
 
     this.display = new Display(
