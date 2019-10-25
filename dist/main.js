@@ -1895,7 +1895,7 @@ var Game = function Game(context, reset) {
     _this.pabbot.health++;
     _this.map = new _map_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
     _this.camera = new _camera_js__WEBPACK_IMPORTED_MODULE_3__["default"](currentMap, _this.context.canvas.width, _this.context.canvas.height, _this.pabbot);
-    _this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, currentMap.collisionMap, currentMap.width, _this.nextLevel);
+    _this.collision = new _collision_js__WEBPACK_IMPORTED_MODULE_5__["default"](GAME_WIDTH, GAME_HEIGHT, currentMap.collisionMap, currentMap.width, _this.nextLevel, _this.checkMute);
     _this.display = new _display_js__WEBPACK_IMPORTED_MODULE_2__["default"](_this.context, GAME_WIDTH, GAME_HEIGHT, _this.pabbot, _this.map, currentMap.width, _this.camera, _this.context.canvas.width, _this.context.canvas.height, _this.enemies, _this.run, currentMap);
     _this.display.background.src = currentBackground;
 
